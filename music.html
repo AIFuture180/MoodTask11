@@ -37,20 +37,21 @@
         }
         .nav-bar .nav-links {
             display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
             align-items: center;
-            gap: 20px;
         }
         .nav-bar a {
-            padding: 8px 12px;
             text-decoration: none;
             color: #4A90E2;
             font-weight: 500;
-            transition: color 0.3s, background-color 0.3s;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .nav-bar a:hover {
             background-color: #f0f0f0;
-            color: #2C3E50;
+            transform: scale(1.05);
         }
         .nav-bar a.active {
             background-color: #4A90E2;
@@ -81,6 +82,7 @@
         }
         .nav-bar .dropdown-content a:hover {
             background-color: #f0f0f0;
+            transform: none;
         }
         .nav-bar .dropdown:hover .dropdown-content {
             display: block;
@@ -484,15 +486,18 @@
             const videoItems = document.querySelectorAll('.video-item');
             const closeButtons = document.querySelectorAll('.close-player');
 
+            // Handle tile clicks to show/hide video lists
             tiles.forEach(tile => {
                 tile.addEventListener('click', (e) => {
+                    // Prevent click on video item or player from triggering tile toggle
                     if (e.target.classList.contains('video-item') || e.target.classList.contains('close-player')) {
                         return;
                     }
 
-                    const category = tile.getElementById('data-category');
+                    const category = tile.getAttribute('data-category');
                     const videoList = document.getElementById(`${category}-videos`);
 
+                    // Close all other video lists and players
                     document.querySelectorAll('.video-list').forEach(list => {
                         if (list !== videoList) {
                             list.classList.remove('active');
@@ -502,25 +507,30 @@
                         player.classList.remove('active');
                     });
 
+                    // Toggle the clicked video list
                     videoList.classList.toggle('active');
                 });
             });
 
+            // Handle video item clicks to show the player
             videoItems.forEach(item => {
                 item.addEventListener('click', () => {
                     const videoId = item.getAttribute('data-video');
                     const player = document.getElementById(`player-${videoId}`);
 
+                    // Close all other players
                     document.querySelectorAll('.video-player').forEach(p => {
                         if (p !== player) {
                             p.classList.remove('active');
                         }
                     });
 
+                    // Show the selected player
                     player.classList.add('active');
                 });
             });
 
+            // Handle close buttons to hide the player
             closeButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const player = button.parentElement;

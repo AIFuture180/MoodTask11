@@ -29,17 +29,40 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            max-width: 1400px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
         }
         .nav-bar .logo {
             font-size: 1.5em;
-            font-weight: 600;
+            font-weight: 700;
             color: #4A90E2;
         }
+        .nav-bar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-left: 30px;
+            padding-right: 20px;
+        }
         .nav-bar a {
-            margin: 0 10px;
+            padding: 10px 15px;
             text-decoration: none;
-            color: #4A90E2;
-            font-weight: 500;
+            color: #2C3E50;
+            font-weight: 400;
+            transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+            border-radius: 5px;
+        }
+        .nav-bar a:hover {
+            background-color: #f0f0f0;
+            color: #2C3E50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav-bar a.active {
+            background-color: #4A90E2;
+            color: white;
+            font-weight: 600;
         }
         .nav-bar .dropdown {
             position: relative;
@@ -53,13 +76,16 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 5px;
+            top: 100%;
+            left: 0;
         }
         .nav-bar .dropdown-content a {
-            color: #4A90E2;
-            padding: 12px 16px;
+            color: #2C3E50;
+            padding: 10px 16px;
             text-decoration: none;
             display: block;
             margin: 0;
+            line-height: 1.5;
         }
         .nav-bar .dropdown-content a:hover {
             background-color: #f0f0f0;
@@ -92,29 +118,35 @@
         }
         .tools-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            max-width: 400px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 600px;
         }
         .tool-button {
             color: #fff;
-            padding: 12px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            font-size: 1em;
+            font-size: 0.9em;
             transition: transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 1 / 1;
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            text-align: center;
         }
         .tool-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .tool-button i {
-            margin-right: 10px;
-            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-size: 1.5em;
         }
         .tool-button.breathing {
             background: linear-gradient(135deg, #4A90E2, #6B7280);
@@ -128,11 +160,11 @@
         .tool-button.gratitude:hover {
             background: linear-gradient(135deg, #ED8936, #F56565);
         }
-        .tool-button.soundscape {
-            background: linear-gradient(135deg, #2C3E50, #4A90E2);
+        .tool-button.guided-meditation {
+            background: linear-gradient(135deg, #9F7AEA, #B794F4);
         }
-        .tool-button.soundscape:hover {
-            background: linear-gradient(135deg, #1A252F, #3B82F6);
+        .tool-button.guided-meditation:hover {
+            background: linear-gradient(135deg, #805AD5, #9F7AEA);
         }
         .tool-button.punching {
             background: linear-gradient(135deg, #FF6F61, #E53E3E);
@@ -169,48 +201,6 @@
         }
         .tool-button.color:hover {
             background: linear-gradient(135deg, #48BB78, #38A169);
-        }
-        .echo-ad {
-            flex: 0 0 400px;
-            margin: 20px;
-            text-align: left;
-            position: sticky;
-            top: 80px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            background-color: #f8f8f8;
-            border: 2px solid #D6D1F5;
-            transition: transform 0.3s;
-        }
-        .echo-ad:hover {
-            transform: scale(1.02);
-        }
-        .echo-ad img {
-            width: 100%;
-            max-width: 420px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: block;
-        }
-        .echo-ad-text {
-            margin: 10px 0;
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #4A90E2;
-            text-align: center;
-            text-decoration: none;
-            background-color: rgba(74, 144, 226, 0.1);
-            padding: 8px 12px;
-            border-radius: 5px;
-            display: inline-block;
-            transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
-        }
-        .echo-ad-text:hover {
-            color: #2C3E50;
-            background-color: rgba(74, 144, 226, 0.2);
-            text-decoration: underline;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .footer {
             background-color: #333;
@@ -324,34 +314,13 @@
             border-radius: 5px;
             transition: width 1s linear;
         }
-        #breathing-instruction, #punching-timer, #stretch-timer, #doodle-timer, #dance-timer, #color-timer {
+        #breathing-instruction, #punching-timer, #stretch-timer, #doodle-timer, #dance-timer, #color-timer, #guided-meditation-timer {
             margin: 10px 0;
             font-size: 0.9em;
         }
-        .sound-select {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+        #guided-meditation-prompt {
             margin: 10px 0;
-            width: 200px;
-        }
-        .audio-controls {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-        }
-        .audio-btn {
-            background: #2C3E50;
-            color: #fff;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #volume-slider {
-            width: 100px;
+            font-size: 1em;
         }
         #punching-bag {
             width: 100px;
@@ -437,24 +406,33 @@
                 gap: 20px;
                 max-width: 750px;
             }
-            .echo-ad {
-                flex: 0 0 350px;
-            }
-            .echo-ad img {
-                max-width: 350px;
-            }
         }
         @media (max-width: 600px) {
             .nav-bar {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 padding: 15px 20px;
             }
-            .nav-bar div {
-                display: flex;
+            .nav-bar .nav-links {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
                 align-items: center;
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .nav-bar a {
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            .nav-bar .dropdown {
+                width: 100%;
+            }
+            .nav-bar .dropdown-content {
+                width: 100%;
+                left: 0;
             }
             .hero {
                 padding: 60px 15px;
@@ -467,26 +445,9 @@
                 padding: 0 10px;
             }
             .tools-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 max-width: 100%;
                 margin: 20px auto;
-            }
-            .echo-ad {
-                flex: 0 0 100%;
-                width: 350px;
-                margin: 20px auto;
-                text-align: center;
-                position: static;
-                padding: 15px;
-                margin-bottom: 30px;
-            }
-            .echo-ad img {
-                width: 100%;
-                max-width: 350px;
-            }
-            .echo-ad-text {
-                font-size: 0.95em;
-                padding: 6px 10px;
             }
         }
     </style>
@@ -494,14 +455,14 @@
 <body>
     <div class="nav-bar">
         <div class="logo">MoodTask</div>
-        <div>
+        <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="calendar.html">Dashboard</a>
             <div class="dropdown">
-                <a href="activities.html">Activities</a>
+                <a href="activities.html" class="active">Activities</a>
                 <div class="dropdown-content">
                     <a href="activities.html#breathing">Breathing</a>
-                    <a href="activities.html#soundscape">Soundscape</a>
+                    <a href="activities.html#guided-meditation">Guided Meditation</a>
                     <a href="activities.html#punching">Punching Bag</a>
                     <a href="activities.html#stretch">Stretch</a>
                     <a href="activities.html#doodle">Doodle</a>
@@ -525,21 +486,13 @@
         <div class="tools-container" id="tools-container">
             <button class="tool-button breathing" data-tool="breathing"><i class="fas fa-wind"></i>Breathing Exercise</button>
             <button class="tool-button gratitude" data-tool="gratitude"><i class="fas fa-heart"></i>Gratitude Note</button>
-            <button class="tool-button soundscape" data-tool="soundscape"><i class="fas fa-volume-up"></i>Soundscape</button>
+            <button class="tool-button guided-meditation" data-tool="guided-meditation"><i class="fas fa-spa"></i>Guided Meditation</button>
             <button class="tool-button punching" data-tool="punching"><i class="fas fa-fist-raised"></i>Punching Bag</button>
             <button class="tool-button stretch" data-tool="stretch"><i class="fas fa-child"></i>Stretch</button>
             <button class="tool-button doodle" data-tool="doodle"><i class="fas fa-pencil-alt"></i>Doodle</button>
             <button class="tool-button dance" data-tool="dance"><i class="fas fa-music"></i>Dance</button>
             <button class="tool-button worry" data-tool="worry"><i class="fas fa-cut"></i>Worry Shredder</button>
             <button class="tool-button color" data-tool="color"><i class="fas fa-palette"></i>Color Focus</button>
-        </div>
-        <div class="echo-ad">
-            <a href="https://amzn.to/42jEfjN" target="_blank">
-                <img src="./Echo_Go_Plus.jpg" alt="Echo Go+ Hydrogen Water Bottle">
-            </a>
-            <a href="https://amzn.to/42jEfjN" target="_blank" class="echo-ad-text">
-                Echo Go+ Hydrogen Water Bottle
-            </a>
         </div>
     </div>
     <div class="footer">
@@ -587,25 +540,14 @@
             <button class="close-button" onclick="closePopup('gratitude')"><i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div id="soundscape-popup" class="popup">
+    <div id="guided-meditation-popup" class="popup">
         <div class="popup-content">
-            <h4>Soundscape</h4>
-            <p>Relax with a calming soundscape</p>
-            <select id="soundscape-select" class="sound-select">
-                <option value="lightrain">Light Rain</option>
-                <option value="chinese">Chinese Music</option>
-                <option value="forest">Forest Sounds</option>
-                <option value="waves">Ocean Waves</option>
-                <option value="temple">Temple Garden</option>
-            </select>
-            <div class="audio-controls">
-                <button id="play-btn" class="audio-btn"><i class="fas fa-play"></i></button>
-                <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7">
-            </div>
-            <p class="affirmation" style="display: none;">Thank you for taking time to relax.</p>
-            <p id="soundscape-error" style="color: red; display: none;">Unable to load any sounds. Please try again later.</p>
-            <p id="soundscape-specific-error" style="color: red; display: none;"></p>
-            <button class="close-button" onclick="closePopup('soundscape')"><i class="fas fa-times"></i></button>
+            <h4>Guided Meditation</h4>
+            <p id="guided-meditation-prompt">Find a comfortable seated position...</p>
+            <div class="progress-container"><div id="guided-meditation-progress" class="progress-bar"></div></div>
+            <p id="guided-meditation-timer">Time remaining: 300s</p>
+            <p class="affirmation">Thank you for taking time to center yourself.</p>
+            <button class="close-button" onclick="closePopup('guided-meditation')"><i class="fas fa-times"></i></button>
         </div>
     </div>
     <div id="punching-popup" class="popup">
@@ -696,7 +638,7 @@
             popup.style.display = 'flex';
 
             if (tool === 'breathing') startBreathingExercise();
-            if (tool === 'soundscape') initSoundscape();
+            if (tool === 'guided-meditation') startGuidedMeditation();
             if (tool === 'punching') initPunchingBag();
             if (tool === 'stretch') startStretch();
             if (tool === 'doodle') initDoodle();
@@ -708,10 +650,6 @@
         function closePopup(tool) {
             const popup = document.getElementById(`${tool}-popup`);
             popup.style.display = 'none';
-            if (tool === 'soundscape') {
-                pauseSoundscape();
-                document.querySelector('#soundscape-popup .affirmation').style.display = 'block';
-            }
             if (tool === 'doodle') stopDoodle();
         }
 
@@ -761,151 +699,47 @@
             }, 1000);
         }
 
-        // Soundscape
-        let audio;
-        function initSoundscape() {
-            const select = document.getElementById('soundscape-select');
-            const playBtn = document.getElementById('play-btn');
-            const volumeSlider = document.getElementById('volume-slider');
-            const affirmation = document.querySelector('#soundscape-popup .affirmation');
-            const errorMessage = document.getElementById('soundscape-error');
-            const specificErrorMessage = document.getElementById('soundscape-specific-error');
+        // Guided Meditation
+        function startGuidedMeditation() {
+            const prompt = document.getElementById('guided-meditation-prompt');
+            const timerText = document.getElementById('guided-meditation-timer');
+            const progressBar = document.getElementById('guided-meditation-progress');
+            let timeLeft = 300; // 5 minutes
 
-            const sounds = {
-                lightrain: 'Light Rain.mp3',
-                chinese: 'Chinese music.mp3',
-                forest: 'Spring Day Forest.mp3',
-                waves: 'Waves Crashing on Rocky Beach.mp3',
-                temple: 'In the Temple Garden - Aaron Kenny.mp3'
-            };
+            const stages = [
+                { duration: 30, message: 'Find a comfortable seated position, close your eyes, and take a few deep breaths.' },
+                { duration: 120, message: 'Focus on your breath. Inhale for 4 seconds, exhale for 6 seconds. Notice the air moving in and out.' },
+                { duration: 120, message: 'Now, scan your body. Start with your feet, notice any tension, and let it go. Move to your hands, then shoulders.' },
+                { duration: 30, message: 'Gently bring your awareness back. When you’re ready, open your eyes.' }
+            ];
 
-            const soundNames = {
-                lightrain: 'Light Rain',
-                chinese: 'Chinese Music',
-                forest: 'Forest Sounds',
-                waves: 'Ocean Waves',
-                temple: 'Temple Garden'
-            };
+            let stageIndex = 0;
+            prompt.textContent = stages[stageIndex].message;
 
-            const soundKeys = Object.keys(sounds);
-            let availableSounds = [...soundKeys];
-            affirmation.style.display = 'none';
-            errorMessage.style.display = 'none';
-            specificErrorMessage.style.display = 'none';
-            playBtn.disabled = true;
+            const meditationInterval = setInterval(() => {
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(300 - timeLeft) / 300 * 100}%`;
 
-            function updateSoundSelect() {
-                select.innerHTML = availableSounds.map(key => `<option value="${key}">${soundNames[key]}</option>`).join('');
-                if (availableSounds.length === 0) {
-                    select.disabled = true;
-                    playBtn.disabled = true;
-                    errorMessage.style.display = 'block';
-                } else {
-                    select.disabled = false;
-                    playBtn.disabled = false;
-                }
-            }
-
-            function canLoadAudio(audioUrl) {
-                return new Promise((resolve) => {
-                    const testAudio = new Audio(audioUrl);
-                    testAudio.oncanplaythrough = () => resolve(true);
-                    testAudio.onerror = () => resolve(false);
-                    testAudio.load();
-                });
-            }
-
-            async function loadAudio(soundKey) {
-                if (audio) {
-                    audio.pause();
-                    audio = null;
-                }
-                const audioUrl = sounds[soundKey];
-                console.log(`Attempting to load audio: ${audioUrl}`);
-
-                const canLoad = await canLoadAudio(audioUrl);
-                if (!canLoad) {
-                    console.error(`Cannot load audio file: ${audioUrl}`);
-                    specificErrorMessage.textContent = `Failed to load ${soundNames[soundKey]}. Please try another sound.`;
-                    specificErrorMessage.style.display = 'block';
-                    availableSounds = availableSounds.filter(key => key !== soundKey);
-                    updateSoundSelect();
-                    if (availableSounds.length > 0) {
-                        const nextSound = availableSounds[0];
-                        select.value = nextSound;
-                        loadAudio(nextSound);
+                const elapsedTime = 300 - timeLeft;
+                let cumulativeTime = 0;
+                for (let i = 0; i < stages.length; i++) {
+                    cumulativeTime += stages[i].duration;
+                    if (elapsedTime <= cumulativeTime) {
+                        stageIndex = i;
+                        break;
                     }
-                    return false;
                 }
+                prompt.textContent = stages[stageIndex].message;
 
-                audio = new Audio(audioUrl);
-                audio.loop = true;
-                audio.volume = volumeSlider.value;
-
-                audio.onerror = (err) => {
-                    console.error(`Error loading audio file ${audioUrl}:`, err);
-                    specificErrorMessage.textContent = `Failed to load ${soundNames[soundKey]}. Please try another sound.`;
-                    specificErrorMessage.style.display = 'block';
-                    availableSounds = availableSounds.filter(key => key !== soundKey);
-                    updateSoundSelect();
-                    if (availableSounds.length > 0) {
-                        const nextSound = availableSounds[0];
-                        select.value = nextSound;
-                        loadAudio(nextSound);
-                    }
-                };
-
-                audio.oncanplaythrough = () => {
-                    console.log(`Audio ${audioUrl} loaded successfully.`);
-                    specificErrorMessage.style.display = 'none';
-                    playBtn.disabled = false;
-                    audio.play().catch(err => {
-                        console.error(`Playback error for ${audioUrl}:`, err);
-                        specificErrorMessage.textContent = `Error playing ${soundNames[soundKey]}. Please try again or select a different sound.`;
-                        specificErrorMessage.style.display = 'block';
-                    });
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                };
-
-                audio.onloadstart = () => {
-                    console.log(`Started loading audio: ${audioUrl}`);
-                };
-
-                return true;
-            }
-
-            loadAudio(select.value);
-
-            playBtn.onclick = () => {
-                if (!audio) return;
-                if (audio.paused) {
-                    audio.play().catch(err => {
-                        console.error('Playback error:', err);
-                        specificErrorMessage.textContent = `Error playing ${soundNames[select.value]}. Please try again.`;
-                        specificErrorMessage.style.display = 'block';
-                    });
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    audio.pause();
-                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                if (timeLeft <= 0) {
+                    clearInterval(meditationInterval);
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    prompt.style.display = 'none';
+                    document.querySelector('#guided-meditation-popup .affirmation').style.display = 'block';
                 }
-            };
-
-            volumeSlider.oninput = () => {
-                if (audio) audio.volume = volumeSlider.value;
-            };
-
-            select.onchange = () => {
-                specificErrorMessage.style.display = 'none';
-                loadAudio(select.value);
-            };
-        }
-
-        function pauseSoundscape() {
-            if (audio) {
-                audio.pause();
-                audio = null;
-            }
+            }, 1000);
         }
 
         // Punching bag

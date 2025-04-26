@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore MoodTask activities designed to improve your emotional well-being.">
-    <meta name="keywords" content="MoodTask, mental health activities, emotional well-being, stress relief, mindfulness">
+    <meta name="description" content="MoodTask helps you improve your mood with personalized, science-backed activities.">
+    <meta name="keywords" content="MoodTask, mental health, mood tracker, emotional well-being, stress relief">
     <meta name="robots" content="index, follow">
     <title>MoodTask - Activities</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -35,27 +35,11 @@
             font-weight: 600;
             color: #4A90E2;
         }
-        .nav-bar .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
         .nav-bar a {
-            padding: 8px 12px;
+            margin: 0 10px;
             text-decoration: none;
             color: #4A90E2;
             font-weight: 500;
-            transition: color 0.3s, background-color 0.3s;
-            border-radius: 5px;
-        }
-        .nav-bar a:hover {
-            background-color: #f0f0f0;
-            color: #2C3E50;
-        }
-        .nav-bar a.active {
-            background-color: #4A90E2;
-            color: white;
-            font-weight: 600;
         }
         .nav-bar .dropdown {
             position: relative;
@@ -69,8 +53,6 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             z-index: 1;
             border-radius: 5px;
-            top: 100%;
-            left: 0;
         }
         .nav-bar .dropdown-content a {
             color: #4A90E2;
@@ -96,74 +78,139 @@
             font-size: 2.5em;
             margin-bottom: 20px;
         }
-        .content {
-            max-width: 1200px;
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
-        .activity-section {
-            margin: 40px 0;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 400px;
+        }
+        .tool-button {
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            transition: transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .activity-section h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: #4A90E2;
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .activity-section p {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.6;
+        .tool-button i {
+            margin-right: 10px;
+            font-size: 1.2em;
         }
-        .activity-section button, .activity-section input, .activity-section canvas {
-            padding: 10px 20px;
-            margin: 5px 0;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 1em;
+        .tool-button.breathing {
+            background: linear-gradient(135deg, #4A90E2, #6B7280);
         }
-        .activity-button {
-            background-color: #4A90E2;
-            color: white;
-            transition: background-color 0.3s;
+        .tool-button.breathing:hover {
+            background: linear-gradient(135deg, #3B82F6, #4A5568);
         }
-        .activity-button:hover {
-            background-color: #2C3E50;
+        .tool-button.gratitude {
+            background: linear-gradient(135deg, #F4A261, #FF6F61);
         }
-        .stop-button {
-            background-color: #FFC107;
-            color: #333;
+        .tool-button.gratitude:hover {
+            background: linear-gradient(135deg, #ED8936, #F56565);
         }
-        .stop-button:hover {
-            background-color: #FFB300;
+        .tool-button.soundscape {
+            background: linear-gradient(135deg, #2C3E50, #4A90E2);
         }
-        .doodle-canvas {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-top: 10px;
+        .tool-button.soundscape:hover {
+            background: linear-gradient(135deg, #1A252F, #3B82F6);
+        }
+        .tool-button.punching {
+            background: linear-gradient(135deg, #FF6F61, #E53E3E);
+        }
+        .tool-button.punching:hover {
+            background: linear-gradient(135deg, #F56565, #C53030);
+        }
+        .tool-button.stretch {
+            background: linear-gradient(135deg, #6B7280, #A0AEC0);
+        }
+        .tool-button.stretch:hover {
+            background: linear-gradient(135deg, #4A5568, #718096);
+        }
+        .tool-button.doodle {
+            background: linear-gradient(135deg, #9F7AEA, #B794F4);
+        }
+        .tool-button.doodle:hover {
+            background: linear-gradient(135deg, #805AD5, #9F7AEA);
+        }
+        .tool-button.dance {
+            background: linear-gradient(135deg, #ED64A6, #F687B3);
+        }
+        .tool-button.dance:hover {
+            background: linear-gradient(135deg, #F687B3, #ED64A6);
+        }
+        .tool-button.worry {
+            background: linear-gradient(135deg, #4A5568, #718096);
+        }
+        .tool-button.worry:hover {
+            background: linear-gradient(135deg, #2D3748, #4A5568);
+        }
+        .tool-button.color {
+            background: linear-gradient(135deg, #68D391, #48BB78);
+        }
+        .tool-button.color:hover {
+            background: linear-gradient(135deg, #48BB78, #38A169);
+        }
+        .echo-ad {
+            flex: 0 0 400px;
+            margin: 20px;
+            text-align: left;
+            position: sticky;
+            top: 80px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background-color: #f8f8f8;
+            border: 2px solid #D6D1F5;
+            transition: transform 0.3s;
+        }
+        .echo-ad:hover {
+            transform: scale(1.02);
+        }
+        .echo-ad img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: block;
         }
-        .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 5px;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        .color-option.selected {
-            border-color: #333;
-        }
-        .dance-prompt {
-            font-style: italic;
+        .echo-ad-text {
+            margin: 10px 0;
+            font-size: 1.1em;
+            font-weight: 600;
             color: #4A90E2;
-            margin-bottom: 10px;
+            text-align: center;
+            text-decoration: none;
+            background-color: rgba(74, 144, 226, 0.1);
+            padding: 8px 12px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+        }
+        .echo-ad-text:hover {
+            color: #2C3E50;
+            background-color: rgba(74, 144, 226, 0.2);
+            text-decoration: underline;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .footer {
             background-color: #333;
@@ -218,30 +265,196 @@
             background-color: #6BCB77;
             color: white;
         }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        #breathing-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #2C3E50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1em;
+            margin: 20px auto;
+            transition: all 0.3s;
+        }
+        #breathing-circle.inhale { transform: scale(1.2); background: #6B7280; }
+        #breathing-circle.hold { transform: scale(1); background: #4A90E2; }
+        #breathing-circle.exhale { transform: scale(0.8); background: #2C3E50; }
+        .progress-container {
+            width: 100%;
+            background: #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            width: 0;
+            height: 10px;
+            background: #2C3E50;
+            border-radius: 5px;
+            transition: width 1s linear;
+        }
+        #breathing-instruction, #punching-timer, #stretch-timer, #doodle-timer, #dance-timer, #color-timer {
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        .sound-select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            width: 200px;
+        }
+        .audio-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .audio-btn {
+            background: #2C3E50;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #volume-slider {
+            width: 100px;
+        }
+        #punching-bag {
+            width: 100px;
+            height: 150px;
+            background: #6B7280;
+            border-radius: 20px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+        #stretch-prompt, #dance-prompt, #color-prompt {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+        .drawing-tools {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        #doodle-canvas {
+            border: 1px solid #ddd;
+            margin: 10px auto;
+            display: block;
+        }
+        #dance-animation {
+            margin: 20px 0;
+        }
+        .bounce {
+            animation: bounce 0.5s infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        #gratitude-text, #worry-text {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            resize: none;
+        }
+        .action-button {
+            background: #2C3E50;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        #paper-strips-container {
+            position: relative;
+            height: 60px;
+            margin: 10px 0;
+        }
+        #worry-text.shredding {
+            animation: shred-text 0.5s forwards;
+        }
+        @keyframes shred-text {
+            to { opacity: 0; transform: translateY(20px); }
+        }
+        @keyframes shred {
+            to { transform: translateY(100px); opacity: 0; }
+        }
+        #color-square {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+        @media (max-width: 900px) {
+            .content-wrapper {
+                gap: 20px;
+                max-width: 750px;
+            }
+            .echo-ad {
+                flex: 0 0 350px;
+            }
+            .echo-ad img {
+                max-width: 350px;
+            }
+        }
         @media (max-width: 600px) {
             .nav-bar {
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
                 padding: 15px 20px;
             }
-            .nav-bar .nav-links {
+            .nav-bar div {
+                display: flex;
                 flex-direction: column;
                 gap: 10px;
-                width: 100%;
                 align-items: center;
-            }
-            .nav-bar a {
-                padding: 10px 20px;
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
-            }
-            .nav-bar .dropdown {
-                width: 100%;
-            }
-            .nav-bar .dropdown-content {
-                width: 100%;
-                left: 0;
             }
             .hero {
                 padding: 60px 15px;
@@ -249,12 +462,31 @@
             .hero h1 {
                 font-size: 1.8em;
             }
-            .content {
-                padding: 0 15px;
+            .content-wrapper {
+                flex-direction: column;
+                padding: 0 10px;
             }
-            .doodle-canvas {
+            .tools-container {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                margin: 20px auto;
+            }
+            .echo-ad {
+                flex: 0 0 100%;
+                width: 350px;
+                margin: 20px auto;
+                text-align: center;
+                position: static;
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+            .echo-ad img {
                 width: 100%;
-                height: 200px;
+                max-width: 350px;
+            }
+            .echo-ad-text {
+                font-size: 0.95em;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -262,11 +494,11 @@
 <body>
     <div class="nav-bar">
         <div class="logo">MoodTask</div>
-        <div class="nav-links">
+        <div>
             <a href="index.html">Home</a>
             <a href="calendar.html">Dashboard</a>
             <div class="dropdown">
-                <a href="activities.html" class="active">Activities</a>
+                <a href="activities.html">Activities</a>
                 <div class="dropdown-content">
                     <a href="activities.html#breathing">Breathing</a>
                     <a href="activities.html#soundscape">Soundscape</a>
@@ -286,73 +518,28 @@
         </div>
     </div>
     <div class="hero">
-        <h1>Activities for Every Mood</h1>
+        <h1>Activities to Transform Your Mood</h1>
+        <p>Explore science-backed activities to improve your emotional well-being.</p>
     </div>
-    <div class="content">
-        <div class="activity-section" id="breathing">
-            <h2>Breathing Exercise</h2>
-            <p>Follow this 4-7-8 breathing technique to reduce stress and anxiety.</p>
-            <button class="activity-button" id="startBreathing">Start Breathing</button>
-            <button class="stop-button" id="stopBreathing" style="display: none;">Stop</button>
-            <p id="breathingGuide"></p>
+    <div class="content-wrapper">
+        <div class="tools-container" id="tools-container">
+            <button class="tool-button breathing" data-tool="breathing"><i class="fas fa-wind"></i>Breathing Exercise</button>
+            <button class="tool-button gratitude" data-tool="gratitude"><i class="fas fa-heart"></i>Gratitude Note</button>
+            <button class="tool-button soundscape" data-tool="soundscape"><i class="fas fa-volume-up"></i>Soundscape</button>
+            <button class="tool-button punching" data-tool="punching"><i class="fas fa-fist-raised"></i>Punching Bag</button>
+            <button class="tool-button stretch" data-tool="stretch"><i class="fas fa-child"></i>Stretch</button>
+            <button class="tool-button doodle" data-tool="doodle"><i class="fas fa-pencil-alt"></i>Doodle</button>
+            <button class="tool-button dance" data-tool="dance"><i class="fas fa-music"></i>Dance</button>
+            <button class="tool-button worry" data-tool="worry"><i class="fas fa-cut"></i>Worry Shredder</button>
+            <button class="tool-button color" data-tool="color"><i class="fas fa-palette"></i>Color Focus</button>
         </div>
-        <div class="activity-section" id="soundscape">
-            <h2>Soundscape</h2>
-            <p>Relax with calming nature sounds.</p>
-            <button class="activity-button" onclick="playSound('ocean')">Ocean Waves</button>
-            <button class="activity-button" onclick="playSound('rain')">Rain</button>
-            <button class="stop-button" onclick="stopSound()">Stop</button>
-        </div>
-        <div class="activity-section" id="punching">
-            <h2>Punching Bag</h2>
-            <p>Release tension by hitting a virtual punching bag.</p>
-            <button class="activity-button" id="startPunching">Start Punching</button>
-            <button class="stop-button" id="stopPunching" style="display: none;">Stop</button>
-            <p id="punchCount">Punches: 0</p>
-        </div>
-        <div class="activity-section" id="stretch">
-            <h2>Stretch</h2>
-            <p>Follow this simple stretch routine to relieve physical tension.</p>
-            <button class="activity-button" id="startStretch">Start Stretching</button>
-            <p id="stretchGuide"></p>
-        </div>
-        <div class="activity-section" id="doodle">
-            <h2>Doodle</h2>
-            <p>Express yourself with a quick doodle.</p>
-            <canvas id="doodleCanvas" class="doodle-canvas" width="400" height="300"></canvas>
-            <div>
-                <span class="color-option" style="background-color: #000;" data-color="#000"></span>
-                <span class="color-option" style="background-color: #f00;" data-color="#f00"></span>
-                <span class="color-option" style="background-color: #0f0;" data-color="#0f0"></span>
-                <span class="color-option" style="background-color: #00f;" data-color="#00f"></span>
-            </div>
-            <button class="activity-button" onclick="clearCanvas()">Clear Canvas</button>
-        </div>
-        <div class="activity-section" id="dance">
-            <h2>Dance</h2>
-            <p>Get moving with a fun dance prompt.</p>
-            <button class="activity-button" id="dancePrompt">Get Dance Prompt</button>
-            <p id="danceText" class="dance-prompt"></p>
-        </div>
-        <div class="activity-section" id="color-focus">
-            <h2>Color Focus</h2>
-            <p>Ground yourself by focusing on a color in your surroundings.</p>
-            <button class="activity-button" id="colorFocus">Start Color Focus</button>
-            <p id="colorText"></p>
-        </div>
-        <div class="activity-section" id="worry">
-            <h2>Worry Shredder</h2>
-            <p>Write down your worries and shred them.</p>
-            <input type="text" id="worryInput" placeholder="Write your worry here...">
-            <button class="activity-button" onclick="shredWorry()">Shred Worry</button>
-            <p id="shredMessage"></p>
-        </div>
-        <div class="activity-section" id="gratitude">
-            <h2>Gratitude Practice</h2>
-            <p>Reflect on things you're grateful for.</p>
-            <input type="text" id="gratitudeInput" placeholder="What are you grateful for?">
-            <button class="activity-button" onclick="addGratitude()">Add Gratitude</button>
-            <ul id="gratitudeList"></ul>
+        <div class="echo-ad">
+            <a href="https://amzn.to/42jEfjN" target="_blank">
+                <img src="./Echo_Go_Plus.jpg" alt="Echo Go+ Hydrogen Water Bottle">
+            </a>
+            <a href="https://amzn.to/42jEfjN" target="_blank" class="echo-ad-text">
+                Echo Go+ Hydrogen Water Bottle
+            </a>
         </div>
     </div>
     <div class="footer">
@@ -379,145 +566,587 @@
         </div>
     </div>
 
+    <div id="breathing-popup" class="popup">
+        <div class="popup-content">
+            <h4>Breathing Exercise</h4>
+            <div id="breathing-circle"><span id="breathing-step">Inhale</span></div>
+            <p id="breathing-instruction">Breathe in deeply...</p>
+            <div class="progress-container"><div id="breathing-progress" class="progress-bar"></div></div>
+            <p id="breathing-timer">Time remaining: 60s</p>
+            <p class="affirmation">Well done completing the breathing exercise.</p>
+            <button class="close-button" onclick="closePopup('breathing')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="gratitude-popup" class="popup">
+        <div class="popup-content">
+            <h4>Gratitude Note</h4>
+            <p>Write down something you're grateful for:</p>
+            <textarea id="gratitude-text" rows="3" placeholder="Today I'm grateful for..."></textarea>
+            <button class="action-button" onclick="saveGratitude()"><i class="fas fa-save"></i> Save Gratitude</button>
+            <p class="affirmation">Your gratitude note has been saved successfully.</p>
+            <button class="close-button" onclick="closePopup('gratitude')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="soundscape-popup" class="popup">
+        <div class="popup-content">
+            <h4>Soundscape</h4>
+            <p>Relax with a calming soundscape</p>
+            <select id="soundscape-select" class="sound-select">
+                <option value="lightrain">Light Rain</option>
+                <option value="chinese">Chinese Music</option>
+                <option value="forest">Forest Sounds</option>
+                <option value="waves">Ocean Waves</option>
+                <option value="temple">Temple Garden</option>
+            </select>
+            <div class="audio-controls">
+                <button id="play-btn" class="audio-btn"><i class="fas fa-play"></i></button>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.7">
+            </div>
+            <p class="affirmation" style="display: none;">Thank you for taking time to relax.</p>
+            <p id="soundscape-error" style="color: red; display: none;">Unable to load any sounds. Please try again later.</p>
+            <p id="soundscape-specific-error" style="color: red; display: none;"></p>
+            <button class="close-button" onclick="closePopup('soundscape')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="punching-popup" class="popup">
+        <div class="popup-content">
+            <h4>Punching Bag</h4>
+            <p>Release your stress! Tap or click the bag to punch.</p>
+            <div id="punching-bag">0</div>
+            <div class="progress-container"><div id="punching-progress" class="progress-bar"></div></div>
+            <p id="punching-timer">Time remaining: 30s</p>
+            <p class="affirmation">Excellent work releasing tension.</p>
+            <button class="close-button" onclick="closePopup('punching')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="stretch-popup" class="popup">
+        <div class="popup-content">
+            <h4>Stretch</h4>
+            <p id="stretch-prompt">Stretch prompt will appear here...</p>
+            <div class="progress-container"><div id="stretch-progress" class="progress-bar"></div></div>
+            <p id="stretch-timer">Time remaining: 60s</p>
+            <p class="affirmation">Your body appreciates this care.</p>
+            <button class="close-button" onclick="closePopup('stretch')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="doodle-popup" class="popup">
+        <div class="popup-content">
+            <h4>Doodle</h4>
+            <p>Let your creativity flow! Draw for 90 seconds.</p>
+            <div class="drawing-tools">
+                <input type="color" id="color-picker" value="#000000">
+                <input type="range" id="brush-size" min="1" max="20" value="5">
+            </div>
+            <canvas id="doodle-canvas" width="400" height="300"></canvas>
+            <div class="progress-container"><div id="doodle-progress" class="progress-bar"></div></div>
+            <p id="doodle-timer">Time remaining: 90s</p>
+            <button class="action-button" onclick="saveDoodle()"><i class="fas fa-download"></i> Save Doodle</button>
+            <button class="action-button" onclick="clearCanvas()"><i class="fas fa-trash"></i> Clear</button>
+            <p class="affirmation">Your creativity is inspiring.</p>
+            <button class="close-button" onclick="closePopup('doodle')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="dance-popup" class="popup">
+        <div class="popup-content">
+            <h4>Dance</h4>
+            <div id="dance-animation"><i class="fas fa-child fa-4x bounce"></i></div>
+            <p id="dance-prompt">Dance prompt will appear here...</p>
+            <div class="progress-container"><div id="dance-progress" class="progress-bar"></div></div>
+            <p id="dance-timer">Time remaining: 30s</p>
+            <p class="affirmation">Thank you for moving with energy.</p>
+            <button class="close-button" onclick="closePopup('dance')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="worry-popup" class="popup">
+        <div class="popup-content">
+            <h4>Worry Shredder</h4>
+            <p>Write down a worry to shred it away:</p>
+            <textarea id="worry-text" rows="3" placeholder="Write your worry here..."></textarea>
+            <button class="action-button" onclick="shredWorry()"><i class="fas fa-cut"></i> Shred Worry</button>
+            <div id="paper-strips-container"></div>
+            <p class="affirmation">Your worry has been shredded.</p>
+            <button class="close-button" onclick="closePopup('worry')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div id="color-popup" class="popup">
+        <div class="popup-content">
+            <h4>Color Focus</h4>
+            <p id="color-prompt">Focus on this color to calm your mind...</p>
+            <div id="color-square"></div>
+            <div class="progress-container"><div id="color-progress" class="progress-bar"></div></div>
+            <p id="color-timer">Time remaining: 60s</p>
+            <p class="affirmation">Thank you for taking a moment to focus.</p>
+            <button class="close-button" onclick="closePopup('color')"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
     <script>
-        let breathingInterval;
-        let punchCount = 0;
-        let audio;
-
-        document.getElementById('startBreathing').addEventListener('click', () => {
-            const guide = document.getElementById('breathingGuide');
-            const startButton = document.getElementById('startBreathing');
-            const stopButton = document.getElementById('stopBreathing');
-            startButton.style.display = 'none';
-            stopButton.style.display = 'inline-block';
-            let step = 1;
-            breathingInterval = setInterval(() => {
-                if (step === 1) {
-                    guide.textContent = 'Inhale for 4 seconds...';
-                    step++;
-                } else if (step === 2) {
-                    setTimeout(() => {
-                        guide.textContent = 'Hold for 7 seconds...';
-                        step++;
-                    }, 4000);
-                } else if (step === 3) {
-                    setTimeout(() => {
-                        guide.textContent = 'Exhale for 8 seconds...';
-                        step = 1;
-                    }, 11000);
-                }
-            }, 19000);
+        // Initialize event listeners for tool buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const toolButtons = document.querySelectorAll('.tool-button');
+            toolButtons.forEach(button => {
+                const tool = button.getAttribute('data-tool');
+                button.addEventListener('click', () => openPopup(tool));
+            });
         });
 
-        document.getElementById('stopBreathing').addEventListener('click', () => {
-            clearInterval(breathingInterval);
-            document.getElementById('breathingGuide').textContent = '';
-            document.getElementById('startBreathing').style.display = 'inline-block';
-            document.getElementById('stopBreathing').style.display = 'none';
-        });
+        // Open popup
+        function openPopup(tool) {
+            const popup = document.getElementById(`${tool}-popup`);
+            popup.style.display = 'flex';
 
-        function playSound(type) {
-            if (audio) {
-                audio.pause();
-            }
-            audio = new Audio(type === 'ocean' ? 'ocean.mp3' : 'rain.mp3');
-            audio.loop = true;
-            audio.play();
+            if (tool === 'breathing') startBreathingExercise();
+            if (tool === 'soundscape') initSoundscape();
+            if (tool === 'punching') initPunchingBag();
+            if (tool === 'stretch') startStretch();
+            if (tool === 'doodle') initDoodle();
+            if (tool === 'dance') startDance();
+            if (tool === 'color') startColorFocus();
         }
 
-        function stopSound() {
+        // Close popup
+        function closePopup(tool) {
+            const popup = document.getElementById(`${tool}-popup`);
+            popup.style.display = 'none';
+            if (tool === 'soundscape') {
+                pauseSoundscape();
+                document.querySelector('#soundscape-popup .affirmation').style.display = 'block';
+            }
+            if (tool === 'doodle') stopDoodle();
+        }
+
+        // Breathing exercise
+        function startBreathingExercise() {
+            const circle = document.getElementById('breathing-circle');
+            const stepText = document.getElementById('breathing-step');
+            const instruction = document.getElementById('breathing-instruction');
+            const timerText = document.getElementById('breathing-timer');
+            const progressBar = document.getElementById('breathing-progress');
+            let timeLeft = 60;
+            let phase = 'inhale';
+            let phaseTime = 0;
+
+            const phases = [
+                { name: 'inhale', duration: 4, text: 'Inhale', instruction: 'Breathe in deeply...' },
+                { name: 'hold', duration: 4, text: 'Hold', instruction: 'Hold your breath...' },
+                { name: 'exhale', duration: 6, text: 'Exhale', instruction: 'Exhale slowly...' }
+            ];
+
+            const breathingInterval = setInterval(() => {
+                phaseTime++;
+                const currentPhase = phases.find(p => p.name === phase);
+                if (phaseTime >= currentPhase.duration) {
+                    phaseTime = 0;
+                    const currentIndex = phases.findIndex(p => p.name === phase);
+                    phase = phases[(currentIndex + 1) % phases.length].name;
+                }
+
+                const phaseData = phases.find(p => p.name === phase);
+                circle.className = 'circle ' + phase;
+                stepText.textContent = phaseData.text;
+                instruction.textContent = phaseData.instruction;
+
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(60 - timeLeft) / 60 * 100}%`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(breathingInterval);
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    instruction.textContent = '';
+                    circle.style.display = 'none';
+                    document.querySelector('#breathing-popup .affirmation').style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Soundscape
+        let audio;
+        function initSoundscape() {
+            const select = document.getElementById('soundscape-select');
+            const playBtn = document.getElementById('play-btn');
+            const volumeSlider = document.getElementById('volume-slider');
+            const affirmation = document.querySelector('#soundscape-popup .affirmation');
+            const errorMessage = document.getElementById('soundscape-error');
+            const specificErrorMessage = document.getElementById('soundscape-specific-error');
+
+            const sounds = {
+                lightrain: 'Light Rain.mp3',
+                chinese: 'Chinese music.mp3',
+                forest: 'Spring Day Forest.mp3',
+                waves: 'Waves Crashing on Rocky Beach.mp3',
+                temple: 'In the Temple Garden - Aaron Kenny.mp3'
+            };
+
+            const soundNames = {
+                lightrain: 'Light Rain',
+                chinese: 'Chinese Music',
+                forest: 'Forest Sounds',
+                waves: 'Ocean Waves',
+                temple: 'Temple Garden'
+            };
+
+            const soundKeys = Object.keys(sounds);
+            let availableSounds = [...soundKeys];
+            affirmation.style.display = 'none';
+            errorMessage.style.display = 'none';
+            specificErrorMessage.style.display = 'none';
+            playBtn.disabled = true;
+
+            function updateSoundSelect() {
+                select.innerHTML = availableSounds.map(key => `<option value="${key}">${soundNames[key]}</option>`).join('');
+                if (availableSounds.length === 0) {
+                    select.disabled = true;
+                    playBtn.disabled = true;
+                    errorMessage.style.display = 'block';
+                } else {
+                    select.disabled = false;
+                    playBtn.disabled = false;
+                }
+            }
+
+            function canLoadAudio(audioUrl) {
+                return new Promise((resolve) => {
+                    const testAudio = new Audio(audioUrl);
+                    testAudio.oncanplaythrough = () => resolve(true);
+                    testAudio.onerror = () => resolve(false);
+                    testAudio.load();
+                });
+            }
+
+            async function loadAudio(soundKey) {
+                if (audio) {
+                    audio.pause();
+                    audio = null;
+                }
+                const audioUrl = sounds[soundKey];
+                console.log(`Attempting to load audio: ${audioUrl}`);
+
+                const canLoad = await canLoadAudio(audioUrl);
+                if (!canLoad) {
+                    console.error(`Cannot load audio file: ${audioUrl}`);
+                    specificErrorMessage.textContent = `Failed to load ${soundNames[soundKey]}. Please try another sound.`;
+                    specificErrorMessage.style.display = 'block';
+                    availableSounds = availableSounds.filter(key => key !== soundKey);
+                    updateSoundSelect();
+                    if (availableSounds.length > 0) {
+                        const nextSound = availableSounds[0];
+                        select.value = nextSound;
+                        loadAudio(nextSound);
+                    }
+                    return false;
+                }
+
+                audio = new Audio(audioUrl);
+                audio.loop = true;
+                audio.volume = volumeSlider.value;
+
+                audio.onerror = (err) => {
+                    console.error(`Error loading audio file ${audioUrl}:`, err);
+                    specificErrorMessage.textContent = `Failed to load ${soundNames[soundKey]}. Please try another sound.`;
+                    specificErrorMessage.style.display = 'block';
+                    availableSounds = availableSounds.filter(key => key !== soundKey);
+                    updateSoundSelect();
+                    if (availableSounds.length > 0) {
+                        const nextSound = availableSounds[0];
+                        select.value = nextSound;
+                        loadAudio(nextSound);
+                    }
+                };
+
+                audio.oncanplaythrough = () => {
+                    console.log(`Audio ${audioUrl} loaded successfully.`);
+                    specificErrorMessage.style.display = 'none';
+                    playBtn.disabled = false;
+                    audio.play().catch(err => {
+                        console.error(`Playback error for ${audioUrl}:`, err);
+                        specificErrorMessage.textContent = `Error playing ${soundNames[soundKey]}. Please try again or select a different sound.`;
+                        specificErrorMessage.style.display = 'block';
+                    });
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                };
+
+                audio.onloadstart = () => {
+                    console.log(`Started loading audio: ${audioUrl}`);
+                };
+
+                return true;
+            }
+
+            loadAudio(select.value);
+
+            playBtn.onclick = () => {
+                if (!audio) return;
+                if (audio.paused) {
+                    audio.play().catch(err => {
+                        console.error('Playback error:', err);
+                        specificErrorMessage.textContent = `Error playing ${soundNames[select.value]}. Please try again.`;
+                        specificErrorMessage.style.display = 'block';
+                    });
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                } else {
+                    audio.pause();
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+            };
+
+            volumeSlider.oninput = () => {
+                if (audio) audio.volume = volumeSlider.value;
+            };
+
+            select.onchange = () => {
+                specificErrorMessage.style.display = 'none';
+                loadAudio(select.value);
+            };
+        }
+
+        function pauseSoundscape() {
             if (audio) {
                 audio.pause();
                 audio = null;
             }
         }
 
-        document.getElementById('startPunching').addEventListener('click', () => {
-            document.getElementById('startPunching').style.display = 'none';
-            document.getElementById('stopPunching').style.display = 'inline-block';
-            punchCount = 0;
-            document.getElementById('punchCount').textContent = 'Punches: 0';
-            document.addEventListener('click', incrementPunch);
-        });
+        // Punching bag
+        function initPunchingBag() {
+            const bag = document.getElementById('punching-bag');
+            const timerText = document.getElementById('punching-timer');
+            const progressBar = document.getElementById('punching-progress');
+            let count = 0;
+            let timeLeft = 30;
 
-        function incrementPunch() {
-            punchCount++;
-            document.getElementById('punchCount').textContent = `Punches: ${punchCount}`;
+            bag.onclick = () => {
+                count++;
+                bag.textContent = count;
+                bag.style.transform = 'rotate(5deg)';
+                setTimeout(() => bag.style.transform = 'rotate(-5deg)', 150);
+            };
+
+            const punchingInterval = setInterval(() => {
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(30 - timeLeft) / 30 * 100}%`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(punchingInterval);
+                    bag.onclick = null;
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    document.querySelector('#punching-popup .affirmation').style.display = 'block';
+                }
+            }, 1000);
         }
 
-        document.getElementById('stopPunching').addEventListener('click', () => {
-            document.getElementById('startPunching').style.display = 'inline-block';
-            document.getElementById('stopPunching').style.display = 'none';
-            document.removeEventListener('click', incrementPunch);
-        });
+        // Stretch
+        function startStretch() {
+            const prompt = document.getElementById('stretch-prompt');
+            const timerText = document.getElementById('stretch-timer');
+            const progressBar = document.getElementById('stretch-progress');
+            let timeLeft = 60;
 
-        document.getElementById('startStretch').addEventListener('click', () => {
-            const guide = document.getElementById('stretchGuide');
-            guide.textContent = 'Reach up and hold for 10 seconds, then slowly bend forward to touch your toes.';
-            setTimeout(() => {
-                guide.textContent = '';
-            }, 10000);
-        });
+            const stretches = [
+                'Reach your arms up and stretch towards the sky.',
+                'Touch your toes and feel the stretch in your hamstrings.',
+                'Stretch your arms across your body to open your shoulders.'
+            ];
 
-        const canvas = document.getElementById('doodleCanvas');
-        const ctx = canvas.getContext('2d');
-        let drawing = false;
-        let currentColor = '#000';
+            let stretchIndex = 0;
+            prompt.textContent = stretches[stretchIndex];
 
-        canvas.addEventListener('mousedown', () => drawing = true);
-        canvas.addEventListener('mouseup', () => drawing = false);
-        canvas.addEventListener('mousemove', draw);
-        document.querySelectorAll('.color-option').forEach(option => {
-            option.addEventListener('click', () => {
-                currentColor = option.dataset.color;
-                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-            });
-        });
+            const stretchInterval = setInterval(() => {
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(60 - timeLeft) / 60 * 100}%`;
 
-        function draw(event) {
-            if (!drawing) return;
-            const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            ctx.beginPath();
-            ctx.arc(x, y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = currentColor;
-            ctx.fill();
+                if (timeLeft % 20 === 0) {
+                    stretchIndex = (stretchIndex + 1) % stretches.length;
+                    prompt.textContent = stretches[stretchIndex];
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(stretchInterval);
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    prompt.style.display = 'none';
+                    document.querySelector('#stretch-popup .affirmation').style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Doodle
+        let canvas, ctx, drawing = false;
+        function initDoodle() {
+            canvas = document.getElementById('doodle-canvas');
+            ctx = canvas.getContext('2d');
+            const colorPicker = document.getElementById('color-picker');
+            const brushSize = document.getElementById('brush-size');
+            const timerText = document.getElementById('doodle-timer');
+            const progressBar = document.getElementById('doodle-progress');
+            let timeLeft = 90;
+
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            canvas.onmousedown = (e) => {
+                drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(e.offsetX, e.offsetY);
+            };
+            canvas.onmousemove = (e) => {
+                if (drawing) {
+                    ctx.strokeStyle = colorPicker.value;
+                    ctx.lineWidth = brushSize.value;
+                    ctx.lineTo(e.offsetX, e.offsetY);
+                    ctx.stroke();
+                }
+            };
+            canvas.onmouseup = () => drawing = false;
+            canvas.onmouseleave = () => drawing = false;
+
+            const doodleInterval = setInterval(() => {
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(90 - timeLeft) / 90 * 100}%`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(doodleInterval);
+                    canvas.onmousedown = null;
+                    canvas.onmousemove = null;
+                    canvas.onmouseup = null;
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    document.querySelector('#doodle-popup .affirmation').style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        function saveDoodle() {
+            const link = document.createElement('a');
+            link.download = 'doodle.png';
+            link.href = canvas.toDataURL();
+            link.click();
         }
 
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-        document.getElementById('dancePrompt').addEventListener('click', () => {
-            const prompts = [
-                'Do a little twirl like you’re a ballerina!',
-                'Shake your hips to an imaginary beat!',
-                'Wave your arms like you’re at a concert!'
-            ];
-            document.getElementById('danceText').textContent = prompts[Math.floor(Math.random() * prompts.length)];
-        });
-
-        document.getElementById('colorFocus').addEventListener('click', () => {
-            document.getElementById('colorText').textContent = 'Look around and find something blue. Focus on it for 30 seconds to ground yourself.';
-        });
-
-        function shredWorry() {
-            const worry = document.getElementById('worryInput').value;
-            if (worry) {
-                document.getElementById('shredMessage').textContent = `Shredding: "${worry}"... It's gone!`;
-                document.getElementById('worryInput').value = '';
-            }
+        function stopDoodle() {
+            drawing = false;
+            canvas.onmousedown = null;
+            canvas.onmousemove = null;
+            canvas.onmouseup = null;
         }
 
-        function addGratitude() {
-            const gratitude = document.getElementById('gratitudeInput').value;
-            if (gratitude) {
-                const li = document.createElement('li');
-                li.textContent = gratitude;
-                document.getElementById('gratitudeList').appendChild(li);
-                document.getElementById('gratitudeInput').value = '';
+        // Dance
+        function startDance() {
+            const prompt = document.getElementById('dance-prompt');
+            const timerText = document.getElementById('dance-timer');
+            const progressBar = document.getElementById('dance-progress');
+            let timeLeft = 30;
+
+            const prompts = [
+                'Do a little twirl!',
+                'Move your hips side to side!',
+                'Raise your arms and sway!'
+            ];
+
+            let promptIndex = 0;
+            prompt.textContent = prompts[promptIndex];
+
+            const danceInterval = setInterval(() => {
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(30 - timeLeft) / 30 * 100}%`;
+
+                if (timeLeft % 10 === 0) {
+                    promptIndex = (promptIndex + 1) % prompts.length;
+                    prompt.textContent = prompts[promptIndex];
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(danceInterval);
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    prompt.style.display = 'none';
+                    document.querySelector('#dance-popup .affirmation').style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Worry Shredder
+        function shredWorry() {
+            const worryText = document.getElementById('worry-text');
+            const container = document.getElementById('paper-strips-container');
+            if (!worryText.value.trim()) return;
+
+            worryText.classList.add('shredding');
+            container.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const strip = document.createElement('div');
+                strip.style.position = 'absolute';
+                strip.style.width = '10px';
+                strip.style.height = '50px';
+                strip.style.background = '#ddd';
+                strip.style.left = `${i * 15 + 50}px`;
+                strip.style.animation = `shred 0.5s forwards ${i * 0.1}s`;
+                container.appendChild(strip);
+            }
+            setTimeout(() => {
+                worryText.value = '';
+                worryText.classList.remove('shredding');
+                document.querySelector('#worry-popup .affirmation').style.display = 'block';
+            }, 1000);
+        }
+
+        // Color Focus
+        function startColorFocus() {
+            const square = document.getElementById('color-square');
+            const prompt = document.getElementById('color-prompt');
+            const timerText = document.getElementById('color-timer');
+            const progressBar = document.getElementById('color-progress');
+            let timeLeft = 60;
+
+            const colors = [
+                { name: 'Soft Blue', hex: '#A3BFFA', message: 'Focus on this soft blue to calm your mind...' },
+                { name: 'Gentle Green', hex: '#B2F5EA', message: 'Focus on this gentle green to feel refreshed...' },
+                { name: 'Warm Yellow', hex: '#FEF9C3', message: 'Focus on this warm yellow to feel uplifted...' }
+            ];
+
+            let colorIndex = 0;
+            square.style.backgroundColor = colors[colorIndex].hex;
+            prompt.textContent = colors[colorIndex].message;
+
+            const colorInterval = setInterval(() => {
+                timeLeft--;
+                timerText.textContent = `Time remaining: ${timeLeft}s`;
+                progressBar.style.width = `${(60 - timeLeft) / 60 * 100}%`;
+
+                if (timeLeft % 20 === 0) {
+                    colorIndex = (colorIndex + 1) % colors.length;
+                    square.style.backgroundColor = colors[colorIndex].hex;
+                    prompt.textContent = colors[colorIndex].message;
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(colorInterval);
+                    timerText.style.display = 'none';
+                    progressBar.style.display = 'none';
+                    prompt.style.display = 'none';
+                    square.style.display = 'none';
+                    document.querySelector('#color-popup .affirmation').style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        // Gratitude Note
+        function saveGratitude() {
+            const gratitudeText = document.getElementById('gratitude-text');
+            if (gratitudeText.value.trim()) {
+                localStorage.setItem('gratitude-' + Date.now(), gratitudeText.value);
+                gratitudeText.value = '';
+                document.querySelector('#gratitude-popup .affirmation').style.display = 'block';
             }
         }
     </script>

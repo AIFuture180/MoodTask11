@@ -104,7 +104,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 0.9em;
+            font-size: 1em;
+            font-weight: 500;
+            line-height: 1.6;
             transition: transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             aspect-ratio: 1 / 1;
@@ -159,9 +161,11 @@
         }
         .tool-button.pmr {
             background: linear-gradient(135deg, #4FD1C5, #81E6D9);
+            color: #1A3C34;
         }
         .tool-button.pmr:hover {
             background: linear-gradient(135deg, #38B2AC, #4FD1C5);
+            color: #1A3C34;
         }
         .tool-button.worry {
             background: linear-gradient(135deg, #4A5568, #718096);
@@ -567,7 +571,7 @@
             <h4>Breathing Exercise</h4>
             <p>Select a breathing technique to begin:</p>
             <div class="task-tiles" id="breathing-tiles">
-                <button class="task-tile breathing-type" onclick="startBreathingTechnique('diaphragmatic')">Diaphragmatic</button>
+                <button class="task-tile breathing-type" onclick="startBreathingTechnique('diaphragmatic')">360 Diaphragmatic Breathing</button>
                 <button class="task-tile breathing-type" onclick="startBreathingTechnique('resonance')">Resonance</button>
                 <button class="task-tile breathing-type" onclick="startBreathingTechnique('lions-breath')">Lion’s Breath</button>
                 <button class="task-tile breathing-type" onclick="startBreathingTechnique('4-7-8')">4-7-8</button>
@@ -747,7 +751,7 @@
 
             const techniques = {
                 'diaphragmatic': {
-                    instruction: 'Place a hand on your belly. Inhale deeply through your nose, expanding your belly, then exhale slowly. Practice for 60 seconds. Dr. Andrew Huberman: "Diaphragmatic breathing activates the parasympathetic nervous system, reducing stress and promoting calmness within minutes."',
+                    instruction: 'Place a hand on your belly. Inhale deeply through your nose, expanding your belly, then exhale slowly. Practice for 60 seconds. Dr. Andrew Huberman: "360 Diaphragmatic Breathing activates the parasympathetic nervous system, reducing stress and promoting calmness within minutes."',
                     phases: [
                         { name: 'inhale', duration: 4, text: 'Inhale' },
                         { name: 'hold', duration: 2, text: 'Hold' },

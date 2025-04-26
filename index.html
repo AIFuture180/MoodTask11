@@ -202,33 +202,76 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             transition: transform 0.3s;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            border: 1px solid #4A90E2;
         }
         .ad-player:hover {
             transform: scale(1.02);
-            border: 2px solid #4A90E2;
         }
         .ad-player video {
             width: 100%;
             border-radius: 10px;
             display: block;
         }
+        .ad-content {
+            padding: 10px;
+        }
         .ad-player-text {
             margin: 10px 0;
             font-size: 1.1em;
             font-weight: 600;
-            color: #00A651;
+            color: #fff;
             text-align: center;
             text-decoration: none;
-            background-color: rgba(0, 166, 81, 0.1);
+            background-color: #00A651;
             padding: 8px 12px;
             border-radius: 5px;
-            display: inline-block;
-            transition: color 0.3s, background-color 0.3s;
+            display: block;
+            transition: background-color 0.3s;
+            position: relative;
         }
         .ad-player-text:hover {
-            color: #00843D;
-            background-color: rgba(0, 166, 81, 0.2);
-            text-decoration: underline;
+            background-color: #00843D;
+            text-decoration: none;
+        }
+        .ad-player-text:hover .benefit-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .ad-player-text i {
+            margin-right: 5px;
+        }
+        .ad-player-text .highlight {
+            font-weight: 700;
+            color: #FFC107;
+        }
+        .benefit-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            white-space: nowrap;
+        }
+        .cta-button {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background-color: #00A651;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #00843D;
         }
         .footer {
             background-color: #333;
@@ -353,20 +396,7 @@
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="calendar.html">Dashboard</a>
-            <div class="dropdown">
-                <a href="activities.html">Activities</a>
-                <div class="dropdown-content">
-                    <a href="activities.html#breathing">Breathing</a>
-                    <a href="activities.html#soundscape">Soundscape</a>
-                    <a href="activities.html#punching">Punching Bag</a>
-                    <a href="activities.html#stretch">Stretch</a>
-                    <a href="activities.html#doodle">Doodle</a>
-                    <a href="activities.html#dance">Dance</a>
-                    <a href="activities.html#color-focus">Color Focus</a>
-                    <a href="activities.html#worry">Worry</a>
-                    <a href="activities.html#gratitude">Gratitude</a>
-                </div>
-            </div>
+            <a href="activities.html">Activities</a>
             <a href="music.html">Mood Music</a>
             <a href="blog.html">Blog</a>
             <a href="privacy.html">Privacy Policy</a>
@@ -381,7 +411,7 @@
             <div class="mood-option" data-mood="Sad">Sad</div>
             <div class="mood-option" data-mood="Angry">Angry</div>
             <div class="mood-option" data-mood="Frustrated">Frustrated</div>
-            <div class="mood-option" data-mood="Anxious">Anxious</div>
+            <div class="mood-option" data-mood="Anxious">An FacetofaceAnxious</div>
             <div class="mood-option" data-mood="Stressed">Stressed</div>
             <div class="mood-option" data-mood="Tired">Tired</div>
             <div class="mood-option" data-mood="Bored">Bored</div>
@@ -393,28 +423,34 @@
     <div class="content-wrapper">
         <div class="ad-player" id="adPlayer">
             <a href="https://amzn.to/4jbEB3h" target="_blank">
-                <video autoplay muted loop controls poster="https://via.placeholder.com/450x75?text=AG1+Video+Thumbnail">
+                <video autoplay muted loop controls poster="https://via.placeholder.com/450x75?text=AG1+Product+Shot">
                     <source src="./AG1 Clip.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </a>
-            <a href="https://amzn.to/4jbEB3h" target="_blank" class="ad-player-text">
-                AG1 is a daily health drink packed with nutrients to help alleviate bloating, support sustained energy and whole body health.
-            </a>
+            <div class="ad-content">
+                <a href="https://amzn.to/4jbEB3h" target="_blank" class="ad-player-text">
+                    <i class="fas fa-leaf"></i> Discover <span class="highlight">AG1</span> – a daily health drink with <span class="highlight">75 nutrients</span> to help <span class="highlight">alleviate bloating</span> and support <span class="highlight">sustained energy</span>.
+                    <span class="benefit-tooltip">Also supports gut health!</span>
+                </a>
+                <a href="https://amzn.to/4jbEB3h" target="_blank" class="cta-button">
+                    Try AG1 Today
+                </a>
+            </div>
         </div>
         <div class="recommendation" id="SadRecommendation">
             <h3>You're Feeling Sad</h3>
             <p>Lift your spirits with these science-backed activities:</p>
             <ul>
-                <li><a href="activities.html#gratitude">Gratitude Practice</a>: Reflect on positive moments.</li>
+                <li><a href="activities.html">Gratitude Note</a>: Reflect on positive moments.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Gratitude activates the prefrontal cortex, regulating emotional processing and reducing sadness, as Huberman notes in his work on neural plasticity.
                 </div>
-                <li><a href="activities.html#soundscape">Soundscape</a>: Listen to calming ocean waves.</li>
+                <li><a href="activities.html">Progressive Muscle Relaxation</a>: Calm your body and mind.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Matt Walker):</strong> Nature sounds lower amygdala activity, calming emotional distress and promoting relaxation, per Walker’s research on auditory stimuli and sleep.
+                    <strong>Why it helps (Dr. Matt Walker):</strong> Progressive Muscle Relaxation reduces emotional distress by releasing physical tension, calming the amygdala and promoting relaxation, as supported by stress research.
                 </div>
-                <li><a href="activities.html#breathing">Breathing Exercise</a>: Try slow, deep breaths.</li>
+                <li><a href="activities.html">Breathing Exercise</a>: Try slow, deep breaths.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Deep breathing stimulates the vagus nerve, reducing sadness by activating the parasympathetic nervous system, as Huberman explains.
                 </div>
@@ -424,15 +460,15 @@
             <h3>You're Feeling Angry</h3>
             <p>Channel your energy with these activities:</p>
             <ul>
-                <li><a href="activities.html#punching">Punching Bag</a>: Release tension with a virtual punching bag.</li>
+                <li><a href="activities.html">Punching Bag</a>: Release tension with a virtual punching bag.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Physical activity reduces cortisol and adrenaline, dissipating anger. Huberman emphasizes that exertion calms the amygdala, restoring emotional balance.
                 </div>
-                <li><a href="activities.html#breathing">Breathing Exercise</a>: Practice 4-7-8 breathing.</li>
+                <li><a href="activities.html">Breathing Exercise</a>: Practice 4-7-8 breathing.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Lisa Feldman Barrett):</strong> Slow breathing shifts emotional states by altering physiological arousal, as Barrett’s theory of constructed emotion suggests.
                 </div>
-                <li><a href="activities.html#worry">Worry Shredder</a>: Write and shred your frustrations.</li>
+                <li><a href="activities.html">Worry Shredder</a>: Write and shred your frustrations.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Expressive writing externalizes anger, reducing amygdala activity and promoting clarity, per Huberman’s stress research.
                 </div>
@@ -442,15 +478,15 @@
             <h3>You're Feeling Frustrated</h3>
             <p>Reset with these activities:</p>
             <ul>
-                <li><a href="activities.html#punching">Punching Bag</a>: Release frustration physically.</li>
+                <li><a href="activities.html">Punching Bag</a>: Release frustration physically.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Physical exertion lowers cortisol, diffusing frustration and calming the amygdala, per Huberman’s stress research.
                 </div>
-                <li><a href="activities.html#worry">Worry Shredder</a>: Write down what’s bothering you.</li>
+                <li><a href="activities.html">Worry Shredder</a>: Write down what’s bothering you.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Conventional wisdom):</strong> Expressive writing reduces amygdala activity, processing negative emotions, as suggested by psychological research.
                 </div>
-                <li><a href="activities.html#breathing">Breathing Exercise</a>: Try slow breathing.</li>
+                <li><a href="activities.html">Breathing Exercise</a>: Try slow breathing.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Lisa Feldman Barrett):</strong> Breathing alters physiological arousal, reshaping frustration into calm, per Barrett’s emotion construction theory.
                 </div>
@@ -460,17 +496,17 @@
             <h3>You're Feeling Anxious</h3>
             <p>Calm your mind with these activities:</p>
             <ul>
-                <li><a href="activities.html#breathing">Breathing Exercise</a>: Try 4-7-8 breathing.</li>
+                <li><a href="activities.html">Breathing Exercise</a>: Try 4-7-8 breathing.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Extended exhalation triggers the parasympathetic response, reducing anxiety by calming the nervous system, as Huberman explains.
                 </div>
-                <li><a href="activities.html#color-focus">Color Focus</a>: Ground yourself with a color focus exercise.</li>
+                <li><a href="activities.html">Color Focus</a>: Ground yourself with a color focus exercise.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Visual focus diverts attention from anxious thoughts, stabilizing heart rate by engaging the occipital lobe, per Huberman’s work.
                 </div>
-                <li><a href="activities.html#soundscape">Soundscape</a>: Listen to soothing rain sounds.</li>
+                <li><a href="activities.html">Progressive Muscle Relaxation</a>: Calm your body and mind.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Matt Walker):</strong> Nature sounds reduce sympathetic nervous system activity, easing anxiety and promoting relaxation, as Walker’s sleep studies show.
+                    <strong>Why it helps (Dr. Matt Walker):</strong> Progressive Muscle Relaxation eases anxiety by systematically releasing muscle tension, lowering sympathetic nervous system activity, as stress studies show.
                 </div>
             </ul>
         </div>
@@ -478,15 +514,15 @@
             <h3>You're Feeling Stressed</h3>
             <p>Relieve tension with these activities:</p>
             <ul>
-                <li><a href="activities.html#stretch">Stretch</a>: Try a stretch routine or a <a href="https://amzn.to/4i6jcXK">Weighted Heated Lap Pad</a>.</li>
+                <li><a href="activities.html">Stretch</a>: Try a stretch routine or a <a href="https://amzn.to/4i6jcXK">Weighted Heated Lap Pad</a>.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Stretching releases muscle tension, and weighted pressure calms the nervous system via deep pressure touch, reducing stress, per Huberman.
                 </div>
-                <li><a href="activities.html#worry">Worry Shredder</a>: Write and shred your stressors.</li>
+                <li><a href="activities.html">Worry Shredder</a>: Write and shred your stressors.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Lisa Feldman Barrett):</strong> Writing externalizes stress, altering emotional perception and reducing amygdala overactivity, as Barrett’s research suggests.
                 </div>
-                <li><a href="activities.html#breathing">Breathing Exercise</a>: Practice slow breathing.</li>
+                <li><a href="activities.html">Breathing Exercise</a>: Practice slow breathing.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Slow breathing lowers cortisol and activates the vagus nerve, reducing stress, as Huberman’s neuroscience work shows.
                 </div>
@@ -496,15 +532,15 @@
             <h3>You're Feeling Tired</h3>
             <p>Recharge with these activities:</p>
             <ul>
-                <li><a href="activities.html#soundscape">Soundscape</a>: Listen to gentle rain sounds.</li>
+                <li><a href="activities.html">Progressive Muscle Relaxation</a>: Relax your body and mind.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Matt Walker):</strong> Nature sounds promote relaxation and improve sleep onset, combating fatigue, as Walker’s sleep research demonstrates.
+                    <strong>Why it helps (Dr. Matt Walker):</strong> Progressive Muscle Relaxation promotes relaxation by releasing muscle tension, helping combat fatigue and supporting rest, as stress research demonstrates.
                 </div>
-                <li><a href="activities.html#breathing">Breathing Exercise</a>: Try a relaxing breath cycle.</li>
+                <li><a href="activities.html">Breathing Exercise</a>: Try a relaxing breath cycle.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Slow breathing reduces heart rate and prepares the body for rest, enhancing energy, per Huberman’s work on arousal.
                 </div>
-                <li><a href="activities.html#stretch">Stretch</a>: Do a gentle stretch routine.</li>
+                <li><a href="activities.html">Stretch</a>: Do a gentle stretch routine.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Matt Walker):</strong> Gentle movement increases blood flow, reducing fatigue and supporting sleep readiness, as Walker’s studies suggest.
                 </div>
@@ -514,15 +550,15 @@
             <h3>You're Feeling Bored</h3>
             <p>Spark interest with these activities:</p>
             <ul>
-                <li><a href="activities.html#doodle">Doodle</a>: Create a quick sketch.</li>
+                <li><a href="activities.html">Progressive Muscle Relaxation</a>: Engage your body and mind.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Doodling stimulates the default mode network, fostering curiosity and combating boredom, per Huberman’s creativity research.
+                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Progressive Muscle Relaxation engages your body and mind, reducing boredom by focusing on physical sensations, as stress research suggests.
                 </div>
-                <li><a href="activities.html#dance">Dance</a>: Try a fun dance prompt.</li>
+                <li><a href="activities.html">Guided Meditation</a>: Engage your mind with mindfulness.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Movement increases norepinephrine, enhancing alertness and engagement, as Huberman’s arousal studies show.
+                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Guided Meditation engages your mind by focusing attention, reducing boredom through mindfulness, as Huberman’s focus studies show.
                 </div>
-                <li><a href="activities.html#color-focus">Color Focus</a>: Engage with a color focus exercise.</li>
+                <li><a href="activities.html">Color Focus</a>: Engage with a color focus exercise.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Lisa Feldman Barrett):</strong> Visual engagement shifts emotional perception, reducing boredom by creating new sensory experiences, per Barrett.
                 </div>
@@ -532,15 +568,15 @@
             <h3>You're Feeling Excited</h3>
             <p>Channel your energy with these activities:</p>
             <ul>
-                <li><a href="activities.html#dance">Dance</a>: Move to upbeat music.</li>
+                <li><a href="activities.html">Guided Meditation</a>: Channel your enthusiasm mindfully.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Dancing amplifies dopamine, sustaining excitement and preventing overstimulation, per Huberman’s reward system research.
+                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Guided Meditation channels your excitement by focusing your energy, sustaining positive arousal, as Huberman’s focus studies show.
                 </div>
-                <li><a href="activities.html#doodle">Doodle</a>: Express your enthusiasm creatively.</li>
+                <li><a href="activities.html">Doodle</a>: Express your enthusiasm creatively.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Lisa Feldman Barrett):</strong> Creative expression channels high arousal into positive outcomes, shaping emotional experiences, as Barrett’s work shows.
                 </div>
-                <li><a href="activities.html#gratitude">Gratitude Practice</a>: Reflect on what’s sparking your excitement.</li>
+                <li><a href="activities.html">Gratitude Note</a>: Reflect on what’s sparking your excitement.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Gratitude reinforces positive neural circuits, sustaining high energy, per Huberman’s insights on optimism.
                 </div>
@@ -550,15 +586,15 @@
             <h3>You're Feeling Relaxed</h3>
             <p>Enhance your calm with these activities:</p>
             <ul>
-                <li><a href="activities.html#soundscape">Soundscape</a>: Enjoy soothing nature sounds.</li>
+                <li><a href="activities.html">Progressive Muscle Relaxation</a>: Deepen your relaxation.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Matt Walker):</strong> Nature sounds reduce sympathetic activity, deepening relaxation and supporting sleep, per Walker’s auditory research.
+                    <strong>Why it helps (Dr. Matt Walker):</strong> Progressive Muscle Relaxation deepens relaxation by systematically releasing tension, reducing sympathetic activity, as stress research shows.
                 </div>
-                <li><a href="activities.html#gratitude">Gratitude Practice</a>: Reflect on positive moments.</li>
+                <li><a href="activities.html">Gratitude Note</a>: Reflect on positive moments.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Gratitude reinforces positive neural circuits, sustaining calm, as Huberman’s optimism research shows.
                 </div>
-                <li><a href="activities.html#stretch">Stretch</a>: Try a gentle stretch routine.</li>
+                <li><a href="activities.html">Stretch</a>: Try a gentle stretch routine.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Stretching maintains relaxation by releasing muscle tension and boosting endorphins, per Huberman’s work.
                 </div>
@@ -568,15 +604,15 @@
             <h3>You're Feeling Happy!</h3>
             <p>Keep that positive vibe going with these expert-recommended activities:</p>
             <ul>
-                <li><a href="activities.html#dance">Dance</a>: Move to upbeat music to amplify your joy.</li>
+                <li><a href="activities.html">Progressive Muscle Relaxation</a>: Maintain your positive mood.</li>
                 <div class="expert-explanation">
-                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Dancing boosts dopamine and serotonin, reinforcing positive emotions. Huberman explains that rhythmic movement activates the brain’s reward centers, enhancing mood stability.
+                    <strong>Why it helps (Dr. Andrew Huberman):</strong> Progressive Muscle Relaxation maintains your positive mood by releasing any subtle tension, keeping you grounded, as stress research suggests.
                 </div>
-                <li><a href="activities.html#gratitude">Gratitude Practice</a>: Write down three things you’re thankful for.</li>
+                <li><a href="activities.html">Gratitude Note</a>: Write down three things you’re thankful for.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Lisa Feldman Barrett):</strong> Gratitude reshapes emotional perception by focusing on positive experiences, strengthening neural pathways for optimism, as Barrett’s work on emotion construction suggests.
                 </div>
-                <li><a href="activities.html#doodle">Doodle</a>: Express your happiness through creative sketching.</li>
+                <li><a href="activities.html">Doodle</a>: Express your happiness through creative sketching.</li>
                 <div class="expert-explanation">
                     <strong>Why it helps (Dr. Andrew Huberman):</strong> Creative tasks like doodling engage the prefrontal cortex, channeling positive energy into productive outlets, per Huberman’s insights on neural creativity.
                 </div>

@@ -8,15 +8,16 @@
     <meta name="robots" content="index, follow">
     <title>MoodTask - Activities</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #f5f5f5;
             margin: 0;
             padding: 0;
             color: #333;
+            transition: background-color 0.3s ease;
         }
         .nav-bar {
             background-color: #fff;
@@ -51,11 +52,8 @@
             text-decoration: none;
             color: #2C3E50;
             font-weight: 400;
-            transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+            transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
             border-radius: 5px;
-            display: inline-block;
-            min-width: 100px;
-            text-align: center;
         }
         .nav-bar a:hover {
             background-color: #f0f0f0;
@@ -65,6 +63,17 @@
         .nav-bar a.active {
             background-color: #4A90E2;
             color: white;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .main-content {
+            transition: opacity 0.5s ease;
+        }
+        .main-content.fade-out {
+            opacity: 0;
+        }
+        .main-content.fade-in {
+            opacity: 1;
         }
         .hero {
             background: linear-gradient(135deg, #4A90E2, #2C3E50);
@@ -490,7 +499,6 @@
                 width: 100%;
                 text-align: center;
                 box-sizing: border-box;
-                min-width: unset;
             }
             .hero {
                 padding: 60px 15px;
@@ -523,189 +531,209 @@
             <a href="terms.html">Terms of Use</a>
         </div>
     </div>
-    <div class="hero">
-        <h1>Activities to Transform Your Mood</h1>
-        <p>Explore science-backed activities to improve your emotional well-being.</p>
-    </div>
-    <div class="content-wrapper">
-        <div class="tools-container" id="tools-container">
-            <button class="tool-button breathing" data-tool="breathing"><i class="fas fa-wind"></i>Breathing Exercise</button>
-            <button class="tool-button gratitude" data-tool="gratitude"><i class="fas fa-heart"></i>Gratitude Note</button>
-            <button class="tool-button guided-meditation" data-tool="guided-meditation"><i class="fas fa-spa"></i>Guided Meditation</button>
-            <button class="tool-button punching" data-tool="punching"><i class="fas fa-fist-raised"></i>Punching Bag</button>
-            <button class="tool-button stretch" data-tool="stretch"><i class="fas fa-child"></i>Stretch</button>
-            <button class="tool-button doodle" data-tool="doodle"><i class="fas fa-pencil-alt"></i>Doodle</button>
-            <button class="tool-button pmr" data-tool="pmr"><i class="fas fa-hand-holding-heart"></i>Progressive Muscle Relaxation</button>
-            <button class="tool-button worry" data-tool="worry"><i class="fas fa-cut"></i>Worry Shredder</button>
-            <button class="tool-button color" data-tool="color"><i class="fas fa-palette"></i>Color Focus</button>
+    <div class="main-content fade-in">
+        <div class="hero">
+            <h1>Activities to Transform Your Mood</h1>
+            <p>Explore science-backed activities to improve your emotional well-being.</p>
         </div>
-    </div>
-    <div class="footer">
-        <div>
-            <h3>MoodTask</h3>
-            <p>Transform your mood with science-backed activities designed to improve your emotional well-being.</p>
+        <div class="content-wrapper">
+            <div class="tools-container" id="tools-container">
+                <button class="tool-button breathing" data-tool="breathing"><i class="fas fa-wind"></i>Breathing Exercise</button>
+                <button class="tool-button gratitude" data-tool="gratitude"><i class="fas fa-heart"></i>Gratitude Note</button>
+                <button class="tool-button guided-meditation" data-tool="guided-meditation"><i class="fas fa-spa"></i>Guided Meditation</button>
+                <button class="tool-button punching" data-tool="punching"><i class="fas fa-fist-raised"></i>Punching Bag</button>
+                <button class="tool-button stretch" data-tool="stretch"><i class="fas fa-child"></i>Stretch</button>
+                <button class="tool-button doodle" data-tool="doodle"><i class="fas fa-pencil-alt"></i>Doodle</button>
+                <button class="tool-button pmr" data-tool="pmr"><i class="fas fa-hand-holding-heart"></i>Progressive Muscle Relaxation</button>
+                <button class="tool-button worry" data-tool="worry"><i class="fas fa-cut"></i>Worry Shredder</button>
+                <button class="tool-button color" data-tool="color"><i class="fas fa-palette"></i>Color Focus</button>
+            </div>
         </div>
-        <div>
-            <h3>Quick Links</h3>
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
+        <div class="footer">
+            <div>
+                <h3>MoodTask</h3>
+                <p>Transform your mood with science-backed activities designed to improve your emotional well-being.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+            <div class="connect">
+                <h3>Connect</h3>
+                <a href="https://twitter.com/share?url=https://moodtask.org"><i class="fab fa-twitter"></i> Share on Twitter</a>
+                <a href="https://www.buymeacoffee.com/moodtask" class="coffee"><i class="fas fa-coffee"></i> Buy Me a Coffee</a>
+                <a href="https://www.online-therapy.com/?aff_id=12345" class="therapy">Online Therapy</a>
+                <a href="https://www.mindfulness.com/?aff_id=67890" class="mindfulness">Mindfulness</a>
+            </div>
+            <div class="affiliate-note">
+                AFFILIATE DISCLOSURE: Some links on this site are affiliate links. We may earn a commission on purchases at no extra cost to you.<br>
+                © 2025 MoodTask. All rights reserved.
+            </div>
         </div>
-        <div class="connect">
-            <h3>Connect</h3>
-            <a href="https://twitter.com/share?url=https://moodtask.org"><i class="fab fa-twitter"></i> Share on Twitter</a>
-            <a href="https://www.buymeacoffee.com/moodtask" class="coffee"><i class="fas fa-coffee"></i> Buy Me a Coffee</a>
-            <a href="https://www.online-therapy.com/?aff_id=12345" class="therapy">Online Therapy</a>
-            <a href="https://www.mindfulness.com/?aff_id=67890" class="mindfulness">Mindfulness</a>
-        </div>
-        <div class="affiliate-note">
-            AFFILIATE DISCLOSURE: Some links on this site are affiliate links. We may earn a commission on purchases at no extra cost to you.<br>
-            © 2025 MoodTask. All rights reserved.
-        </div>
-    </div>
 
-    <div id="breathing-popup" class="popup">
-        <div class="popup-content">
-            <h4>Breathing Exercise</h4>
-            <p>Select a breathing technique to begin:</p>
-            <div class="task-tiles" id="breathing-tiles">
-                <button class="task-tile breathing-type" onclick="startBreathingTechnique('diaphragmatic')">360 Diaphragmatic Breathing</button>
-                <button class="task-tile breathing-type" onclick="startBreathingTechnique('resonance')">Resonance</button>
-                <button class="task-tile breathing-type" onclick="startBreathingTechnique('lions-breath')">Lion’s Breath</button>
-                <button class="task-tile breathing-type" onclick="startBreathingTechnique('4-7-8')">4-7-8</button>
-                <button class="task-tile breathing-type" onclick="startBreathingTechnique('box')">Box Breathing</button>
+        <div id="breathing-popup" class="popup">
+            <div class="popup-content">
+                <h4>Breathing Exercise</h4>
+                <p>Select a breathing technique to begin:</p>
+                <div class="task-tiles" id="breathing-tiles">
+                    <button class="task-tile breathing-type" onclick="startBreathingTechnique('diaphragmatic')">360 Diaphragmatic Breathing</button>
+                    <button class="task-tile breathing-type" onclick="startBreathingTechnique('resonance')">Resonance</button>
+                    <button class="task-tile breathing-type" onclick="startBreathingTechnique('lions-breath')">Lion’s Breath</button>
+                    <button class="task-tile breathing-type" onclick="startBreathingTechnique('4-7-8')">4-7-8</button>
+                    <button class="task-tile breathing-type" onclick="startBreathingTechnique('box')">Box Breathing</button>
+                </div>
+                <div id="breathing-circle" style="display: none;"><span id="breathing-step">Inhale</span></div>
+                <p id="breathing-instruction"></p>
+                <button class="action-button" id="breathing-try-another" style="display: none;" onclick="resetBreathing()"><i class="fas fa-redo"></i> Try Another</button>
+                <p class="affirmation">Well done completing the breathing exercise.</p>
+                <button class="close-button" onclick="closePopup('breathing')"><i class="fas fa-times"></i></button>
             </div>
-            <div id="breathing-circle" style="display: none;"><span id="breathing-step">Inhale</span></div>
-            <p id="breathing-instruction"></p>
-            <button class="action-button" id="breathing-try-another" style="display: none;" onclick="resetBreathing()"><i class="fas fa-redo"></i> Try Another</button>
-            <p class="affirmation">Well done completing the breathing exercise.</p>
-            <button class="close-button" onclick="closePopup('breathing')"><i class="fas fa-times"></i></button>
         </div>
-    </div>
-    <div id="gratitude-popup" class="popup">
-        <div class="popup-content">
-            <h4>Gratitude Note</h4>
-            <p>Write down something you're grateful for:</p>
-            <textarea id="gratitude-text" rows="3" placeholder="Today I'm grateful for..."></textarea>
-            <button class="action-button" onclick="saveGratitude()"><i class="fas fa-save"></i> Save Gratitude</button>
-            <p id="saved-notes-count">You have 0 saved notes.</p>
-            <div id="saved-notes-display"></div>
-            <p class="affirmation">Your gratitude note has been saved successfully.</p>
-            <button class="close-button" onclick="closePopup('gratitude')"><i class="fas fa-times"></i></button>
-        </div>
-    </div>
-    <div id="guided-meditation-popup" class="popup">
-        <div class="popup-content">
-            <h4>Guided Meditation</h4>
-            <p>Select a meditation technique to begin:</p>
-            <div class="task-tiles" id="meditation-tiles">
-                <button class="task-tile meditation-type" onclick="startMeditationTechnique('breath-awareness')">Breath Awareness</button>
-                <button class="task-tile meditation-type" onclick="startMeditationTechnique('body-scan')">Body Scan</button>
-                <button class="task-tile meditation-type" onclick="startMeditationTechnique('sensory-grounding')">Sensory Grounding</button>
-                <button class="task-tile meditation-type" onclick="startMeditationTechnique('heart-centered')">Heart-Centered</button>
-                <button class="task-tile meditation-type" onclick="startMeditationTechnique('mindful-observation')">Mindful Observation</button>
+        <div id="gratitude-popup" class="popup">
+            <div class="popup-content">
+                <h4>Gratitude Note</h4>
+                <p>Write down something you're grateful for:</p>
+                <textarea id="gratitude-text" rows="3" placeholder="Today I'm grateful for..."></textarea>
+                <button class="action-button" onclick="saveGratitude()"><i class="fas fa-save"></i> Save Gratitude</button>
+                <p id="saved-notes-count">You have 0 saved notes.</p>
+                <div id="saved-notes-display"></div>
+                <p class="affirmation">Your gratitude note has been saved successfully.</p>
+                <button class="close-button" onclick="closePopup('gratitude')"><i class="fas fa-times"></i></button>
             </div>
-            <p id="guided-meditation-prompt"></p>
-            <button class="action-button" id="meditation-try-another" style="display: none;" onclick="resetMeditation()"><i class="fas fa-redo"></i> Try Another</button>
-            <p class="affirmation">Thank you for taking time to center yourself.</p>
-            <button class="close-button" onclick="closePopup('guided-meditation')"><i class="fas fa-times"></i></button>
         </div>
-    </div>
-    <div id="punching-popup" class="popup">
-        <div class="popup-content">
-            <h4>Punching Bag</h4>
-            <p>Release your stress! Tap or click the bag to punch.</p>
-            <div id="punching-bag">0</div>
-            <div class="progress-container"><div id="punching-progress" class="progress-bar"></div></div>
-            <p id="punching-timer">Time remaining: 30s</p>
-            <p class="affirmation">Excellent work releasing tension.</p>
-            <button class="close-button" onclick="closePopup('punching')"><i class="fas fa-times"></i></button>
-        </div>
-    </div>
-    <div id="stretch-popup" class="popup">
-        <div class="popup-content">
-            <h4>Stretch</h4>
-            <p>Select a stretch to begin:</p>
-            <div class="task-tiles" id="stretch-tiles">
-                <button class="task-tile stretch-type" onclick="startStretchTechnique('cat-cow')">Cat-Cow</button>
-                <button class="task-tile stretch-type" onclick="startStretchTechnique('neck-stretch')">Neck Stretch</button>
-                <button class="task-tile stretch-type" onclick="startStretchTechnique('childs-pose')">Child’s Pose</button>
-                <button class="task-tile stretch-type" onclick="startStretchTechnique('standing-side-bend')">Standing Side Bend</button>
-                <button class="task-tile stretch-type" onclick="startStretchTechnique('seated-forward-fold')">Seated Forward Fold</button>
+        <div id="guided-meditation-popup" class="popup">
+            <div class="popup-content">
+                <h4>Guided Meditation</h4>
+                <p>Select a meditation technique to begin:</p>
+                <div class="task-tiles" id="meditation-tiles">
+                    <button class="task-tile meditation-type" onclick="startMeditationTechnique('breath-awareness')">Breath Awareness</button>
+                    <button class="task-tile meditation-type" onclick="startMeditationTechnique('body-scan')">Body Scan</button>
+                    <button class="task-tile meditation-type" onclick="startMeditationTechnique('sensory-grounding')">Sensory Grounding</button>
+                    <button class="task-tile meditation-type" onclick="startMeditationTechnique('heart-centered')">Heart-Centered</button>
+                    <button class="task-tile meditation-type" onclick="startMeditationTechnique('mindful-observation')">Mindful Observation</button>
+                </div>
+                <p id="guided-meditation-prompt"></p>
+                <button class="action-button" id="meditation-try-another" style="display: none;" onclick="resetMeditation()"><i class="fas fa-redo"></i> Try Another</button>
+                <p class="affirmation">Thank you for taking time to center yourself.</p>
+                <button class="close-button" onclick="closePopup('guided-meditation')"><i class="fas fa-times"></i></button>
             </div>
-            <p id="stretch-prompt"></p>
-            <button class="action-button" id="stretch-try-another" style="display: none;" onclick="resetStretch()"><i class="fas fa-redo"></i> Try Another</button>
-            <p class="affirmation">Your body appreciates this care.</p>
-            <button class="close-button" onclick="closePopup('stretch')"><i class="fas fa-times"></i></button>
         </div>
-    </div>
-    <div id="doodle-popup" class="popup">
-        <div class="popup-content">
-            <h4>Doodle</h4>
-            <p>Let your creativity flow! Draw for 90 seconds.</p>
-            <div class="drawing-tools">
-                <input type="color" id="color-picker" value="#000000">
-                <input type="range" id="brush-size" min="1" max="20" value="5">
+        <div id="punching-popup" class="popup">
+            <div class="popup-content">
+                <h4>Punching Bag</h4>
+                <p>Release your stress! Tap or click the bag to punch.</p>
+                <div id="punching-bag">0</div>
+                <div class="progress-container"><div id="punching-progress" class="progress-bar"></div></div>
+                <p id="punching-timer">Time remaining: 30s</p>
+                <p class="affirmation">Excellent work releasing tension.</p>
+                <button class="close-button" onclick="closePopup('punching')"><i class="fas fa-times"></i></button>
             </div>
-            <canvas id="doodle-canvas" width="400" height="300"></canvas>
-            <div class="progress-container"><div id="doodle-progress" class="progress-bar"></div></div>
-            <p id="doodle-timer">Time remaining: 90s</p>
-            <button class="action-button" onclick="saveDoodle()"><i class="fas fa-download"></i> Save Doodle</button>
-            <button class="action-button" onclick="clearCanvas()"><i class="fas fa-trash"></i> Clear</button>
-            <p class="affirmation">Your creativity is inspiring.</p>
-            <button class="close-button" onclick="closePopup('doodle')"><i class="fas fa-times"></i></button>
         </div>
-    </div>
-    <div id="pmr-popup" class="popup">
-        <div class="popup-content">
-            <h4>Progressive Muscle Relaxation</h4>
-            <p>Select a relaxation technique to begin:</p>
-            <div class="task-tiles" id="pmr-tiles">
-                <button class="task-tile pmr-type" onclick="startPMRTechnique('full-body')">Full Body</button>
-                <button class="task-tile pmr-type" onclick="startPMRTechnique('lower-body')">Lower Body</button>
-                <button class="task-tile pmr-type" onclick="startPMRTechnique('upper-body')">Upper Body</button>
-                <button class="task-tile pmr-type" onclick="startPMRTechnique('facial')">Facial</button>
-                <button class="task-tile pmr-type" onclick="startPMRTechnique('core-back')">Core and Back</button>
+        <div id="stretch-popup" class="popup">
+            <div class="popup-content">
+                <h4>Stretch</h4>
+                <p>Select a stretch to begin:</p>
+                <div class="task-tiles" id="stretch-tiles">
+                    <button class="task-tile stretch-type" onclick="startStretchTechnique('cat-cow')">Cat-Cow</button>
+                    <button class="task-tile stretch-type" onclick="startStretchTechnique('neck-stretch')">Neck Stretch</button>
+                    <button class="task-tile stretch-type" onclick="startStretchTechnique('childs-pose')">Child’s Pose</button>
+                    <button class="task-tile stretch-type" onclick="startStretchTechnique('standing-side-bend')">Standing Side Bend</button>
+                    <button class="task-tile stretch-type" onclick="startStretchTechnique('seated-forward-fold')">Seated Forward Fold</button>
+                </div>
+                <p id="stretch-prompt"></p>
+                <button class="action-button" id="stretch-try-another" style="display: none;" onclick="resetStretch()"><i class="fas fa-redo"></i> Try Another</button>
+                <p class="affirmation">Your body appreciates this care.</p>
+                <button class="close-button" onclick="closePopup('stretch')"><i class="fas fa-times"></i></button>
             </div>
-            <p id="pmr-prompt"></p>
-            <button class="action-button" id="pmr-try-another" style="display: none;" onclick="resetPMR()"><i class="fas fa-redo"></i> Try Another</button>
-            <p class="affirmation">Thank you for taking time to relax your body.</p>
-            <button class="close-button" onclick="closePopup('pmr')"><i class="fas fa-times"></i></button>
         </div>
-    </div>
-    <div id="worry-popup" class="popup">
-        <div class="popup-content">
-            <h4>Worry Shredder</h4>
-            <p>Write down a worry to shred it away:</p>
-            <textarea id="worry-text" rows="3" placeholder="Write your worry here..."></textarea>
-            <button class="action-button" onclick="shredWorry()"><i class="fas fa-cut"></i> Shred Worry</button>
-            <div id="paper-strips-container"></div>
-            <p class="affirmation">Your worry has been shredded.</p>
-            <button class="close-button" onclick="closePopup('worry')"><i class="fas fa-times"></i></button>
-        </div>
-    </div>
-    <div id="color-popup" class="popup">
-        <div class="popup-content">
-            <h4>Color Focus</h4>
-            <p>Select a color to focus on:</p>
-            <div class="task-tiles" id="color-tiles">
-                <button class="task-tile color-type" onclick="startColorTechnique('soft-blue')">Soft Blue</button>
-                <button class="task-tile color-type" onclick="startColorTechnique('gentle-green')">Gentle Green</button>
-                <button class="task-tile color-type" onclick="startColorTechnique('warm-yellow')">Warm Yellow</button>
-                <button class="task-tile color-type" onclick="startColorTechnique('calming-purple')">Calming Purple</button>
-                <button class="task-tile color-type" onclick="startColorTechnique('soothing-orange')">Soothing Orange</button>
+        <div id="doodle-popup" class="popup">
+            <div class="popup-content">
+                <h4>Doodle</h4>
+                <p>Let your creativity flow! Draw for 90 seconds.</p>
+                <div class="drawing-tools">
+                    <input type="color" id="color-picker" value="#000000">
+                    <input type="range" id="brush-size" min="1" max="20" value="5">
+                </div>
+                <canvas id="doodle-canvas" width="400" height="300"></canvas>
+                <div class="progress-container"><div id="doodle-progress" class="progress-bar"></div></div>
+                <p id="doodle-timer">Time remaining: 90s</p>
+                <button class="action-button" onclick="saveDoodle()"><i class="fas fa-download"></i> Save Doodle</button>
+                <button class="action-button" onclick="clearCanvas()"><i class="fas fa-trash"></i> Clear</button>
+                <p class="affirmation">Your creativity is inspiring.</p>
+                <button class="close-button" onclick="closePopup('doodle')"><i class="fas fa-times"></i></button>
             </div>
-            <p id="color-prompt"></p>
-            <div id="color-square" style="display: none;"></div>
-            <button class="action-button" id="color-try-another" style="display: none;" onclick="resetColor()"><i class="fas fa-redo"></i> Try Another</button>
-            <p class="affirmation">Thank you for taking a moment to focus.</p>
-            <button class="close-button" onclick="closePopup('color')"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="pmr-popup" class="popup">
+            <div class="popup-content">
+                <h4>Progressive Muscle Relaxation</h4>
+                <p>Select a relaxation technique to begin:</p>
+                <div class="task-tiles" id="pmr-tiles">
+                    <button class="task-tile pmr-type" onclick="startPMRTechnique('full-body')">Full Body</button>
+                    <button class="task-tile pmr-type" onclick="startPMRTechnique('lower-body')">Lower Body</button>
+                    <button class="task-tile pmr-type" onclick="startPMRTechnique('upper-body')">Upper Body</button>
+                    <button class="task-tile pmr-type" onclick="startPMRTechnique('facial')">Facial</button>
+                    <button class="task-tile pmr-type" onclick="startPMRTechnique('core-back')">Core and Back</button>
+                </div>
+                <p id="pmr-prompt"></p>
+                <button class="action-button" id="pmr-try-another" style="display: none;" onclick="resetPMR()"><i class="fas fa-redo"></i> Try Another</button>
+                <p class="affirmation">Thank you for taking time to relax your body.</p>
+                <button class="close-button" onclick="closePopup('pmr')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="worry-popup" class="popup">
+            <div class="popup-content">
+                <h4>Worry Shredder</h4>
+                <p>Write down a worry to shred it away:</p>
+                <textarea id="worry-text" rows="3" placeholder="Write your worry here..."></textarea>
+                <button class="action-button" onclick="shredWorry()"><i class="fas fa-cut"></i> Shred Worry</button>
+                <div id="paper-strips-container"></div>
+                <p class="affirmation">Your worry has been shredded.</p>
+                <button class="close-button" onclick="closePopup('worry')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="color-popup" class="popup">
+            <div class="popup-content">
+                <h4>Color Focus</h4>
+                <p>Select a color to focus on:</p>
+                <div class="task-tiles" id="color-tiles">
+                    <button class="task-tile color-type" onclick="startColorTechnique('soft-blue')">Soft Blue</button>
+                    <button class="task-tile color-type" onclick="startColorTechnique('gentle-green')">Gentle Green</button>
+                    <button class="task-tile color-type" onclick="startColorTechnique('warm-yellow')">Warm Yellow</button>
+                    <button class="task-tile color-type" onclick="startColorTechnique('calming-purple')">Calming Purple</button>
+                    <button class="task-tile color-type" onclick="startColorTechnique('soothing-orange')">Soothing Orange</button>
+                </div>
+                <p id="color-prompt"></p>
+                <div id="color-square" style="display: none;"></div>
+                <button class="action-button" id="color-try-another" style="display: none;" onclick="resetColor()"><i class="fas fa-redo"></i> Try Another</button>
+                <p class="affirmation">Thank you for taking a moment to focus.</p>
+                <button class="close-button" onclick="closePopup('color')"><i class="fas fa-times"></i></button>
+            </div>
         </div>
     </div>
-
     <script>
-        // Initialize event listeners for tool buttons
+        // Initialize event listeners for navigation transitions
         document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-bar .nav-links a');
+            const mainContent = document.querySelector('.main-content');
+
+            // Fade in on page load
+            mainContent.classList.add('fade-in');
+
+            // Fade out when navigating away
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent immediate navigation
+                    mainContent.classList.remove('fade-in');
+                    mainContent.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = link.href; // Navigate after fade-out
+                    }, 500); // Match the CSS transition duration
+                });
+            });
+
+            // Existing script for tool buttons and popups
             const toolButtons = document.querySelectorAll('.tool-button');
             toolButtons.forEach(button => {
                 const tool = button.getAttribute('data-tool');

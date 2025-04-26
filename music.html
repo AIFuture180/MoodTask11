@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MoodTask Mood Music - Listen to music tailored to your mood and activities.">
-    <meta name="keywords" content="MoodTask, mood music, relaxation music, motivational music, study music">
+    <meta name="description" content="MoodTask offers mood music for sleep, meditation, relaxation, motivation, and study to enhance your emotional well-being.">
+    <meta name="keywords" content="MoodTask, mood music, sleep music, meditation music, relaxation music, motivational music, study music">
     <meta name="robots" content="index, follow">
     <title>MoodTask - Mood Music</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -17,6 +17,7 @@
             margin: 0;
             padding: 0;
             color: #333;
+            transition: background-color 0.3s ease;
         }
         .nav-bar {
             background-color: #fff;
@@ -29,67 +30,54 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            max-width: 1400px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
         }
         .nav-bar .logo {
             font-size: 1.5em;
-            font-weight: 600;
+            font-weight: 700;
             color: #4A90E2;
         }
         .nav-bar .nav-links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
             align-items: center;
+            gap: 18px;
+            padding-left: 30px;
+            padding-right: 20px;
         }
         .nav-bar a {
+            padding: 10px 15px;
             text-decoration: none;
-            color: #4A90E2;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: background-color 0.3s, transform 0.2s;
+            color: #2C3E50;
+            font-weight: 400;
+            transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 5px;
         }
         .nav-bar a:hover {
             background-color: #f0f0f0;
-            transform: scale(1.05);
+            color: #2C3E50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .nav-bar a.active {
             background-color: #4A90E2;
             color: white;
             font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .nav-bar .dropdown {
-            position: relative;
-            display: inline-block;
+        .main-content {
+            transition: opacity 0.5s ease;
         }
-        .nav-bar .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 5px;
-            top: 100%;
-            left: 0;
+        .main-content.fade-out {
+            opacity: 0;
         }
-        .nav-bar .dropdown-content a {
-            color: #4A90E2;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            border-radius: 0;
-        }
-        .nav-bar .dropdown-content a:hover {
-            background-color: #f0f0f0;
-            transform: none;
-        }
-        .nav-bar .dropdown:hover .dropdown-content {
-            display: block;
+        .main-content.fade-in {
+            opacity: 1;
         }
         .hero {
             background: linear-gradient(135deg, #4A90E2, #2C3E50);
-            color: white;
+           Bridger color: white;
             padding: 100px 20px;
             text-align: center;
             margin-top: 60px;
@@ -98,87 +86,81 @@
             font-size: 2.5em;
             margin-bottom: 20px;
         }
-        .content {
-            max-width: 1200px;
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
-        .music-tiles {
+        .music-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 600px;
+        }
+        .music-button {
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+            flex-direction: column;
             justify-content: center;
-        }
-        .music-tile {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            width: 200px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .music-tile:hover {
-            transform: scale(1.05);
-        }
-        .music-tile h3 {
-            margin: 0;
-            font-size: 1.2em;
-            color: #2C3E50;
-        }
-        .video-list {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            background: #f0f0f0;
-            border-radius: 5px;
-        }
-        .video-list.active {
-            display: block;
-        }
-        .video-item {
-            padding: 8px;
-            cursor: pointer;
-            color: #4A90E2;
-            transition: background-color 0.3s;
-        }
-        .video-item:hover {
-            background-color: #e0e0e0;
-        }
-        .video-player {
-            display: none;
-            margin-top: 10px;
-            padding: 10px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .video-player.active {
-            display: block;
-        }
-        .video-player iframe {
-            width: 100%;
-            height: 200px;
-            border: none;
-            border-radius: 5px;
-        }
-        .close-player {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: #FFC107;
-            color: #333;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 0.9em;
+            font-size: 1em;
+            font-weight: 500;
+            line-height: 1.6;
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            aspect-ratio: 1 / 1;
+            width: 150px;
+            height: 150px;
+            padding: 10px;
+            text-align: center;
+        }
+        .music-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .music-button i {
+            margin-bottom: 8px;
+            font-size: 1.5em;
+        }
+        .music-button.sleep {
+            background: linear-gradient(135deg, #4A90E2, #6B7280);
+        }
+        .music-button.sleep:hover {
+            background: linear-gradient(135deg, #3B82F6, #4A5568);
+        }
+        .music-button.meditation {
+            background: linear-gradient(135deg, #9F7AEA, #B794F4);
+        }
+        .music-button.meditation:hover {
+            background: linear-gradient(135deg, #805AD5, #9F7AEA);
+        }
+        .music-button.relax {
+            background: linear-gradient(135deg, #68D391, #48BB78);
+        }
+        .music-button.relax:hover {
+            background: linear-gradient(135deg, #48BB78, #38A169);
+        }
+        .music-button.motivation {
+            background: linear-gradient(135deg, #FF6F61, #E53E3E);
+        }
+        .music-button.motivation:hover {
+            background: linear-gradient(135deg, #F56565, #C53030);
+        }
+        .music-button.study {
+            background: linear-gradient(135deg, #F4A261, #FF6F61);
+        }
+        .music-button.study:hover {
+            background: linear-gradient(135deg, #ED8936 F56565);
         }
         .footer {
             background-color: #333;
@@ -233,30 +215,161 @@
             background-color: #6BCB77;
             color: white;
         }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            font-size: 1em;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        .popup-content h4 {
+            font-size: 1.3em;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .video-tiles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .video-tile {
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9em;
+            font-weight: 500;
+            line-height: 1.6;
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 120px;
+            height: 80px;
+            padding: 10px;
+            text-align: center;
+        }
+        .video-tile:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .video-tile.sleep-type {
+            background: linear-gradient(135deg, #4A90E2, #6B7280);
+        }
+        .video-tile.sleep-type:hover {
+            background: linear-gradient(135deg, #3B82F6, #4A5568);
+        }
+        .video-tile.meditation-type {
+            background: linear-gradient(135deg, #9F7AEA, #B794F4);
+        }
+        .video-tile.meditation-type:hover {
+           (background: linear-gradient(135deg, #805AD5, #9F7AEA);
+        }
+        .video-tile.relax-type {
+            background: linear-gradient(135deg, #68D391, #48BB78);
+        }
+        .video-tile.relax-type:hover {
+            background: linear-gradient(135deg, #48BB78, #38A169);
+        }
+        .video-tile.motivation-type {
+            background: linear-gradient(135deg, #FF6F61, #E53E3E);
+        }
+        .video-tile.motivation-type:hover {
+            background: linear-gradient(135deg, #F56565, #C53030);
+        }
+        .video-tile.study-type {
+            background: linear-gradient(135deg, #F4A261, #FF6F61);
+        }
+        .video-tile.study-type:hover {
+            background: linear-gradient(135deg, #ED8936, #F56565);
+        }
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            max-width: 90%;
+            height: 450px;
+            background: #000;
+            border-radius: 10px;
+            z-index: 2000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+        .video-player .close-video {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            background: #fff;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+        @media (max-width: 900px) {
+            .content-wrapper {
+                gap: 20px;
+                max-width: 750px;
+            }
+        }
         @media (max-width: 600px) {
             .nav-bar {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
                 padding: 15px 20px;
             }
             .nav-bar .nav-links {
                 flex-direction: column;
-                gap: 10px;
-                width: 100%;
+                gap: 12px;
                 align-items: center;
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
             }
             .nav-bar a {
-                padding: 10px 20px;
+                padding: 12px 20px;
                 width: 100%;
                 text-align: center;
                 box-sizing: border-box;
-            }
-            .nav-bar .dropdown {
-                width: 100%;
-            }
-            .nav-bar .dropdown-content {
-                width: 100%;
-                left: 0;
             }
             .hero {
                 padding: 60px 15px;
@@ -264,11 +377,18 @@
             .hero h1 {
                 font-size: 1.8em;
             }
-            .music-tile {
-                width: 150px;
+            .content-wrapper {
+                flex-direction: column;
+                padding: 0 10px;
             }
-            .video-player iframe {
-                height: 150px;
+            .music-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                max-width: 100%;
+                margin: 20px auto;
+            }
+            .video-player {
+                width: 100%;
+                height: 200px;
             }
         }
     </style>
@@ -279,265 +399,188 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="calendar.html">Dashboard</a>
-            <div class="dropdown">
-                <a href="activities.html">Activities</a>
-                <div class="dropdown-content">
-                    <a href="activities.html#breathing">Breathing</a>
-                    <a href="activities.html#soundscape">Soundscape</a>
-                    <a href="activities.html#punching">Punching Bag</a>
-                    <a href="activities.html#stretch">Stretch</a>
-                    <a href="activities.html#doodle">Doodle</a>
-                    <a href="activities.html#dance">Dance</a>
-                    <a href="activities.html#color-focus">Color Focus</a>
-                    <a href="activities.html#worry">Worry</a>
-                    <a href="activities.html#gratitude">Gratitude</a>
-                </div>
-            </div>
+            <a href="activities.html">Activities</a>
             <a href="music.html" class="active">Mood Music</a>
             <a href="blog.html">Blog</a>
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms of Use</a>
         </div>
     </div>
-    <div class="hero">
-        <h1>Mood Music</h1>
-    </div>
-    <div class="content">
-        <div class="music-tiles">
-            <div class="music-tile" data-category="sleep">
-                <h3>Sleep</h3>
-                <div class="video-list" id="sleep-videos">
-                    <div class="video-item" data-video="sleep-1">Waves Crashing</div>
-                    <div class="video-item" data-video="sleep-2">Sleep Video 2</div>
-                    <div class="video-item" data-video="sleep-3">Sleep Video 3</div>
-                    <div class="video-item" data-video="sleep-4">Sleep Video 4</div>
-                    <div class="video-item" data-video="sleep-5">Sleep Video 5</div>
-                    <div class="video-player" id="player-sleep-1">
-                        <iframe src="https://www.youtube.com/embed/YENnvhlAGmQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-sleep-2">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-sleep-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-sleep-4">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-sleep-5">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                </div>
-            </div>
-            <div class="music-tile" data-category="meditation">
-                <h3>Meditation</h3>
-                <div class="video-list" id="meditation-videos">
-                    <div class="video-item" data-video="meditation-1">Meditation Video 1</div>
-                    <div class="video-item" data-video="meditation-2">Meditation Video 2</div>
-                    <div class="video-item" data-video="meditation-3">Meditation Video 3</div>
-                    <div class="video-item" data-video="meditation-4">Meditation Video 4</div>
-                    <div class="video-item" data-video="meditation-5">Meditation Video 5</div>
-                    <div class="video-player" id="player-meditation-1">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-meditation-2">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-meditation-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-meditation-4">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-meditation-5">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                </div>
-            </div>
-            <div class="music-tile" data-category="relax">
-                <h3>Relax</h3>
-                <div class="video-list" id="relax-videos">
-                    <div class="video-item" data-video="relax-1">Relax Video 1</div>
-                    <div class="video-item" data-video="relax-2">Relax Video 2</div>
-                    <div class="video-item" data-video="relax-3">Relax Video 3</div>
-                    <div class="video-item" data-video="relax-4">Relax Video 4</div>
-                    <div class="video-item" data-video="relax-5">Relax Video 5</div>
-                    <div class="video-player" id="player-relax-1">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-relax-2">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-relax-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-relax-4">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-relax-5">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                </div>
-            </div>
-            <div class="music-tile" data-category="motivational">
-                <h3>Motivational</h3>
-                <div class="video-list" id="motivational-videos">
-                    <div class="video-item" data-video="motivational-1">Motivational Video 1</div>
-                    <div class="video-item" data-video="motivational-2">Motivational Video 2</div>
-                    <div class="video-item" data-video="motivational-3">Motivational Video 3</div>
-                    <div class="video-item" data-video="motivational-4">Motivational Video 4</div>
-                    <div class="video-item" data-video="motivational-5">Motivational Video 5</div>
-                    <div class="video-player" id="player-motivational-1">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-motivational-2">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-motivational-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-motivational-4">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-motivational-5">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                </div>
-            </div>
-            <div class="music-tile" data-category="study">
-                <h3>Study</h3>
-                <div class="video-list" id="study-videos">
-                    <div class="video-item" data-video="study-1">Study Video 1</div>
-                    <div class="video-item" data-video="study-2">Study Video 2</div>
-                    <div class="video-item" data-video="study-3">Study Video 3</div>
-                    <div class="video-item" data-video="study-4">Study Video 4</div>
-                    <div class="video-item" data-video="study-5">Study Video 5</div>
-                    <div class="video-player" id="player-study-1">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-study-2">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-study-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-study-4">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                    <div class="video-player" id="player-study-5">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-                        <button class="close-player">✕</button>
-                    </div>
-                </div>
+    <div class="main-content fade-in">
+        <div class="hero">
+            <h1>Mood Music to Elevate Your Day</h1>
+            <p>Discover music to help you sleep, meditate, relax, stay motivated, or focus while studying.</p>
+        </div>
+        <div class="content-wrapper">
+            <div class="music-container" id="music-container">
+                <button class="music-button sleep" data-music="sleep"><i class="fas fa-moon"></i>Sleep</button>
+                <button class="music-button meditation" data-music="meditation"><i class="fas fa-spa"></i>Meditation</button>
+                <button class="music-button relax" data-music="relax"><i class="fas fa-leaf"></i>Relax</button>
+                <button class="music-button motivation" data-music="motivation"><i class="fas fa-rocket"></i>Motivation</button>
+                <button class="music-button study" data-music="study"><i class="fas fa-book"></i>Study</button>
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <div>
-            <h3>MoodTask</h3>
-            <p>Transform your mood with science-backed activities designed to improve your emotional well-being.</p>
+        <div class="footer">
+            <div>
+                <h3>MoodTask</h3>
+                <p>Transform your mood with science-backed activities designed to improve your emotional well-being.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+            </div>
+            <div class="connect">
+                <h3>Connect</h3>
+                <a href="https://twitter.com/share?url=https://moodtask.org"><i class="fab fa-twitter"></i> Share on Twitter</a>
+                <a href="https://www.buymeacoffee.com/moodtask" class="coffee"><i class="fas fa-coffee"></i> Buy Me a Coffee</a>
+                <a href="https://www.online-therapy.com/?aff_id=12345" class="therapy">Online Therapy</a>
+                <a href="https://www.mindfulness.com/?aff_id=67890" class="mindfulness">Mindfulness</a>
+            </div>
+            <div class="affiliate-note">
+                AFFILIATE DISCLOSURE: Some links on this site are affiliate links. We may earn a commission on purchases at no extra cost to you.<br>
+                © 2025 MoodTask. All rights reserved.
+            </div>
         </div>
-        <div>
-            <h3>Quick Links</h3>
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-        </div>
-        <div class="connect">
-            <h3>Connect</h3>
-            <a href="https://twitter.com/share?url=https://moodtask.org"><i class="fab fa-twitter"></i> Share on Twitter</a>
-            <a href="https://www.buymeacoffee.com/moodtask" class="coffee"><i class="fas fa-coffee"></i> Buy Me a Coffee</a>
-            <a href="https://www.online-therapy.com/?aff_id=12345" class="therapy">Online Therapy</a>
-            <a href="https://www.mindfulness.com/?aff_id=67890" class="mindfulness">Mindfulness</a>
-        </div>
-        <div class="affiliate-note">
-            AFFILIATE DISCLOSURE: Some links on this site are affiliate links. We may earn a commission on purchases at no extra cost to you.<br>
-            © 2025 MoodTask. All rights reserved.
-        </div>
-    </div>
 
+        <!-- Popups for Music Categories -->
+        <div id="sleep-popup" class="popup">
+            <div class="popup-content">
+                <h4>Sleep Music</h4>
+                <p>Select a video to help you drift off to sleep:</p>
+                <div class="video-tiles" id="sleep-tiles">
+                    <button class="video-tile sleep-type" onclick="playVideo('dQw4w9WgXcQ', 'Waves Crashing - MoodTask')">Waves Crashing</button>
+                    <button class="video-tile sleep-type" onclick="playVideo('yIgZ2q2Y7xY', 'Relaxing Music 24/7 - Yellow Brick Cinema')">Relaxing Music 24/7</button>
+                    <button class="video-tile sleep-type" onclick="playVideo('v1SjT-GJ0cM', 'Floating Among The Stars - Jason Stephenson')">Floating Among The Stars</button>
+                    <button class="video-tile sleep-type" onclick="playVideo('mX5G9v_SmoM', 'Beautiful Relaxing Music - Soothing Relaxation')">Beautiful Relaxing Music</button>
+                    <button class="video-tile sleep-type" onclick="playVideo('5qap5aO4i9A', 'lofi hip hop radio - ChilledCow')">lofi hip hop radio</button>
+                </div>
+                <button class="close-button" onclick="closePopup('sleep')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="meditation-popup" class="popup">
+            <div class="popup-content">
+                <h4>Meditation Music</h4>
+                <p>Select a video to guide your meditation:</p>
+                <div class="video-tiles" id="meditation-tiles">
+                    <button class="video-tile meditation-type" onclick="playVideo('XgD4zY5PQgA', 'Guided Meditation - Chibs Okereke')">Guided Meditation</button>
+                    <button class="video-tile meditation-type" onclick="playVideo('O-6f5wQXSu8', 'Meditation for Anxiety - Jason Stephenson')">Meditation for Anxiety</button>
+                    <button class="video-tile meditation-type" onclick="playVideo('lE6RYpe9', 'Positive Energy - Soothing Relaxation')">Positive Energy</button>
+                    <button class="video-tile meditation-type" onclick="playVideo('k4X9lP9v5k', 'Inner Peace - Global Mantra')">Inner Peace</button>
+                    <button class="video-tile meditation-type" onclick="playVideo('ZToicYcHIOU', '10-Minute Meditation - Calm')">10-Minute Meditation</button>
+                </div>
+                <button class="close-button" onclick="closePopup('meditation')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="relax-popup" class="popup">
+            <div class="popup-content">
+                <h4>Relaxation Music</h4>
+                <p>Select a video to unwind and relax:</p>
+                <div class="video-tiles" id="relax-tiles">
+                    <button class="video-tile relax-type" onclick="playVideo('mX5G9v_SmoM', 'Nature Sounds - Soothing Relaxation')">Nature Sounds</button>
+                    <button class="video-tile relax-type" onclick="playVideo('yIgZ2q2Y7xY', 'Calming Music - Yellow Brick Cinema')">Calming Music</button>
+                    <button class="video-tile relax-type" onclick="playVideo('p8hL5lZxY4', 'Piano Music - Dream Relax Music')">Piano Music</button>
+                    <button class="video-tile relax-type" onclick="playVideo('z9lP9v5k', 'Zen Music - Timeless Mind')">Zen Music</button>
+                    <button class="video-tile relax-type" onclick="playVideo('qW8lP9v5k', 'Ambient Sounds - Meditate & Motivate Daily')">Ambient Sounds</button>
+                </div>
+                <button class="close-button" onclick="closePopup('relax')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="motivation-popup" class="popup">
+            <div class="popup-content">
+                <h4>Motivational Music</h4>
+                <p>Select a video to boost your motivation:</p>
+                <div class="video-tiles" id="motivation-tiles">
+                    <button class="video-tile motivation-type" onclick="playVideo('qW8lP9v5k', 'Motivational Music - Meditate & Motivate Daily')">Motivational Music</button>
+                    <button class="video-tile motivation-type" onclick="playVideo('rP9v5k', 'Instrumental Music - InstrMusic')">Instrumental Music</button>
+                    <button class="video-tile motivation-type" onclick="playVideo('tY5lP9v5k', 'Inspirational Music - H2H Music')">Inspirational Music</button>
+                    <button class="video-tile motivation-type" onclick="playVideo('uP9v5k', 'Happy Trance - Paul McKenna')">Happy Trance</button>
+                    <button class="video-tile motivation-type" onclick="playVideo('vP9v5k', 'Morning Meditation - Calm')">Morning Meditation</button>
+                </div>
+                <button class="close-button" onclick="closePopup('motivation')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="study-popup" class="popup">
+            <div class="popup-content">
+                <h4>Study Music</h4>
+                <p>Select a video to enhance your focus while studying:</p>
+                <div class="video-tiles" id="study-tiles">
+                    <button class="video-tile study-type" onclick="playVideo('5qap5aO4i9A', 'lofi hip hop radio - ChilledCow')">lofi hip hop radio</button>
+                    <button class="video-tile study-type" onclick="playVideo('yIgZ2q2Y7xY', 'Study Music - Yellow Brick Cinema')">Study Music</button>
+                    <button class="video-tile study-type" onclick="playVideo('z9lP9v5k', 'Alpha Waves - Timeless Mind')">Alpha Waves</button>
+                    <button class="video-tile study-type" onclick="playVideo('p8hL5lZxY4', 'Piano Music - Dream Relax Music')">Piano Music</button>
+                    <button class="video-tile study-type" onclick="playVideo('tY5lP9v5k', 'Focus Music - H2H Music')">Focus Music</button>
+                </div>
+                <button class="close-button" onclick="closePopup('study')"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <!-- Video Player Popup -->
+        <div class="video-player" id="video-player">
+            <button class="close-video" onclick="closeVideo()"><i class="fas fa-times"></i></button>
+            <iframe id="video-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
     <script>
+        // Initialize event listeners for navigation transitions
         document.addEventListener('DOMContentLoaded', () => {
-            const tiles = document.querySelectorAll('.music-tile');
-            const videoItems = document.querySelectorAll('.video-item');
-            const closeButtons = document.querySelectorAll('.close-player');
+            const navLinks = document.querySelectorAll('.nav-bar .nav-links a');
+            const mainContent = document.querySelector('.main-content');
 
-            // Handle tile clicks to show/hide video lists
-            tiles.forEach(tile => {
-                tile.addEventListener('click', (e) => {
-                    // Prevent click on video item or player from triggering tile toggle
-                    if (e.target.classList.contains('video-item') || e.target.classList.contains('close-player')) {
-                        return;
-                    }
+            // Fade in on page load
+            mainContent.classList.add('fade-in');
 
-                    const category = tile.getAttribute('data-category');
-                    const videoList = document.getElementById(`${category}-videos`);
-
-                    // Close all other video lists and players
-                    document.querySelectorAll('.video-list').forEach(list => {
-                        if (list !== videoList) {
-                            list.classList.remove('active');
-                        }
-                    });
-                    document.querySelectorAll('.video-player').forEach(player => {
-                        player.classList.remove('active');
-                    });
-
-                    // Toggle the clicked video list
-                    videoList.classList.toggle('active');
+            // Fade out when navigating away
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent immediate navigation
+                    mainContent.classList.remove('fade-in');
+                    mainContent.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = link.href; // Navigate after fade-out
+                    }, 500); // Match the CSS transition duration
                 });
             });
 
-            // Handle video item clicks to show the player
-            videoItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const videoId = item.getAttribute('data-video');
-                    const player = document.getElementById(`player-${videoId}`);
-
-                    // Close all other players
-                    document.querySelectorAll('.video-player').forEach(p => {
-                        if (p !== player) {
-                            p.classList.remove('active');
-                        }
-                    });
-
-                    // Show the selected player
-                    player.classList.add('active');
-                });
-            });
-
-            // Handle close buttons to hide the player
-            closeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const player = button.parentElement;
-                    player.classList.remove('active');
-                });
+            // Initialize music buttons
+            const musicButtons = document.querySelectorAll('.music-button');
+            musicButtons.forEach(button => {
+                const music = button.getAttribute('data-music');
+                button.addEventListener('click', () => openPopup(music));
             });
         });
+
+        // Open popup
+        function openPopup(music) {
+            const popup = document.getElementById(`${music}-popup`);
+            popup.style.display = 'flex';
+        }
+
+        // Close popup
+        function closePopup(music) {
+            const popup = document.getElementById(`${music}-popup`);
+            popup.style.display = 'none';
+        }
+
+        // Play video in popup
+        function playVideo(videoId, title) {
+            const videoPlayer = document.getElementById('video-player');
+            const videoIframe = document.getElementById('video-iframe');
+            videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            videoPlayer.style.display = 'block';
+            // Update popup title if needed
+            const popupContent = document.querySelector(`#${videoPlayer.parentElement.id} .popup-content h4`);
+            if (popupContent) popupContent.textContent = title;
+        }
+
+        // Close video player
+        function closeVideo() {
+            const videoPlayer = document.getElementById('video-player');
+            const videoIframe = document.getElementById('video-iframe');
+            videoIframe.src = ''; // Stop the video
+            videoPlayer.style.display = 'none';
+        }
     </script>
 </body>
 </html>

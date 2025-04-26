@@ -53,6 +53,9 @@
             font-weight: 400;
             transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
             border-radius: 5px;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
         }
         .nav-bar a:hover {
             background-color: #f0f0f0;
@@ -62,7 +65,6 @@
         .nav-bar a.active {
             background-color: #4A90E2;
             color: white;
-            font-weight: 600;
         }
         .nav-bar .dropdown {
             position: relative;
@@ -86,6 +88,7 @@
             display: block;
             margin: 0;
             line-height: 1.5;
+            min-width: unset;
         }
         .nav-bar .dropdown-content a:hover {
             background-color: #f0f0f0;
@@ -184,11 +187,11 @@
         .tool-button.doodle:hover {
             background: linear-gradient(135deg, #553C9A, #6B46C1);
         }
-        .tool-button.dance {
-            background: linear-gradient(135deg, #ED64A6, #F687B3);
+        .tool-button.pmr {
+            background: linear-gradient(135deg, #4FD1C5, #81E6D9);
         }
-        .tool-button.dance:hover {
-            background: linear-gradient(135deg, #F687B3, #ED64A6);
+        .tool-button.pmr:hover {
+            background: linear-gradient(135deg, #38B2AC, #4FD1C5);
         }
         .tool-button.worry {
             background: linear-gradient(135deg, #4A5568, #718096);
@@ -314,7 +317,7 @@
             border-radius: 5px;
             transition: width 1s linear;
         }
-        #breathing-instruction, #punching-timer, #stretch-prompt, #doodle-timer, #dance-timer, #color-prompt, #guided-meditation-prompt {
+        #breathing-instruction, #punching-timer, #stretch-prompt, #doodle-timer, #pmr-prompt, #color-prompt, #guided-meditation-prompt {
             margin: 10px 0;
             font-size: 1em;
         }
@@ -342,16 +345,6 @@
             border: 1px solid #ddd;
             margin: 10px auto;
             display: block;
-        }
-        #dance-animation {
-            margin: 20px 0;
-        }
-        .bounce {
-            animation: bounce 0.5s infinite alternate;
-        }
-        @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
         }
         #gratitude-text, #worry-text {
             width: 100%;
@@ -445,6 +438,12 @@
         .task-tile.color-type:hover {
             background: linear-gradient(135deg, #48BB78, #38A169);
         }
+        .task-tile.pmr-type {
+            background: linear-gradient(135deg, #4FD1C5, #81E6D9);
+        }
+        .task-tile.pmr-type:hover {
+            background: linear-gradient(135deg, #38B2AC, #4FD1C5);
+        }
         #saved-notes-display {
             max-height: 200px;
             overflow-y: auto;
@@ -491,6 +490,7 @@
                 width: 100%;
                 text-align: center;
                 box-sizing: border-box;
+                min-width: unset;
             }
             .nav-bar .dropdown {
                 width: 100%;
@@ -531,7 +531,7 @@
                     <a href="activities.html#punching">Punching Bag</a>
                     <a href="activities.html#stretch">Stretch</a>
                     <a href="activities.html#doodle">Doodle</a>
-                    <a href="activities.html#dance">Dance</a>
+                    <a href="activities.html#pmr">Progressive Muscle Relaxation</a>
                     <a href="activities.html#color-focus">Color Focus</a>
                     <a href="activities.html#worry">Worry</a>
                     <a href="activities.html#gratitude">Gratitude</a>
@@ -555,7 +555,7 @@
             <button class="tool-button punching" data-tool="punching"><i class="fas fa-fist-raised"></i>Punching Bag</button>
             <button class="tool-button stretch" data-tool="stretch"><i class="fas fa-child"></i>Stretch</button>
             <button class="tool-button doodle" data-tool="doodle"><i class="fas fa-pencil-alt"></i>Doodle</button>
-            <button class="tool-button dance" data-tool="dance"><i class="fas fa-music"></i>Dance</button>
+            <button class="tool-button pmr" data-tool="pmr"><i class="fas fa-hand-holding-heart"></i>Progressive Muscle Relaxation</button>
             <button class="tool-button worry" data-tool="worry"><i class="fas fa-cut"></i>Worry Shredder</button>
             <button class="tool-button color" data-tool="color"><i class="fas fa-palette"></i>Color Focus</button>
         </div>
@@ -597,6 +597,7 @@
             </div>
             <div id="breathing-circle" style="display: none;"><span id="breathing-step">Inhale</span></div>
             <p id="breathing-instruction"></p>
+            <button class="action-button" id="breathing-try-another" style="display: none;" onclick="resetBreathing()"><i class="fas fa-redo"></i> Try Another</button>
             <p class="affirmation">Well done completing the breathing exercise.</p>
             <button class="close-button" onclick="closePopup('breathing')"><i class="fas fa-times"></i></button>
         </div>
@@ -625,6 +626,7 @@
                 <button class="task-tile meditation-type" onclick="startMeditationTechnique('mindful-observation')">Mindful Observation</button>
             </div>
             <p id="guided-meditation-prompt"></p>
+            <button class="action-button" id="meditation-try-another" style="display: none;" onclick="resetMeditation()"><i class="fas fa-redo"></i> Try Another</button>
             <p class="affirmation">Thank you for taking time to center yourself.</p>
             <button class="close-button" onclick="closePopup('guided-meditation')"><i class="fas fa-times"></i></button>
         </div>
@@ -652,6 +654,7 @@
                 <button class="task-tile stretch-type" onclick="startStretchTechnique('seated-forward-fold')">Seated Forward Fold</button>
             </div>
             <p id="stretch-prompt"></p>
+            <button class="action-button" id="stretch-try-another" style="display: none;" onclick="resetStretch()"><i class="fas fa-redo"></i> Try Another</button>
             <p class="affirmation">Your body appreciates this care.</p>
             <button class="close-button" onclick="closePopup('stretch')"><i class="fas fa-times"></i></button>
         </div>
@@ -673,15 +676,21 @@
             <button class="close-button" onclick="closePopup('doodle')"><i class="fas fa-times"></i></button>
         </div>
     </div>
-    <div id="dance-popup" class="popup">
+    <div id="pmr-popup" class="popup">
         <div class="popup-content">
-            <h4>Dance</h4>
-            <div id="dance-animation"><i class="fas fa-child fa-4x bounce"></i></div>
-            <p id="dance-prompt">Dance prompt will appear here...</p>
-            <div class="progress-container"><div id="dance-progress" class="progress-bar"></div></div>
-            <p id="dance-timer">Time remaining: 30s</p>
-            <p class="affirmation">Thank you for moving with energy.</p>
-            <button class="close-button" onclick="closePopup('dance')"><i class="fas fa-times"></i></button>
+            <h4>Progressive Muscle Relaxation</h4>
+            <p>Select a relaxation technique to begin:</p>
+            <div class="task-tiles" id="pmr-tiles">
+                <button class="task-tile pmr-type" onclick="startPMRTechnique('full-body')">Full Body</button>
+                <button class="task-tile pmr-type" onclick="startPMRTechnique('lower-body')">Lower Body</button>
+                <button class="task-tile pmr-type" onclick="startPMRTechnique('upper-body')">Upper Body</button>
+                <button class="task-tile pmr-type" onclick="startPMRTechnique('facial')">Facial</button>
+                <button class="task-tile pmr-type" onclick="startPMRTechnique('core-back')">Core and Back</button>
+            </div>
+            <p id="pmr-prompt"></p>
+            <button class="action-button" id="pmr-try-another" style="display: none;" onclick="resetPMR()"><i class="fas fa-redo"></i> Try Another</button>
+            <p class="affirmation">Thank you for taking time to relax your body.</p>
+            <button class="close-button" onclick="closePopup('pmr')"><i class="fas fa-times"></i></button>
         </div>
     </div>
     <div id="worry-popup" class="popup">
@@ -708,6 +717,7 @@
             </div>
             <p id="color-prompt"></p>
             <div id="color-square" style="display: none;"></div>
+            <button class="action-button" id="color-try-another" style="display: none;" onclick="resetColor()"><i class="fas fa-redo"></i> Try Another</button>
             <p class="affirmation">Thank you for taking a moment to focus.</p>
             <button class="close-button" onclick="closePopup('color')"><i class="fas fa-times"></i></button>
         </div>
@@ -732,7 +742,6 @@
 
             if (tool === 'punching') initPunchingBag();
             if (tool === 'doodle') initDoodle();
-            if (tool === 'dance') startDance();
         }
 
         // Close popup
@@ -741,6 +750,10 @@
             popup.style.display = 'none';
             if (tool === 'doodle') stopDoodle();
             if (tool === 'breathing') stopBreathing();
+            if (tool === 'guided-meditation') resetMeditation();
+            if (tool === 'stretch') resetStretch();
+            if (tool === 'color') resetColor();
+            if (tool === 'pmr') resetPMR();
         }
 
         // Breathing exercise
@@ -750,12 +763,13 @@
             const stepText = document.getElementById('breathing-step');
             const instruction = document.getElementById('breathing-instruction');
             const tiles = document.getElementById('breathing-tiles');
+            const tryAnotherButton = document.getElementById('breathing-try-another');
             let phaseIndex = 0;
             let phaseTime = 0;
 
             const techniques = {
                 'diaphragmatic': {
-                    instruction: 'Place a hand on your belly. Inhale deeply through your nose, expanding your belly, then exhale slowly. Practice for 60 seconds.',
+                    instruction: 'Place a hand on your belly. Inhale deeply through your nose, expanding your belly, then exhale slowly. Practice for 60 seconds. Dr. Andrew Huberman: "Diaphragmatic breathing activates the parasympathetic nervous system, reducing stress and promoting calmness within minutes."',
                     phases: [
                         { name: 'inhale', duration: 4, text: 'Inhale' },
                         { name: 'hold', duration: 2, text: 'Hold' },
@@ -763,14 +777,14 @@
                     ]
                 },
                 'resonance': {
-                    instruction: 'Breathe smoothly through your nose. Inhale for 5 seconds, exhale for 5 seconds to find your rhythm. Practice for 60 seconds.',
+                    instruction: 'Breathe smoothly through your nose. Inhale for 5 seconds, exhale for 5 seconds to find your rhythm. Practice for 60 seconds. Dr. Richard Brown & Dr. Patricia Gerbarg: "Resonance breathing balances the autonomic nervous system, lowering heart rate and enhancing emotional stability."',
                     phases: [
                         { name: 'inhale', duration: 5, text: 'Inhale' },
                         { name: 'exhale', duration: 5, text: 'Exhale' }
                     ]
                 },
                 'lions-breath': {
-                    instruction: 'Inhale deeply through your nose, then exhale forcefully with a "ha" sound, sticking out your tongue. Practice for 60 seconds.',
+                    instruction: 'Inhale deeply through your nose, then exhale forcefully with a "ha" sound, sticking out your tongue. Practice for 60 seconds. Dr. Bessel van der Kolk: "Lion’s Breath releases emotional tension, helping you feel lighter and more grounded by activating the vagus nerve."',
                     phases: [
                         { name: 'inhale', duration: 4, text: 'Inhale' },
                         { name: 'hold', duration: 1, text: 'Hold' },
@@ -778,7 +792,7 @@
                     ]
                 },
                 '4-7-8': {
-                    instruction: 'Inhale quietly through your nose for 4 seconds, hold for 7 seconds, then exhale through pursed lips with a whooshing sound for 8 seconds. Practice for 60 seconds.',
+                    instruction: 'Inhale quietly through your nose for 4 seconds, hold for 7 seconds, then exhale through pursed lips with a whooshing sound for 8 seconds. Practice for 60 seconds. Dr. Herbert Benson: "The 4-7-8 technique induces the relaxation response, calming the mind and aiding sleep by slowing your breathing rhythm."',
                     phases: [
                         { name: 'inhale', duration: 4, text: 'Inhale' },
                         { name: 'hold', duration: 7, text: 'Hold' },
@@ -786,7 +800,7 @@
                     ]
                 },
                 'box': {
-                    instruction: 'Inhale through your nose for 4 seconds, hold for 4 seconds, exhale through your nose for 4 seconds, hold again for 4 seconds—like a box pattern. Practice for 60 seconds.',
+                    instruction: 'Inhale through your nose for 4 seconds, hold for 4 seconds, exhale through your nose for 4 seconds, hold again for 4 seconds—like a box pattern. Practice for 60 seconds. Dr. James Nestor: "Box breathing enhances focus and reduces stress, often used by Navy SEALs to maintain composure under pressure."',
                     phases: [
                         { name: 'inhale', duration: 4, text: 'Inhale' },
                         { name: 'hold', duration: 4, text: 'Hold' },
@@ -801,6 +815,7 @@
             instruction.textContent = selectedTechnique.instruction;
             tiles.style.display = 'none';
             circle.style.display = 'flex';
+            tryAnotherButton.style.display = 'inline-flex';
 
             if (breathingInterval) clearInterval(breathingInterval);
 
@@ -821,29 +836,46 @@
         function stopBreathing() {
             if (breathingInterval) clearInterval(breathingInterval);
             breathingInterval = null;
+            resetBreathing();
+        }
+
+        function resetBreathing() {
             const tiles = document.getElementById('breathing-tiles');
             const circle = document.getElementById('breathing-circle');
             const instruction = document.getElementById('breathing-instruction');
+            const tryAnotherButton = document.getElementById('breathing-try-another');
             tiles.style.display = 'flex';
             circle.style.display = 'none';
             instruction.textContent = 'Select a breathing technique to begin:';
+            tryAnotherButton.style.display = 'none';
         }
 
         // Guided Meditation
         function startMeditationTechnique(type) {
             const prompt = document.getElementById('guided-meditation-prompt');
             const tiles = document.getElementById('meditation-tiles');
+            const tryAnotherButton = document.getElementById('meditation-try-another');
 
             const techniques = {
-                'breath-awareness': 'Focus on your breath. Inhale for 4 seconds, exhale for 6 seconds, noticing the air moving. Practice for 60 seconds.',
-                'body-scan': 'Scan your body from your feet to your head. Notice any tension and let it go. Practice for 60 seconds.',
-                'sensory-grounding': 'Notice 3 things you can hear around you. Let the sounds anchor you in the present. Practice for 60 seconds.',
-                'heart-centered': 'Place a hand on your heart. Feel its warmth and breathe into this space. Practice for 60 seconds.',
-                'mindful-observation': 'Imagine a peaceful place. Picture its details—colors, sounds, and smells. Practice for 60 seconds.'
+                'breath-awareness': 'Focus on your breath. Inhale for 4 seconds, exhale for 6 seconds, noticing the air moving. Practice for 60 seconds. Dr. Jon Kabat-Zinn: "Breath awareness anchors you in the present, reducing anxiety and improving mindfulness over time."',
+                'body-scan': 'Scan your body from your feet to your head. Notice any tension and let it go. Practice for 60 seconds. Dr. Jon Kabat-Zinn: "A body scan releases physical tension, fostering a deeper connection between mind and body for relaxation."',
+                'sensory-grounding': 'Notice 3 things you can hear around you. Let the sounds anchor you in the present. Practice for 60 seconds. Dr. Andrew Huberman: "Sensory grounding calms the nervous system by focusing on external stimuli, reducing overthinking."',
+                'heart-centered': 'Place a hand on your heart. Feel its warmth and breathe into this space. Practice for 60 seconds. Dr. Amishi Jha: "Heart-centered focus enhances emotional regulation, helping you feel more compassionate and centered."',
+                'mindful-observation': 'Imagine a peaceful place. Picture its details—colors, sounds, and smells. Practice for 60 seconds. Dr. Amishi Jha: "Mindful observation boosts creativity and calmness by engaging your imagination in a safe, peaceful way."'
             };
 
             prompt.textContent = techniques[type];
             tiles.style.display = 'none';
+            tryAnotherButton.style.display = 'inline-flex';
+        }
+
+        function resetMeditation() {
+            const prompt = document.getElementById('guided-meditation-prompt');
+            const tiles = document.getElementById('meditation-tiles');
+            const tryAnotherButton = document.getElementById('meditation-try-another');
+            prompt.textContent = 'Select a meditation technique to begin:';
+            tiles.style.display = 'flex';
+            tryAnotherButton.style.display = 'none';
         }
 
         // Punching bag
@@ -880,17 +912,28 @@
         function startStretchTechnique(type) {
             const prompt = document.getElementById('stretch-prompt');
             const tiles = document.getElementById('stretch-tiles');
+            const tryAnotherButton = document.getElementById('stretch-try-another');
 
             const stretches = {
-                'cat-cow': 'On all fours, inhale and arch your back (Cow), then exhale and round your spine (Cat). Hold for 12 seconds.',
-                'neck-stretch': 'Gently tilt your head to the right, bringing your ear toward your shoulder. Hold and breathe for 12 seconds.',
-                'childs-pose': 'Kneel, sit back on your heels, and stretch your arms forward, resting your forehead on the ground. Hold for 12 seconds.',
-                'standing-side-bend': 'Stand tall, reach your right arm overhead, and gently bend to the left. Switch sides after 6 seconds. Hold for 12 seconds total.',
-                'seated-forward-fold': 'Sit with legs extended, reach forward toward your toes, and relax your head. Hold for 12 seconds.'
+                'cat-cow': 'On all fours, inhale and arch your back (Cow), then exhale and round your spine (Cat). Hold for 12 seconds. Dr. Kelly Starrett: "Cat-Cow improves spinal mobility, reducing back tension and enhancing flexibility with regular practice."',
+                'neck-stretch': 'Gently tilt your head to the right, bringing your ear toward your shoulder. Hold and breathe for 12 seconds. Dr. Andrew Huberman: "Neck stretches relieve stress-related tension, promoting relaxation by activating the parasympathetic system."',
+                'childs-pose': 'Kneel, sit back on your heels, and stretch your arms forward, resting your forehead on the ground. Hold for 12 seconds. Dr. Tiffany Cruikshank: "Child’s Pose calms the nervous system, gently stretching the hips and back for deep relaxation."',
+                'standing-side-bend': 'Stand tall, reach your right arm overhead, and gently bend to the left. Switch sides after 6 seconds. Hold for 12 seconds total. Dr. Stuart McGill: "Standing Side Bend enhances lateral mobility, reducing spinal stiffness while maintaining a low injury risk."',
+                'seated-forward-fold': 'Sit with legs extended, reach forward toward your toes, and relax your head. Hold for 12 seconds. Dr. Herbert Benson: "Seated Forward Fold stretches the hamstrings and back, triggering the relaxation response to ease stress."'
             };
 
             prompt.textContent = stretches[type];
             tiles.style.display = 'none';
+            tryAnotherButton.style.display = 'inline-flex';
+        }
+
+        function resetStretch() {
+            const prompt = document.getElementById('stretch-prompt');
+            const tiles = document.getElementById('stretch-tiles');
+            const tryAnotherButton = document.getElementById('stretch-try-another');
+            prompt.textContent = 'Select a stretch to begin:';
+            tiles.style.display = 'flex';
+            tryAnotherButton.style.display = 'none';
         }
 
         // Doodle
@@ -958,40 +1001,32 @@
             canvas.onmouseup = null;
         }
 
-        // Dance
-        function startDance() {
-            const prompt = document.getElementById('dance-prompt');
-            const timerText = document.getElementById('dance-timer');
-            const progressBar = document.getElementById('dance-progress');
-            let timeLeft = 30;
+        // Progressive Muscle Relaxation
+        function startPMRTechnique(type) {
+            const prompt = document.getElementById('pmr-prompt');
+            const tiles = document.getElementById('pmr-tiles');
+            const tryAnotherButton = document.getElementById('pmr-try-another');
 
-            const prompts = [
-                'Do a little twirl!',
-                'Move your hips side to side!',
-                'Raise your arms and sway!'
-            ];
+            const techniques = {
+                'full-body': 'Start at your feet: tense your muscles for 5 seconds, then relax for 10 seconds. Move up through your legs, abdomen, arms, shoulders, and face, tensing and relaxing each group. Practice for 60 seconds. Dr. Edmund Jacobson: "Full Body PMR reduces overall tension, helping you feel deeply relaxed by systematically releasing muscle stress."',
+                'lower-body': 'Focus on your feet and legs: tense your toes, calves, and thighs for 5 seconds, then relax for 10 seconds. Repeat the cycle. Practice for 60 seconds. Dr. Herbert Benson: "Lower Body PMR relieves leg tension, promoting relaxation and improving circulation for a calmer state."',
+                'upper-body': 'Focus on your arms, shoulders, and neck: tense your hands, forearms, upper arms, shoulders, and neck for 5 seconds, then relax for 10 seconds. Repeat the cycle. Practice for 60 seconds. Dr. Herbert Benson: "Upper Body PMR releases shoulder and arm tension, reducing stress and enhancing physical ease."',
+                'facial': 'Focus on your facial muscles: tense your forehead, eyes, jaw, and mouth for 5 seconds, then relax for 10 seconds. Repeat the cycle. Practice for 60 seconds. Dr. Andrew Weil: "Facial Muscle Relaxation reduces jaw and forehead tension, helping you feel refreshed and less anxious."',
+                'core-back': 'Focus on your abdomen and back: tense your core muscles and lower back for 5 seconds, then relax for 10 seconds. Repeat the cycle. Practice for 60 seconds. Dr. Andrew Weil: "Core and Back Relaxation improves posture and reduces back strain, leading to a more relaxed and balanced body."'
+            };
 
-            let promptIndex = 0;
-            prompt.textContent = prompts[promptIndex];
+            prompt.textContent = techniques[type];
+            tiles.style.display = 'none';
+            tryAnotherButton.style.display = 'inline-flex';
+        }
 
-            const danceInterval = setInterval(() => {
-                timeLeft--;
-                timerText.textContent = `Time remaining: ${timeLeft}s`;
-                progressBar.style.width = `${(30 - timeLeft) / 30 * 100}%`;
-
-                if (timeLeft % 10 === 0) {
-                    promptIndex = (promptIndex + 1) % prompts.length;
-                    prompt.textContent = prompts[promptIndex];
-                }
-
-                if (timeLeft <= 0) {
-                    clearInterval(danceInterval);
-                    timerText.style.display = 'none';
-                    progressBar.style.display = 'none';
-                    prompt.style.display = 'none';
-                    document.querySelector('#dance-popup .affirmation').style.display = 'block';
-                }
-            }, 1000);
+        function resetPMR() {
+            const prompt = document.getElementById('pmr-prompt');
+            const tiles = document.getElementById('pmr-tiles');
+            const tryAnotherButton = document.getElementById('pmr-try-another');
+            prompt.textContent = 'Select a relaxation technique to begin:';
+            tiles.style.display = 'flex';
+            tryAnotherButton.style.display = 'none';
         }
 
         // Worry Shredder
@@ -1024,13 +1059,14 @@
             const square = document.getElementById('color-square');
             const prompt = document.getElementById('color-prompt');
             const tiles = document.getElementById('color-tiles');
+            const tryAnotherButton = document.getElementById('color-try-another');
 
             const colors = {
-                'soft-blue': { hex: '#A3BFFA', message: 'Focus on this soft blue to calm your mind. Focus for 12 seconds.' },
-                'gentle-green': { hex: '#B2F5EA', message: 'Focus on this gentle green to feel balanced. Focus for 12 seconds.' },
-                'warm-yellow': { hex: '#FEF9C3', message: 'Focus on this warm yellow to feel uplifted. Focus for 12 seconds.' },
-                'calming-purple': { hex: '#D6BCFA', message: 'Focus on this calming purple to spark creativity. Focus for 12 seconds.' },
-                'soothing-orange': { hex: '#FBD38D', message: 'Focus on this soothing orange to feel energized. Focus for 12 seconds.' }
+                'soft-blue': { hex: '#A3BFFA', message: 'Focus on this soft blue to calm your mind. Focus for 12 seconds. Dr. Andrew Huberman: "Soft blue calms the mind by reducing visual stress, helping you feel more relaxed and focused."' },
+                'gentle-green': { hex: '#B2F5EA', message: 'Focus on this gentle green to feel balanced. Focus for 12 seconds. Dr. Robert Gerard: "Gentle green promotes balance and harmony, lowering stress levels and fostering a sense of peace."' },
+                'warm-yellow': { hex: '#FEF9C3', message: 'Focus on this warm yellow to feel uplifted. Focus for 12 seconds. Dr. Andrew Huberman: "Warm yellow uplifts your mood, stimulating positivity and energy through visual stimulation."' },
+                'calming-purple': { hex: '#D6BCFA', message: 'Focus on this calming purple to spark creativity. Focus for 12 seconds. Dr. Robert Gerard: "Calming purple enhances creativity, soothing the mind while inspiring imaginative thought."' },
+                'soothing-orange': { hex: '#FBD38D', message: 'Focus on this soothing orange to feel energized. Focus for 12 seconds. Dr. Andrew Huberman: "Soothing orange energizes and warms the mind, boosting motivation and emotional warmth."' }
             };
 
             const selectedColor = colors[type];
@@ -1038,6 +1074,18 @@
             prompt.textContent = selectedColor.message;
             tiles.style.display = 'none';
             square.style.display = 'block';
+            tryAnotherButton.style.display = 'inline-flex';
+        }
+
+        function resetColor() {
+            const square = document.getElementById('color-square');
+            const prompt = document.getElementById('color-prompt');
+            const tiles = document.getElementById('color-tiles');
+            const tryAnotherButton = document.getElementById('color-try-another');
+            square.style.display = 'none';
+            prompt.textContent = 'Select a color to focus on:';
+            tiles.style.display = 'flex';
+            tryAnotherButton.style.display = 'none';
         }
 
         // Gratitude Note

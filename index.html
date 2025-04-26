@@ -149,7 +149,7 @@
             display: block;
         }
         .mood-option {
-            display: none; /* Initially hidden until grid is active */
+            display: none;
             position: absolute;
             background: linear-gradient(135deg, #D6D1F5, #B0A8E5);
             color: #333;
@@ -171,7 +171,7 @@
             transition: left 0.5s ease, top 0.5s ease, transform 0.3s, background 0.3s, border 0.3s;
         }
         .mood-grid.active .mood-option {
-            display: flex; /* Show buttons when grid is active */
+            display: flex;
         }
         .mood-option:hover {
             transform: scale(1.05);
@@ -196,7 +196,6 @@
             50% { box-shadow: 0 0 15px #FFD700; }
             100% { box-shadow: 0 0 5px #FFD700; }
         }
-        /* Mood-specific gradients and text colors */
         .mood-option[data-mood="Sad"] { background: linear-gradient(135deg, #4A90E2, #87CEEB); color: #fff; }
         .mood-option[data-mood="Angry"] { background: linear-gradient(135deg, #FF6B6B, #FF8787); color: #fff; }
         .mood-option[data-mood="Frustrated"] { background: linear-gradient(135deg, #FF8C00, #FFA940); color: #333; }
@@ -218,7 +217,7 @@
         .recommendation {
             display: none;
             background-color: #fff;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             flex: 1;
@@ -227,17 +226,54 @@
             text-align: left;
             opacity: 0;
             transition: opacity 0.5s ease;
+            position: relative;
+            border-left: 4px solid transparent;
         }
         .recommendation.active {
             display: block;
             opacity: 1;
+            animation: glowRecommendation 0.5s ease;
+        }
+        @keyframes glowRecommendation {
+            0% { box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+            50% { box-shadow: 0 0 15px rgba(0,0,0,0.2); }
+            100% { box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+        }
+        .recommendation .back-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4A90E2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .recommendation .back-button:hover {
+            background-color: #2C3E50;
+        }
+        .recommendation .back-button:focus {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
         }
         .recommendation h3 {
-            color: #4A90E2;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: 600;
         }
         .recommendation p {
             color: #555;
+            line-height: 1.6;
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+        .recommendation ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        .recommendation li {
+            margin-bottom: 10px;
             line-height: 1.6;
         }
         .recommendation a {
@@ -251,9 +287,30 @@
             background-color: #f0f0f0;
             padding: 15px;
             border-radius: 5px;
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 0.9em;
+            line-height: 1.5;
         }
+        .recommendation[data-mood="Sad"] { border-left-color: #4A90E2; }
+        .recommendation[data-mood="Sad"] h3 { color: #4A90E2; }
+        .recommendation[data-mood="Angry"] { border-left-color: #FF6B6B; }
+        .recommendation[data-mood="Angry"] h3 { color: #FF6B6B; }
+        .recommendation[data-mood="Frustrated"] { border-left-color: #FF8C00; }
+        .recommendation[data-mood="Frustrated"] h3 { color: #FF8C00; }
+        .recommendation[data-mood="Anxious"] { border-left-color: #FFD700; }
+        .recommendation[data-mood="Anxious"] h3 { color: #FFD700; }
+        .recommendation[data-mood="Stressed"] { border-left-color: #FF4040; }
+        .recommendation[data-mood="Stressed"] h3 { color: #FF4040; }
+        .recommendation[data-mood="Tired"] { border-left-color: #A9A9A9; }
+        .recommendation[data-mood="Tired"] h3 { color: #A9A9A9; }
+        .recommendation[data-mood="Bored"] { border-left-color: #808080; }
+        .recommendation[data-mood="Bored"] h3 { color: #808080; }
+        .recommendation[data-mood="Excited"] { border-left-color: #FF69B4; }
+        .recommendation[data-mood="Excited"] h3 { color: #FF69B4; }
+        .recommendation[data-mood="Relaxed"] { border-left-color: #32CD32; }
+        .recommendation[data-mood="Relaxed"] h3 { color: #32CD32; }
+        .recommendation[data-mood="Happy"] { border-left-color: #FFD700; }
+        .recommendation[data-mood="Happy"] h3 { color: #FFD700; }
         .ad-player {
             flex: 0 0 450px;
             margin: 20px;
@@ -439,6 +496,13 @@
             .recommendation {
                 margin: 20px auto;
                 max-width: 100%;
+                padding: 20px;
+            }
+            .recommendation h3 {
+                font-size: 1.3em;
+            }
+            .recommendation p, .recommendation li {
+                font-size: 0.95em;
             }
             .ad-player video {
                 width: 100%;
@@ -498,7 +562,8 @@
                 </a>
             </div>
         </div>
-        <div class="recommendation" id="SadRecommendation">
+        <div class="recommendation" id="SadRecommendation" data-mood="Sad" role="region" aria-label="Recommendation for Sad mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Sad</h3>
             <p>Lift your spirits with these science-backed activities:</p>
             <ul>
@@ -516,7 +581,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="AngryRecommendation">
+        <div class="recommendation" id="AngryRecommendation" data-mood="Angry" role="region" aria-label="Recommendation for Angry mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Angry</h3>
             <p>Channel your energy with these activities:</p>
             <ul>
@@ -534,7 +600,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="FrustratedRecommendation">
+        <div class="recommendation" id="FrustratedRecommendation" data-mood="Frustrated" role="region" aria-label="Recommendation for Frustrated mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Frustrated</h3>
             <p>Reset with these activities:</p>
             <ul>
@@ -552,7 +619,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="AnxiousRecommendation">
+        <div class="recommendation" id="AnxiousRecommendation" data-mood="Anxious" role="region" aria-label="Recommendation for Anxious mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Anxious</h3>
             <p>Calm your mind with these activities:</p>
             <ul>
@@ -570,7 +638,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="StressedRecommendation">
+        <div class="recommendation" id="StressedRecommendation" data-mood="Stressed" role="region" aria-label="Recommendation for Stressed mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Stressed</h3>
             <p>Relieve tension with these activities:</p>
             <ul>
@@ -588,7 +657,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="TiredRecommendation">
+        <div class="recommendation" id="TiredRecommendation" data-mood="Tired" role="region" aria-label="Recommendation for Tired mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Tired</h3>
             <p>Recharge with these activities:</p>
             <ul>
@@ -606,7 +676,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="BoredRecommendation">
+        <div class="recommendation" id="BoredRecommendation" data-mood="Bored" role="region" aria-label="Recommendation for Bored mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Bored</h3>
             <p>Spark interest with these activities:</p>
             <ul>
@@ -624,7 +695,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="ExcitedRecommendation">
+        <div class="recommendation" id="ExcitedRecommendation" data-mood="Excited" role="region" aria-label="Recommendation for Excited mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Excited</h3>
             <p>Channel your energy with these activities:</p>
             <ul>
@@ -642,7 +714,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="RelaxedRecommendation">
+        <div class="recommendation" id="RelaxedRecommendation" data-mood="Relaxed" role="region" aria-label="Recommendation for Relaxed mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Relaxed</h3>
             <p>Enhance your calm with these activities:</p>
             <ul>
@@ -660,7 +733,8 @@
                 </div>
             </ul>
         </div>
-        <div class="recommendation" id="HappyRecommendation">
+        <div class="recommendation" id="HappyRecommendation" data-mood="Happy" role="region" aria-label="Recommendation for Happy mood">
+            <a href="#" class="back-button" tabindex="0" aria-label="Back to mood selection">Back to Mood Selection</a>
             <h3>You're Feeling Happy!</h3>
             <p>Keep that positive vibe going with these expert-recommended activities:</p>
             <ul>
@@ -702,27 +776,14 @@
             © 2025 MoodTask. All rights reserved.
         </div>
     </div>
-    <audio id="chimeSound" src="chime.mp3"></audio>
-    <audio id="selectSadSound" src="select-sad.mp3"></audio>
-    <audio id="selectAngrySound" src="select-angry.mp3"></audio>
-    <audio id="selectFrustratedSound" src="select-frustrated.mp3"></audio>
-    <audio id="selectAnxiousSound" src="select-anxious.mp3"></audio>
-    <audio id="selectStressedSound" src="select-stressed.mp3"></audio>
-    <audio id="selectTiredSound" src="select-tired.mp3"></audio>
-    <audio id="selectBoredSound" src="select-bored.mp3"></audio>
-    <audio id="selectExcitedSound" src="select-excited.mp3"></audio>
-    <audio id="selectRelaxedSound" src="select-relaxed.mp3"></audio>
-    <audio id="selectHappySound" src="select-happy.mp3"></audio>
     <script>
         function toggleMoodGrid() {
             const grid = document.getElementById('moodGrid');
             if (grid) {
                 grid.classList.toggle('active');
                 if (grid.classList.contains('active')) {
-                    positionMoodButtons(); // Position buttons in a circle initially
-                    setTimeout(positionInTwoRows, 1000); // After 1s (flyIn duration + buffer), move to two-row grid
-                    const chime = document.getElementById('chimeSound');
-                    if (chime) chime.play().catch(error => console.error('Chime sound failed:', error));
+                    positionMoodButtons();
+                    setTimeout(positionInTwoRows, 1000);
                 }
                 console.log('Mood grid toggled:', grid.classList.contains('active') ? 'visible' : 'hidden');
             } else {
@@ -738,11 +799,11 @@
             const centerX = gridWidth / 2;
             const centerY = gridHeight / 2;
             const buttonCount = moodOptions.length;
-            const avgButtonWidth = 120; // Approximate average width of a button
-            const avgButtonHeight = 40; // Approximate average height of a button
-            const minRadius = Math.max(avgButtonWidth * buttonCount / (2 * Math.PI), 150) * 1.5; // Increase circle size by 1.5x
+            const avgButtonWidth = 120;
+            const avgButtonHeight = 40;
+            const minRadius = Math.max(avgButtonWidth * buttonCount / (2 * Math.PI), 150) * 1.5;
             const maxRadius = Math.min(gridWidth, gridHeight) / 2 - Math.max(avgButtonWidth, avgButtonHeight);
-            const radius = Math.min(minRadius, maxRadius) * 0.9; // Slightly larger multiplier for visibility
+            const radius = Math.min(minRadius, maxRadius) * 0.9;
 
             moodOptions.forEach((option, index) => {
                 const angle = (index / buttonCount) * 2 * Math.PI;
@@ -758,19 +819,19 @@
             const moodOptions = document.querySelectorAll('.mood-option');
             const grid = document.getElementById('moodGrid');
             const gridWidth = grid.offsetWidth;
-            const buttonsPerRow = 5; // 5 buttons per row, 2 rows total
-            const buttonWidth = 120; // Approximate width of each button
-            const buttonHeight = 40; // Approximate height of each button
-            const gap = 30; // Increased gap between buttons
+            const buttonsPerRow = 5;
+            const buttonWidth = 120;
+            const buttonHeight = 40;
+            const gap = 30;
             const totalRowWidth = (buttonWidth * buttonsPerRow) + (gap * (buttonsPerRow - 1));
-            const startX = (gridWidth - totalRowWidth) / 2; // Center the rows
-            const rowHeight = buttonHeight + gap; // Height of each row including gap
+            const startX = (gridWidth - totalRowWidth) / 2;
+            const rowHeight = buttonHeight + gap;
 
             moodOptions.forEach((option, index) => {
-                const row = Math.floor(index / buttonsPerRow); // 0 for first row, 1 for second row
-                const col = index % buttonsPerRow; // Column position (0 to 4)
+                const row = Math.floor(index / buttonsPerRow);
+                const col = index % buttonsPerRow;
                 const x = startX + (col * (buttonWidth + gap));
-                const y = 50 + (row * rowHeight); // Start at 50px from top, add row height for second row
+                const y = 50 + (row * rowHeight);
                 option.style.left = `${x}px`;
                 option.style.top = `${y}px`;
             });
@@ -783,9 +844,6 @@
                     option.classList.add('selected');
                 }
             });
-
-            const sound = document.getElementById(`select${mood}Sound`);
-            if (sound) sound.play().catch(error => console.error(`Sound for ${mood} failed:`, error));
 
             document.querySelectorAll('.recommendation').forEach(rec => {
                 rec.classList.remove('active');
@@ -845,6 +903,26 @@
             } else {
                 console.error('No mood options found');
             }
+
+            const backButtons = document.querySelectorAll('.back-button');
+            backButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.recommendation').forEach(rec => {
+                        rec.classList.remove('active');
+                    });
+                    toggleMoodGrid();
+                });
+                button.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        document.querySelectorAll('.recommendation').forEach(rec => {
+                            rec.classList.remove('active');
+                        });
+                        toggleMoodGrid();
+                    }
+                });
+            });
 
             const adPlayer = document.getElementById('adPlayer');
             if (adPlayer) {

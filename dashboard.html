@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MoodTask Dashboard - Track your mood and activities over time.">
+    <meta name="keywords" content="MoodTask, mood tracker, emotional well-being, mental health dashboard">
+    <meta name="robots" content="index, follow">
+    <title>MoodTask - Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .nav-bar {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-bar .logo {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #4A90E2;
+        }
+        .nav-bar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-bar a {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #4A90E2;
+            font-weight: 500;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 5px;
+        }
+        .nav-bar a:hover {
+            background-color: #f0f0f0;
+            color: #2C3E50;
+        }
+        .nav-bar a.active {
+            background-color: #4A90E2;
+            color: white;
+            font-weight: 600;
+        }
+        .nav-bar .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .nav-bar .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+        .nav-bar .dropdown-content a {
+            color: #4A90E2;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 0;
+        }
+        .nav-bar .dropdown-content a:hover {
+            background-color: #f0f0f0;
+        }
+        .nav-bar .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .hero {
+            background: linear-gradient(135deg, #4A90E2, #2C3E50);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .content {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+        .calendar div {
+            background: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .calendar .header {
+            background: #4A90E2;
+            color: white;
+            font-weight: 500;
+        }
+        .calendar .day:hover {
+            background: #f0f0f0;
+            cursor: pointer;
+        }
+        .mood-history {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        .mood-history h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #2C3E50;
+        }
+        .mood-entry {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .mood-entry:last-child {
+            border-bottom: none;
+        }
+        .mood-entry span {
+            font-weight: 500;
+            color: #4A90E2;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+        .footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .footer a {
+            color: #D6D1F5;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .affiliate-note {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .footer .connect a {
+            padding: 10px 20px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+        .footer .connect .coffee {
+            background-color: #FFC107;
+            color: #333;
+        }
+        .footer .connect .therapy {
+            background-color: #4A90E2;
+            color: white;
+        }
+        .footer .connect .mindfulness {
+            background-color: #6BCB77;
+            color: white;
+        }
+        @media (max-width: 600px) {
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .nav-bar .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                align-items: center;
+            }
+            .nav-bar a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            .nav-bar .dropdown {
+                width: 100%;
+            }
+            .nav-bar .dropdown-content {
+                width: 100%;
+                left: 0;
+            }
+            .hero {
+                padding: 60px 15px;
+            }
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            .calendar {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo">MoodTask</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="calendar.html" class="active">Dashboard</a>
+            <div class="dropdown">
+                <a href="activities.html">Activities</a>
+                <div class="dropdown-content">
+                    <a href="activities.html#breathing">Breathing</a>
+                    <a href="activities.html#soundscape">Soundscape</a>
+                    <a href="activities.html#punching">Punching Bag</a>
+                    <a href="activities.html#stretch">Stretch</a>
+                    <a href="activities.html#doodle">Doodle</a>
+                    <a href="activities.html#dance">Dance</a>
+                    <a href="activities.html#color-focus">Color Focus</a>
+                    <a href="activities.html#worry">Worry</a>
+                    <a href="activities.html#gratitude">Gratitude</a>
+                </div>
+            </div>
+            <a href="music.html">Mood Music</a>
+            <a href="blog.html">Blog</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+        </div>
+    </div>
+    <div class="hero">
+        <h1>Your Mood Dashboard</h1>
+    </div>
+    <div class="content">
+        <div class="mood-history">
+            <h3>Recent Moods</h3>
+            <div id="mood-history-list">
+                <p>No mood history yet. Select a mood on the home page to start tracking.</p>
+            </div>
+        </div>
+        <div class="calendar" id="calendar">
+            <div class="header">Sun</div>
+            <div class="header">Mon</div>
+            <div class="header">Tue</div>
+            <div class="header">Wed</div>
+            <div class="header">Thu</div>
+            <div class="header">Fri</div>
+            <div class="header">Sat</div>
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            <h3>MoodTask</h3>
+            <p>Transform your mood with science-backed activities designed to improve your emotional well-being.</p>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+        </div>
+        <div class="connect">
+            <h3>Connect</h3>
+            <a href="https://twitter.com/share?url=https://moodtask.org"><i class="fab fa-twitter"></i> Share on Twitter</a>
+            <a href="https://www.buymeacoffee.com/moodtask" class="coffee"><i class="fas fa-coffee"></i> Buy Me a Coffee</a>
+            <a href="https://www.online-therapy.com/?aff_id=12345" class="therapy">Online Therapy</a>
+            <a href="https://www.mindfulness.com/?aff_id=67890" class="mindfulness">Mindfulness</a>
+            <a href="https://www.mindfulness.com/?aff_id=67890" class="mindfulness">Mindfulness</a>
+        </div>
+        <div class="affiliate-note">
+            AFFILIATE DISCLOSURE: Some links on this site are affiliate links. We may earn a commission on purchases at no extra cost to you.<br>
+            © 2025 MoodTask. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        const moodToEmoji = {
+            Sad: '😢',
+            Angry: '😡',
+            Frustrated: '😤',
+            Anxious: '😟',
+            Stressed: '😓',
+            Tired: '😴',
+            Bored: '🥱',
+            Excited: '🤗',
+            Relaxed: '😊',
+            Happy: '😊'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const moodHistoryList = document.getElementById('mood-history-list');
+            let moodHistory = [];
+            for (let i = 1; i <= 25; i++) {
+                const date = `2025-04-${i.toString().padStart(2, '0')}`;
+                const mood = localStorage.getItem(`mood-${date}`);
+                if (mood) {
+                    moodHistory.push({ date, mood });
+                }
+            }
+            if (moodHistory.length === 0) {
+                moodHistoryList.innerHTML = '<p>No mood history yet. Select a mood on the home page to start tracking.</p>';
+            } else {
+                moodHistoryList.innerHTML = moodHistory.map(entry => {
+                    return `<div class="mood-entry">You felt <span>${entry.mood}</span> on ${entry.date}</div>`;
+                }).join('');
+            }
+
+            const calendar = document.getElementById('calendar');
+            for (let day = 1; day <= 25; day++) {
+                const date = `2025-04-${day.toString().padStart(2, '0')}`;
+                const mood = localStorage.getItem(`mood-${date}`);
+                const emoji = mood ? moodToEmoji[mood] || '—' : '—';
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                dayElement.setAttribute('data-date', date);
+                dayElement.innerHTML = `${day}<br>${emoji}`;
+                calendar.appendChild(dayElement);
+            }
+        });
+    </script>
+</body>
+</html>

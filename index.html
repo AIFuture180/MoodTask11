@@ -17,6 +17,7 @@
             margin: 0;
             padding: 0;
             color: #333;
+            transition: background-color 0.3s ease; /* Smooth out potential flashes during page loads */
         }
         .nav-bar {
             background-color: #fff;
@@ -127,14 +128,9 @@
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 1s ease, transform 1s ease;
         }
         .mood-grid.active {
             display: flex;
-            opacity: 1;
-            transform: translateY(0);
         }
         .mood-option {
             background-color: #D6D1F5;
@@ -411,7 +407,7 @@
             <div class="mood-option" data-mood="Sad">Sad</div>
             <div class="mood-option" data-mood="Angry">Angry</div>
             <div class="mood-option" data-mood="Frustrated">Frustrated</div>
-            <div class="mood-option" data-mood="Anxious">An FacetofaceAnxious</div>
+            <div class="mood-option" data-mood="Anxious">Anxious</div>
             <div class="mood-option" data-mood="Stressed">Stressed</div>
             <div class="mood-option" data-mood="Tired">Tired</div>
             <div class="mood-option" data-mood="Bored">Bored</div>

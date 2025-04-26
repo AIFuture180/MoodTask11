@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             color: #333;
-            transition: background-color 0.3s ease; /* Smooth out potential flashes during page loads */
+            transition: background-color 0.3s ease;
         }
         .nav-bar {
             background-color: #fff;
@@ -100,6 +100,7 @@
             padding: 100px 20px;
             text-align: center;
             margin-top: 60px;
+            position: relative;
         }
         .hero h1 {
             font-size: 2.5em;
@@ -117,35 +118,95 @@
             border-radius: 25px;
             font-size: 1.2em;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: pulse 2s infinite;
+            position: relative;
+            z-index: 10;
         }
         .mood-button:hover {
             background-color: #FFB300;
+            transform: scale(1.05);
+        }
+        .mood-button:focus {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 193, 7, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 193, 7, 0.5); }
         }
         .mood-grid {
             display: none;
-            flex-direction: row;
-            justify-content: center;
-            gap: 10px;
+            position: relative;
             margin-top: 20px;
+            min-height: 400px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .mood-grid.active {
-            display: flex;
+            display: block;
         }
         .mood-option {
-            background-color: #D6D1F5;
+            display: none; /* Initially hidden until grid is active */
+            position: absolute;
+            background: linear-gradient(135deg, #D6D1F5, #B0A8E5);
             color: #333;
-            padding: 10px 20px;
+            padding: 15px 30px;
             text-align: center;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 0.9em;
+            font-size: 1.1em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            animation: flyIn 0.5s ease forwards;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            min-width: 120px;
+            border: 2px solid transparent;
+            transition: left 0.5s ease, top 0.5s ease, transform 0.3s, background 0.3s, border 0.3s;
+        }
+        .mood-grid.active .mood-option {
+            display: flex; /* Show buttons when grid is active */
         }
         .mood-option:hover {
-            background-color: #4A90E2;
-            color: white;
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #B0A8E5, #D6D1F5);
+            border: 2px solid #FFD700;
         }
+        .mood-option:focus {
+            outline: 2px solid #FFD700;
+            outline-offset: 2px;
+        }
+        .mood-option.selected {
+            border: 2px solid #FFD700;
+            box-shadow: 0 0 10px #FFD700;
+            animation: glow 0.5s ease;
+        }
+        @keyframes flyIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #FFD700; }
+            50% { box-shadow: 0 0 15px #FFD700; }
+            100% { box-shadow: 0 0 5px #FFD700; }
+        }
+        /* Mood-specific gradients and text colors */
+        .mood-option[data-mood="Sad"] { background: linear-gradient(135deg, #4A90E2, #87CEEB); color: #fff; }
+        .mood-option[data-mood="Angry"] { background: linear-gradient(135deg, #FF6B6B, #FF8787); color: #fff; }
+        .mood-option[data-mood="Frustrated"] { background: linear-gradient(135deg, #FF8C00, #FFA940); color: #333; }
+        .mood-option[data-mood="Anxious"] { background: linear-gradient(135deg, #FFD700, #FFE066); color: #333; }
+        .mood-option[data-mood="Stressed"] { background: linear-gradient(135deg, #FF4040, #FF6666); color: #fff; }
+        .mood-option[data-mood="Tired"] { background: linear-gradient(135deg, #A9A9A9, #C0C0C0); color: #333; }
+        .mood-option[data-mood="Bored"] { background: linear-gradient(135deg, #808080, #A9A9A9); color: #fff; }
+        .mood-option[data-mood="Excited"] { background: linear-gradient(135deg, #FF69B4, #FF85C2); color: #fff; }
+        .mood-option[data-mood="Relaxed"] { background: linear-gradient(135deg, #32CD32, #4DED4D); color: #333; }
+        .mood-option[data-mood="Happy"] { background: linear-gradient(135deg, #FFD700, #FFE066); color: #333; }
         .content-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -164,9 +225,12 @@
             max-width: 600px;
             margin: 20px;
             text-align: left;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
         .recommendation.active {
             display: block;
+            opacity: 1;
         }
         .recommendation h3 {
             color: #4A90E2;
@@ -356,12 +420,12 @@
                 font-size: 1.8em;
             }
             .mood-grid {
-                flex-wrap: wrap;
-                gap: 8px;
+                min-height: 500px;
             }
             .mood-option {
-                padding: 8px 15px;
-                font-size: 0.8em;
+                padding: 10px 20px;
+                font-size: 1em;
+                min-width: 100px;
             }
             .content-wrapper {
                 flex-direction: column;
@@ -402,18 +466,18 @@
     <div class="hero">
         <h1>Transform Your Mood</h1>
         <p>Discover science-backed activities tailored to how you feel right now.</p>
-        <button class="mood-button" id="moodButton">How are you feeling?</button>
+        <button class="mood-button" id="moodButton" tabindex="0" aria-label="Open mood selection">How are you feeling?</button>
         <div class="mood-grid" id="moodGrid">
-            <div class="mood-option" data-mood="Sad">Sad</div>
-            <div class="mood-option" data-mood="Angry">Angry</div>
-            <div class="mood-option" data-mood="Frustrated">Frustrated</div>
-            <div class="mood-option" data-mood="Anxious">Anxious</div>
-            <div class="mood-option" data-mood="Stressed">Stressed</div>
-            <div class="mood-option" data-mood="Tired">Tired</div>
-            <div class="mood-option" data-mood="Bored">Bored</div>
-            <div class="mood-option" data-mood="Excited">Excited</div>
-            <div class="mood-option" data-mood="Relaxed">Relaxed</div>
-            <div class="mood-option" data-mood="Happy">Happy</div>
+            <div class="mood-option" data-mood="Sad" tabindex="0" aria-label="Select Sad mood">😢 Sad</div>
+            <div class="mood-option" data-mood="Angry" tabindex="0" aria-label="Select Angry mood">😡 Angry</div>
+            <div class="mood-option" data-mood="Frustrated" tabindex="0" aria-label="Select Frustrated mood">😤 Frustrated</div>
+            <div class="mood-option" data-mood="Anxious" tabindex="0" aria-label="Select Anxious mood">😟 Anxious</div>
+            <div class="mood-option" data-mood="Stressed" tabindex="0" aria-label="Select Stressed mood">😫 Stressed</div>
+            <div class="mood-option" data-mood="Tired" tabindex="0" aria-label="Select Tired mood">😴 Tired</div>
+            <div class="mood-option" data-mood="Bored" tabindex="0" aria-label="Select Bored mood">😐 Bored</div>
+            <div class="mood-option" data-mood="Excited" tabindex="0" aria-label="Select Excited mood">🎉 Excited</div>
+            <div class="mood-option" data-mood="Relaxed" tabindex="0" aria-label="Select Relaxed mood">🧘 Relaxed</div>
+            <div class="mood-option" data-mood="Happy" tabindex="0" aria-label="Select Happy mood">😊 Happy</div>
         </div>
     </div>
     <div class="content-wrapper">
@@ -638,18 +702,91 @@
             © 2025 MoodTask. All rights reserved.
         </div>
     </div>
+    <audio id="chimeSound" src="chime.mp3"></audio>
+    <audio id="selectSadSound" src="select-sad.mp3"></audio>
+    <audio id="selectAngrySound" src="select-angry.mp3"></audio>
+    <audio id="selectFrustratedSound" src="select-frustrated.mp3"></audio>
+    <audio id="selectAnxiousSound" src="select-anxious.mp3"></audio>
+    <audio id="selectStressedSound" src="select-stressed.mp3"></audio>
+    <audio id="selectTiredSound" src="select-tired.mp3"></audio>
+    <audio id="selectBoredSound" src="select-bored.mp3"></audio>
+    <audio id="selectExcitedSound" src="select-excited.mp3"></audio>
+    <audio id="selectRelaxedSound" src="select-relaxed.mp3"></audio>
+    <audio id="selectHappySound" src="select-happy.mp3"></audio>
     <script>
         function toggleMoodGrid() {
             const grid = document.getElementById('moodGrid');
             if (grid) {
                 grid.classList.toggle('active');
+                if (grid.classList.contains('active')) {
+                    positionMoodButtons(); // Position buttons in a circle initially
+                    setTimeout(positionInTwoRows, 1000); // After 1s (flyIn duration + buffer), move to two-row grid
+                    const chime = document.getElementById('chimeSound');
+                    if (chime) chime.play().catch(error => console.error('Chime sound failed:', error));
+                }
                 console.log('Mood grid toggled:', grid.classList.contains('active') ? 'visible' : 'hidden');
             } else {
                 console.error('Mood grid element not found');
             }
         }
 
+        function positionMoodButtons() {
+            const moodOptions = document.querySelectorAll('.mood-option');
+            const grid = document.getElementById('moodGrid');
+            const gridWidth = grid.offsetWidth;
+            const gridHeight = grid.offsetHeight;
+            const centerX = gridWidth / 2;
+            const centerY = gridHeight / 2;
+            const buttonCount = moodOptions.length;
+            const avgButtonWidth = 120; // Approximate average width of a button
+            const avgButtonHeight = 40; // Approximate average height of a button
+            const minRadius = Math.max(avgButtonWidth * buttonCount / (2 * Math.PI), 150) * 1.5; // Increase circle size by 1.5x
+            const maxRadius = Math.min(gridWidth, gridHeight) / 2 - Math.max(avgButtonWidth, avgButtonHeight);
+            const radius = Math.min(minRadius, maxRadius) * 0.9; // Slightly larger multiplier for visibility
+
+            moodOptions.forEach((option, index) => {
+                const angle = (index / buttonCount) * 2 * Math.PI;
+                const x = centerX + radius * Math.cos(angle) - (avgButtonWidth / 2);
+                const y = centerY + radius * Math.sin(angle) - (avgButtonHeight / 2);
+                option.style.left = `${x}px`;
+                option.style.top = `${y}px`;
+                option.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        function positionInTwoRows() {
+            const moodOptions = document.querySelectorAll('.mood-option');
+            const grid = document.getElementById('moodGrid');
+            const gridWidth = grid.offsetWidth;
+            const buttonsPerRow = 5; // 5 buttons per row, 2 rows total
+            const buttonWidth = 120; // Approximate width of each button
+            const buttonHeight = 40; // Approximate height of each button
+            const gap = 30; // Increased gap between buttons
+            const totalRowWidth = (buttonWidth * buttonsPerRow) + (gap * (buttonsPerRow - 1));
+            const startX = (gridWidth - totalRowWidth) / 2; // Center the rows
+            const rowHeight = buttonHeight + gap; // Height of each row including gap
+
+            moodOptions.forEach((option, index) => {
+                const row = Math.floor(index / buttonsPerRow); // 0 for first row, 1 for second row
+                const col = index % buttonsPerRow; // Column position (0 to 4)
+                const x = startX + (col * (buttonWidth + gap));
+                const y = 50 + (row * rowHeight); // Start at 50px from top, add row height for second row
+                option.style.left = `${x}px`;
+                option.style.top = `${y}px`;
+            });
+        }
+
         function showRecommendation(mood) {
+            document.querySelectorAll('.mood-option').forEach(option => {
+                option.classList.remove('selected');
+                if (option.dataset.mood === mood) {
+                    option.classList.add('selected');
+                }
+            });
+
+            const sound = document.getElementById(`select${mood}Sound`);
+            if (sound) sound.play().catch(error => console.error(`Sound for ${mood} failed:`, error));
+
             document.querySelectorAll('.recommendation').forEach(rec => {
                 rec.classList.remove('active');
             });
@@ -679,6 +816,12 @@
             const moodButton = document.getElementById('moodButton');
             if (moodButton) {
                 moodButton.addEventListener('click', toggleMoodGrid);
+                moodButton.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleMoodGrid();
+                    }
+                });
                 console.log('Mood button event listener attached');
             } else {
                 console.error('Mood button not found');
@@ -689,6 +832,13 @@
                     option.addEventListener('click', () => {
                         const mood = option.dataset.mood;
                         showRecommendation(mood);
+                    });
+                    option.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            const mood = option.dataset.mood;
+                            showRecommendation(mood);
+                        }
                     });
                 });
                 console.log('Mood option event listeners attached:', moodOptions.length);
@@ -713,6 +863,13 @@
             } else {
                 console.error('Ad player element not found');
             }
+
+            window.addEventListener('resize', () => {
+                if (document.getElementById('moodGrid').classList.contains('active')) {
+                    positionMoodButtons();
+                    setTimeout(positionInTwoRows, 1000);
+                }
+            });
         });
     </script>
 </body>

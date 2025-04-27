@@ -100,9 +100,42 @@
         }
         .music-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
+            max-width: 510px; /* 3 tiles * (150px width + 15px gap) */
+        }
+        .music-guide {
             max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .music-guide h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+        .music-guide h3 {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #4A90E2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .music-guide p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .music-guide a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+        .music-guide a:hover {
+            text-decoration: underline;
         }
         .music-button {
             color: #fff;
@@ -390,6 +423,9 @@
                 max-width: 100%;
                 margin: 20px auto;
             }
+            .music-guide {
+                margin: 20px auto;
+            }
             .video-player {
                 width: 100%;
                 height: 100px;
@@ -416,14 +452,27 @@
             <p>Discover music to help you sleep, meditate, relax, stay motivated, or focus while studying.</p>
         </div>
         <div class="content-wrapper">
+            <div class="music-guide">
+                <h2>Your Guide to Mood Music</h2>
+                <p>Welcome to MoodTask’s Mood Music page! Here, we’ve curated a collection of music to help you manage your emotions and enhance your daily activities. Whether you’re looking to unwind, focus, or get motivated, our carefully selected tracks across five categories—Sleep, Meditation, Relaxation, Motivation, and Study—are designed to support your emotional well-being.</p>
+                
+                <h3>Why Mood Music Matters</h3>
+                <p>Music has a profound impact on our emotions and mental state. Research shows that listening to calming music can reduce stress and anxiety, while upbeat tracks can boost motivation and productivity. For example, slow-tempo music can help you fall asleep faster by lowering your heart rate, and alpha wave music can improve concentration during study sessions. At MoodTask, we’ve chosen each track to align with these benefits, ensuring you have the right soundtrack for every moment.</p>
+                
+                <h3>How to Use This Page</h3>
+                <p>Getting started is simple! Click on any of the category tiles below to explore music tailored to your needs. Choose a video from the popup, and it will play in a seamless video player. Need to relax after a long day? Try our Relaxation tracks. Struggling to focus? Dive into our Study music collection. Explore all categories to find what resonates with you best.</p>
+                
+                <h3>Explore More with MoodTask</h3>
+                <p>MoodTask is here to support your emotional wellness journey. After enjoying our mood music, check out our <a href="activities.html">Activities</a> page for science-backed tasks to improve your mood, or visit our <a href="blog.html">Blog</a> for tips on mindfulness and mental health. Let music be your companion in creating a more balanced, joyful day!</p>
+            </div>
             <div class="music-container" id="music-container">
                 <button class="music-button sleep" data-music="sleep"><i class="fas fa-moon"></i>Sleep</button>
                 <button class="music-button meditation" data-music="meditation"><i class="fas fa-spa"></i>Meditation</button>
                 <button class="music-button relax" data-music="relax"><i class="fas fa-leaf"></i>Relax</button>
                 <button class="music-button motivation" data-music="motivation"><i class="fas fa-rocket"></i>Motivation</button>
                 <button class="music-button study" data-music="study"><i class="fas fa-book"></i>Study</button>
+            </div>
         </div>
-    </div>
         <div class="footer">
             <div>
                 <h3>MoodTask</h3>

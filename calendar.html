@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MoodTask Dashboard - Track your mood and activities over time.">
+    <meta name="description" content="MoodTask Dashboard - Track your mood and activities over time to improve your emotional well-being.">
     <meta name="keywords" content="MoodTask, mood tracker, emotional well-being, mental health dashboard">
     <meta name="robots" content="index, follow">
+    <meta name="author" content="MoodTask">
     <title>MoodTask - Dashboard</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -119,6 +120,39 @@
             margin: 40px auto;
             padding: 0 20px;
         }
+        .welcome-guide {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .welcome-guide h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+        .welcome-guide h3 {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #4A90E2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .welcome-guide p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .welcome-guide a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+        .welcome-guide a:hover {
+            text-decoration: underline;
+        }
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -147,7 +181,7 @@
         }
         .calendar .day .tooltip {
             visibility: hidden;
-            width: 120px;
+            width: 160px;
             background-color: #2C3E50;
             color: #fff;
             text-align: center;
@@ -157,13 +191,17 @@
             z-index: 1;
             bottom: 100%;
             left: 50%;
-            margin-left: -60px;
+            margin-left: -80px;
             opacity: 0;
             transition: opacity 0.3s;
         }
         .calendar .day:hover .tooltip {
             visibility: visible;
             opacity: 1;
+        }
+        .calendar .day.selected {
+            border: 2px solid #4A90E2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
         }
         .mood-history {
             background: #fff;
@@ -351,6 +389,18 @@
             .hero h1 {
                 font-size: 1.8em;
             }
+            .welcome-guide {
+                padding: 20px;
+            }
+            .welcome-guide h2 {
+                font-size: 1.5em;
+            }
+            .welcome-guide h3 {
+                font-size: 1.2em;
+            }
+            .welcome-guide p {
+                font-size: 0.95em;
+            }
             .calendar {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -391,6 +441,19 @@
             <h1>Your Mood Dashboard</h1>
         </div>
         <div class="content">
+            <div class="welcome-guide">
+                <h2>Welcome to Your Mood Dashboard</h2>
+                <p>The MoodTask Dashboard is your personal hub for tracking and understanding your emotional well-being over time. Designed to help you gain insights into your mood patterns, this page lets you see how you’ve been feeling, what activities you’ve tried, and how your emotions evolve day by day. By keeping track of your moods and activities, you can identify trends, discover what works best for you, and take proactive steps to improve your mental health.</p>
+                
+                <h3>Why Track Your Moods?</h3>
+                <p>Tracking your moods helps you become more aware of your emotional triggers and patterns. For example, you might notice that you feel more stressed on certain days or that specific activities, like breathing exercises, consistently help you relax. This awareness empowers you to make informed decisions about your well-being, whether it’s trying a new activity from our <a href="activities.html">Activities</a> page or exploring calming playlists on our <a href="music.html">Mood Music</a> section.</p>
+                
+                <h3>How to Use This Dashboard</h3>
+                <p>Start by selecting a mood each day on the <a href="index.html">Home</a> page, and it’ll automatically appear here in your Recent Moods and Calendar sections. You can also log activities you’ve completed on the Activities page, and they’ll be tracked alongside your moods. Use the calendar to click on a specific day and see your mood and activities for that date. Filter your history by mood or date to focus on specific patterns, and check the Mood Trends chart to visualize how your emotions have changed over the month. You can even export your history as a CSV file to keep a record!</p>
+                
+                <h3>Explore More Features</h3>
+                <p>Dive deeper into your emotional journey by exploring our <a href="blog.html">Blog</a> for expert tips on mindfulness and stress management, or try recommended tools like mindfulness apps and online therapy in the Recommended for You section below. Take control of your emotional well-being with MoodTask today!</p>
+            </div>
             <div class="mood-insights">
                 <h3>Mood Insights</h3>
                 <div id="mood-insights-content">
@@ -408,7 +471,7 @@
                 <canvas id="mood-chart"></canvas>
             </div>
             <div class="mood-history">
-                <h3>Recent Moods</h3>
+                <h3>Recent Moods and Activities</h3>
                 <div class="filter-options">
                     <select id="mood-filter">
                         <option value="">All Moods</option>
@@ -535,34 +598,49 @@
                 });
             });
 
-            // Load mood history
+            // Load mood and activity history
             const moodHistoryList = document.getElementById('mood-history-list');
             let moodHistory = [];
-            for (let i = 1; i <= 25; i++) {
-                const date = `2025-04-${i.toString().padStart(2, '0')}`;
+            let activityHistory = [];
+            const year = 2025;
+            const month = 4; // April
+            const daysInMonth = new Date(year, month, 0).getDate(); // 30 days in April
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
                 const mood = localStorage.getItem(`mood-${date}`);
-                if (mood) {
-                    moodHistory.push({ date, mood });
+                const activities = JSON.parse(localStorage.getItem(`activities-${date}`)) || [];
+                if (mood || activities.length > 0) {
+                    moodHistory.push({ date, mood: mood || 'None' });
+                    activityHistory.push({ date, activities });
                 }
             }
 
-            // Display mood history
-            function displayMoodHistory(filteredHistory) {
-                if (filteredHistory.length === 0) {
-                    moodHistoryList.innerHTML = '<p>No mood history yet. Select a mood on the home page to start tracking.</p>';
+            // Display mood and activity history
+            function displayMoodHistory(filteredHistory, filteredActivities) {
+                if (filteredHistory.length === 0 && filteredActivities.every(entry => entry.activities.length === 0)) {
+                    moodHistoryList.innerHTML = '<p>No mood or activity history yet. Select a mood on the home page or complete an activity to start tracking.</p>';
                 } else {
-                    moodHistoryList.innerHTML = filteredHistory.map(entry => {
-                        return `<div class="mood-entry">You felt <span>${entry.mood}</span> on ${entry.date}</div>`;
+                    const combinedEntries = [];
+                    filteredHistory.forEach(entry => {
+                        const activitiesEntry = filteredActivities.find(act => act.date === entry.date) || { activities: [] };
+                        combinedEntries.push({ date: entry.date, mood: entry.mood, activities: activitiesEntry.activities });
+                    });
+                    moodHistoryList.innerHTML = combinedEntries.map(entry => {
+                        const moodText = entry.mood !== 'None' ? `You felt <span>${entry.mood}</span>` : 'No mood recorded';
+                        const activitiesText = entry.activities.length > 0 ? `Activities: ${entry.activities.join(', ')}` : 'No activities recorded';
+                        return `<div class="mood-entry">${moodText} on ${entry.date}. ${activitiesText}</div>`;
                     }).join('');
                 }
             }
-            displayMoodHistory(moodHistory);
+            displayMoodHistory(moodHistory, activityHistory);
 
             // Mood Insights
             const moodInsightsContent = document.getElementById('mood-insights-content');
             const moodCounts = {};
             moodHistory.forEach(entry => {
-                moodCounts[entry.mood] = (moodCounts[entry.mood] || 0) + 1;
+                if (entry.mood !== 'None') {
+                    moodCounts[entry.mood] = (moodCounts[entry.mood] || 0) + 1;
+                }
             });
             const mostFrequentMood = Object.keys(moodCounts).reduce((a, b) => moodCounts[a] > moodCounts[b] ? a : b, null);
             if (mostFrequentMood) {
@@ -572,48 +650,107 @@
             // Activity Suggestions
             const activitySuggestionsContent = document.getElementById('activity-suggestions-content');
             if (moodHistory.length > 0) {
-                const latestMood = moodHistory[moodHistory.length - 1].mood;
-                const suggestion = activitySuggestions[latestMood] || { text: 'Explore Activities', link: 'activities.html' };
-                activitySuggestionsContent.innerHTML = `<p>Based on your recent mood (${latestMood}):</p><a href="${suggestion.link}">${suggestion.text}</a>`;
+                const latestMoodEntry = moodHistory[moodHistory.length - 1];
+                const latestMood = latestMoodEntry.mood !== 'None' ? latestMoodEntry.mood : null;
+                if (latestMood) {
+                    const suggestion = activitySuggestions[latestMood] || { text: 'Explore Activities', link: 'activities.html' };
+                    activitySuggestionsContent.innerHTML = `<p>Based on your recent mood (${latestMood}):</p><a href="${suggestion.link}">${suggestion.text}</a>`;
+                } else {
+                    activitySuggestionsContent.innerHTML = `<p>No recent mood recorded. Try an activity from the <a href="activities.html">Activities</a> page!</p>`;
+                }
             }
 
-            // Mood Trends Chart
+            // Mood Trends Chart (Line Chart)
+            const dailyMoods = Array(daysInMonth).fill(null);
+            moodHistory.forEach(entry => {
+                const day = parseInt(entry.date.split('-')[2]) - 1;
+                if (entry.mood !== 'None') {
+                    dailyMoods[day] = entry.mood;
+                }
+            });
             const moodChart = new Chart(document.getElementById('mood-chart'), {
-                type: 'bar',
+                type: 'line',
                 data: {
-                    labels: Object.keys(moodCounts),
+                    labels: Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString()),
                     datasets: [{
-                        label: 'Days',
-                        data: Object.values(moodCounts),
-                        backgroundColor: 'rgba(74, 144, 226, 0.5)',
+                        label: 'Mood Trend',
+                        data: dailyMoods.map(mood => {
+                            const moods = ['Sad', 'Angry', 'Frustrated', 'Anxious', 'Stressed', 'Tired', 'Bored', 'Excited', 'Relaxed', 'Happy'];
+                            return mood ? moods.indexOf(mood) + 1 : null;
+                        }),
                         borderColor: '#4A90E2',
-                        borderWidth: 1
+                        backgroundColor: 'rgba(74, 144, 226, 0.2)',
+                        fill: true,
+                        tension: 0.4,
+                        spanGaps: true
                     }]
                 },
                 options: {
                     scales: {
-                        y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1,
+                                callback: value => {
+                                    const moods = ['', 'Sad', 'Angry', 'Frustrated', 'Anxious', 'Stressed', 'Tired', 'Bored', 'Excited', 'Relaxed', 'Happy'];
+                                    return moods[value] || '';
+                                }
+                            }
+                        },
+                        x: {
+                            title: { display: true, text: 'Day of Month' }
+                        }
                     },
-                    plugins: { legend: { display: false } }
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: context => {
+                                    const moods = ['', 'Sad', 'Angry', 'Frustrated', 'Anxious', 'Stressed', 'Tired', 'Bored', 'Excited', 'Relaxed', 'Happy'];
+                                    const value = context.raw;
+                                    return value ? `Mood: ${moods[value]}` : 'No mood recorded';
+                                }
+                            }
+                        }
+                    }
                 }
             });
 
             // Calendar
             const calendar = document.getElementById('calendar');
-            for (let day = 1; day <= 25; day++) {
-                const date = `2025-04-${day.toString().padStart(2, '0')}`;
+            const firstDayOfMonth = new Date(year, month - 1, 1).getDay(); // First day of April 2025 (Tuesday = 2)
+            // Add empty divs for days before the 1st
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'day';
+                emptyDay.innerHTML = ' ';
+                calendar.appendChild(emptyDay);
+            }
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
                 const mood = localStorage.getItem(`mood-${date}`);
+                const activities = JSON.parse(localStorage.getItem(`activities-${date}`)) || [];
                 const emoji = mood ? moodToEmoji[mood] || '—' : '—';
                 const dayElement = document.createElement('div');
                 dayElement.className = `day ${mood ? moodToClass[mood] : ''}`;
                 dayElement.setAttribute('data-date', date);
                 dayElement.innerHTML = `${day}<br>${emoji}`;
-                if (mood) {
+                if (mood || activities.length > 0) {
                     const tooltip = document.createElement('div');
                     tooltip.className = 'tooltip';
-                    tooltip.textContent = `Mood: ${mood}`;
+                    const moodText = mood ? `Mood: ${mood}` : 'No mood recorded';
+                    const activitiesText = activities.length > 0 ? `Activities: ${activities.join(', ')}` : 'No activities';
+                    tooltip.textContent = `${moodText} | ${activitiesText}`;
                     dayElement.appendChild(tooltip);
                 }
+                dayElement.addEventListener('click', () => {
+                    document.querySelectorAll('.calendar .day').forEach(d => d.classList.remove('selected'));
+                    dayElement.classList.add('selected');
+                    const filteredHistory = moodHistory.filter(entry => entry.date === date);
+                    const filteredActivities = activityHistory.filter(entry => entry.date === date);
+                    displayMoodHistory(filteredHistory, filteredActivities);
+                });
                 calendar.appendChild(dayElement);
             }
 
@@ -627,37 +764,51 @@
                 const selectedMood = moodFilter.value;
                 const selectedDate = dateFilter.value;
                 let filteredHistory = moodHistory;
+                let filteredActivities = activityHistory;
                 if (selectedMood) {
                     filteredHistory = filteredHistory.filter(entry => entry.mood === selectedMood);
+                    filteredActivities = filteredActivities.filter((_, i) => filteredHistory[i] && filteredHistory[i].mood === selectedMood);
                 }
                 if (selectedDate) {
                     filteredHistory = filteredHistory.filter(entry => entry.date.startsWith(selectedDate));
+                    filteredActivities = filteredActivities.filter(entry => entry.date.startsWith(selectedDate));
                 }
-                displayMoodHistory(filteredHistory);
+                displayMoodHistory(filteredHistory, filteredActivities);
+                // Reset calendar selection
+                document.querySelectorAll('.calendar .day').forEach(d => d.classList.remove('selected'));
             }
         });
 
-        // Export Mood History as CSV
+        // Export Mood and Activity History as CSV
         function exportMoodHistory() {
             let moodHistory = [];
-            for (let i = 1; i <= 25; i++) {
-                const date = `2025-04-${i.toString().padStart(2, '0')}`;
+            let activityHistory = [];
+            const year = 2025;
+            const month = 4;
+            const daysInMonth = new Date(year, month, 0).getDate();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
                 const mood = localStorage.getItem(`mood-${date}`);
-                if (mood) {
-                    moodHistory.push({ date, mood });
+                const activities = JSON.parse(localStorage.getItem(`activities-${date}`)) || [];
+                if (mood || activities.length > 0) {
+                    moodHistory.push({ date, mood: mood || 'None' });
+                    activityHistory.push({ date, activities });
                 }
             }
-            if (moodHistory.length === 0) {
-                alert('No mood history to export.');
+            if (moodHistory.length === 0 && activityHistory.every(entry => entry.activities.length === 0)) {
+                alert('No mood or activity history to export.');
                 return;
             }
             const csvContent = "data:text/csv;charset=utf-8," + 
-                "Date,Mood\n" + 
-                moodHistory.map(entry => `${entry.date},${entry.mood}`).join("\n");
+                "Date,Mood,Activities\n" + 
+                moodHistory.map((entry, i) => {
+                    const activities = activityHistory[i].activities.join(';');
+                    return `${entry.date},${entry.mood},${activities}`;
+                }).join("\n");
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "mood_history.csv");
+            link.setAttribute("download", "mood_activity_history.csv");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);

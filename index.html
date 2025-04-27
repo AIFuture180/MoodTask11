@@ -6,6 +6,7 @@
     <meta name="description" content="MoodTask helps you improve your mood with personalized, science-backed activities.">
     <meta name="keywords" content="MoodTask, mental health, mood tracker, emotional well-being, stress relief">
     <meta name="robots" content="index, follow">
+    <meta name="author" content="MoodTask">
     <title>MoodTask - Transform Your Mood</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -223,6 +224,42 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        .welcome-guide {
+            flex: 1;
+            max-width: 600px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 20px;
+            text-align: left;
+        }
+        .welcome-guide h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 15px;
+        }
+        .welcome-guide h3 {
+            font-size: 1.3em;
+            font-weight: 500;
+            color: #4A90E2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .welcome-guide p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .welcome-guide a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+        .welcome-guide a:hover {
+            text-decoration: underline;
         }
         .recommendation {
             display: none;
@@ -498,6 +535,20 @@
                 flex-direction: column;
                 padding: 0 10px;
             }
+            .welcome-guide {
+                margin: 20px auto;
+                max-width: 100%;
+                padding: 20px;
+            }
+            .welcome-guide h2 {
+                font-size: 1.5em;
+            }
+            .welcome-guide h3 {
+                font-size: 1.2em;
+            }
+            .welcome-guide p {
+                font-size: 0.95em;
+            }
             .ad-player {
                 flex: 0 0 450px;
                 margin: 20px auto;
@@ -556,6 +607,19 @@
             </div>
         </div>
         <div class="content-wrapper">
+            <div class="welcome-guide">
+                <h2>Welcome to MoodTask</h2>
+                <p>MoodTask is your go-to platform for improving your emotional well-being through personalized, science-backed activities. Whether you’re feeling sad, stressed, or excited, we’re here to help you navigate your emotions with tools designed to transform your mood. Our mission is to empower you with practical, accessible ways to manage stress, boost happiness, and find balance in your daily life.</p>
+                
+                <h3>Why MoodTask Works</h3>
+                <p>Our activities are rooted in science, drawing on principles from neuroscience and psychology to help you feel better. For example, engaging in gratitude exercises can increase dopamine and serotonin levels, enhancing your mood naturally. Breathing techniques activate the parasympathetic nervous system to reduce stress, while creative tasks like doodling stimulate the brain’s reward centers. MoodTask offers a variety of tools to suit your needs, ensuring you have the right support for any emotional state.</p>
+                
+                <h3>How to Use This Page</h3>
+                <p>Start by clicking the “How are you feeling?” button above to reveal a grid of mood options. Select the mood that best matches your current state—whether it’s anxious, happy, or tired—and you’ll receive tailored recommendations for activities to try. Each suggestion links to our <a href="activities.html">Activities</a> page, where you can explore tools like breathing exercises, guided meditation, or gratitude notes. Your mood is saved for the day, so you can track your emotional journey over time on the <a href="calendar.html">Dashboard</a>.</p>
+                
+                <h3>Explore More Features</h3>
+                <p>MoodTask offers more than just activities! Check out our <a href="music.html">Mood Music</a> page for playlists to match or shift your mood, or visit our <a href="blog.html">Blog</a> for tips on mindfulness, stress management, and emotional wellness. Start your journey with MoodTask today and discover how small, intentional actions can lead to big improvements in how you feel!</p>
+            </div>
             <div class="ad-player" id="adPlayer">
                 <a href="https://amzn.to/4jbEB3h" target="_blank">
                     <video autoplay muted loop controls poster="https://via.placeholder.com/450x75?text=AG1+Product+Shot">

@@ -493,7 +493,7 @@
                     <button onclick="exportMoodHistory()">Export as CSV</button>
                 </div>
                 <div id="mood-history-list">
-                    <p>No mood history yet. Select a mood on the home page to start tracking.</p>
+                    <p>No mood or activity history yet. Select a mood on the home page or complete an activity to start tracking.</p>
                 </div>
             </div>
             <div class="recommended">
@@ -597,6 +597,13 @@
                     }, 500);
                 });
             });
+
+            // Temporary: Set a sample mood for today if none exists (for testing)
+            const today = "2025-04-26"; // Hardcoded for April 26, 2025
+            if (!localStorage.getItem(`mood-${today}`)) {
+                localStorage.setItem(`mood-${today}`, "Happy");
+                console.log(`Set sample mood for ${today}: Happy`);
+            }
 
             // Load mood and activity history
             const moodHistoryList = document.getElementById('mood-history-list');
